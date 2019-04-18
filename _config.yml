@@ -39,6 +39,7 @@ keep_files:
 # dark: 213, 58, 38
 dark: 38, 90, 210
 light: 255, 236, 179
+permalink: /:title:output_ext
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
