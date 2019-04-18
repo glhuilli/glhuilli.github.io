@@ -24,15 +24,15 @@
     <!-- <link rel='icon' href='/assets/images/favicon.ico' type='image/x-icon'> -->
     
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1555590441162650000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1555592755047396000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1555590441162650000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1555592755047396000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1555590441162650000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1555592755047396000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1555590441162650000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1555592755047396000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1555590441162650000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1555592755047396000'>
     
   
     
@@ -128,7 +128,7 @@ close to <a href="https://en.wikipedia.org/wiki/Milord">my lord</a> rather than 
 
 <p>where <script type="math/tex">e'</script> is the opposite emotion of <script type="math/tex">e</script> according to the Plutchik wheel of emotions.</p>
 
-<h3 id="correlation-analysis">Correlation Analysis</h3>
+<h3 id="correlation-and-regression-analysis">Correlation and Regression Analysis</h3>
 
 <p><img style="margin: 20px -20px;" src="/assets/posts/got-analysis/output_11_0.png" alt="Correlation matrix." /></p>
 
@@ -146,7 +146,25 @@ close to <a href="https://en.wikipedia.org/wiki/Milord">my lord</a> rather than 
 
 <p>These plots don’t provide new hard evidence (from what we could get out of the correlation analysis), but it’s interesting to see the trends in scatter plots. From this, it’s easy to see how <code class="highlighter-rouge">total_fear</code> doesn’t explain the ratings as strongly as <code class="highlighter-rouge">avg_fear</code>, but both <code class="highlighter-rouge">total_joy</code> and <code class="highlighter-rouge">avg_joy</code> do have a similar trend, with a higher correlation for <code class="highlighter-rouge">total_joy</code>.</p>
 
-<p>Let’s visualize side by side the words that inspire <code class="highlighter-rouge">fear</code> versus the words that inspire <code class="highlighter-rouge">joy</code>.</p>
+<p>Furthermore, after a quick regression analysis using variables <script type="math/tex">\text{total_e}, \forall e</script>, then you can see how <code class="highlighter-rouge">fear</code> has a
+positive impact over the ratings variable (<script type="math/tex">p</script>-value <script type="math/tex">% <![CDATA[
+< 0.05 %]]></script>), and <code class="highlighter-rouge">joy</code> has a negative impact (<script type="math/tex">p</script>-value <script type="math/tex">% <![CDATA[
+< 0.05 %]]></script>). Results
+for a regression analysis are presented in the summary ascii-table below.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=================================================================================
+                    coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept         9.4616      0.248     38.182      0.000       8.966       9.957
+total_fear        0.0175      0.008      2.229      0.029       0.002       0.033
+total_joy        -0.0084      0.004     -2.316      0.024      -0.016      -0.001
+total_sadness    -0.0069      0.008     -0.894      0.375      -0.022       0.009
+total_anger      -0.0136      0.009     -1.533      0.130      -0.031       0.004
+==============================================================================
+</code></pre></div></div>
+
+<p>This confirms even further that ratings for Game of Thrones have a positive relationship
+with <code class="highlighter-rouge">fear</code> and a negative relationship with <code class="highlighter-rouge">joy</code>. Let’s visualize side by side the words that inspire <code class="highlighter-rouge">fear</code> versus the words that inspire <code class="highlighter-rouge">joy</code>.</p>
 
 <h3 id="word-clouds">Word Clouds</h3>
 
@@ -289,7 +307,7 @@ s.setAttribute('data-timestamp', +new Date());
     </div>
   <!-- 
     
-    <script src='/assets/bundle.js?1555590441162650000' type='text/javascript'></script>
+    <script src='/assets/bundle.js?1555592755047396000' type='text/javascript'></script>
    -->
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2365015-1"></script>

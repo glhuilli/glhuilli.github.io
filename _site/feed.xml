@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-18T05:27:21-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Game of Thrones Subtitles Analysis</title><link href="http://localhost:4000/nlp,/emotion/analysis,/python/2019/04/14/got-analysis.html" rel="alternate" type="text/html" title="Game of Thrones Subtitles Analysis" /><published>2019-04-14T00:00:00-07:00</published><updated>2019-04-14T00:00:00-07:00</updated><id>http://localhost:4000/nlp,/emotion/analysis,/python/2019/04/14/got-analysis</id><content type="html" xml:base="http://localhost:4000/nlp,/emotion/analysis,/python/2019/04/14/got-analysis.html">&lt;p&gt;The following is based on this &lt;a href=&quot;https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb&quot;&gt;this example&lt;/a&gt; on how to do emotion analysis over an entire show (all episodes), posted in &lt;a href=&quot;https://github.com/glhuilli/limbic/&quot;&gt;limbic&lt;/a&gt;  python package.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-18T06:05:55-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Game of Thrones Subtitles Analysis</title><link href="http://localhost:4000/nlp,/emotion/analysis,/python/2019/04/14/got-analysis.html" rel="alternate" type="text/html" title="Game of Thrones Subtitles Analysis" /><published>2019-04-14T00:00:00-07:00</published><updated>2019-04-14T00:00:00-07:00</updated><id>http://localhost:4000/nlp,/emotion/analysis,/python/2019/04/14/got-analysis</id><content type="html" xml:base="http://localhost:4000/nlp,/emotion/analysis,/python/2019/04/14/got-analysis.html">&lt;p&gt;The following is based on this &lt;a href=&quot;https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb&quot;&gt;this example&lt;/a&gt; on how to do emotion analysis over an entire show (all episodes), posted in &lt;a href=&quot;https://github.com/glhuilli/limbic/&quot;&gt;limbic&lt;/a&gt;  python package.&lt;/p&gt;
 
 &lt;h2 id=&quot;data-and-processing-setup&quot;&gt;Data and Processing Setup&lt;/h2&gt;
 
@@ -41,7 +41,7 @@ close to &lt;a href=&quot;https://en.wikipedia.org/wiki/Milord&quot;&gt;my lord&
 
 &lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;e'&lt;/script&gt; is the opposite emotion of &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; according to the Plutchik wheel of emotions.&lt;/p&gt;
 
-&lt;h3 id=&quot;correlation-analysis&quot;&gt;Correlation Analysis&lt;/h3&gt;
+&lt;h3 id=&quot;correlation-and-regression-analysis&quot;&gt;Correlation and Regression Analysis&lt;/h3&gt;
 
 &lt;p&gt;&lt;img style=&quot;margin: 20px -20px;&quot; src=&quot;/assets/posts/got-analysis/output_11_0.png&quot; alt=&quot;Correlation matrix.&quot; /&gt;&lt;/p&gt;
 
@@ -59,7 +59,25 @@ close to &lt;a href=&quot;https://en.wikipedia.org/wiki/Milord&quot;&gt;my lord&
 
 &lt;p&gt;These plots don’t provide new hard evidence (from what we could get out of the correlation analysis), but it’s interesting to see the trends in scatter plots. From this, it’s easy to see how &lt;code class=&quot;highlighter-rouge&quot;&gt;total_fear&lt;/code&gt; doesn’t explain the ratings as strongly as &lt;code class=&quot;highlighter-rouge&quot;&gt;avg_fear&lt;/code&gt;, but both &lt;code class=&quot;highlighter-rouge&quot;&gt;total_joy&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;avg_joy&lt;/code&gt; do have a similar trend, with a higher correlation for &lt;code class=&quot;highlighter-rouge&quot;&gt;total_joy&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Let’s visualize side by side the words that inspire &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; versus the words that inspire &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Furthermore, after a quick regression analysis using variables &lt;script type=&quot;math/tex&quot;&gt;\text{total_e}, \forall e&lt;/script&gt;, then you can see how &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; has a
+positive impact over the ratings variable (&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;-value &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+&lt; 0.05 %]]&gt;&lt;/script&gt;), and &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; has a negative impact (&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;-value &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+&lt; 0.05 %]]&gt;&lt;/script&gt;). Results
+for a regression analysis are presented in the summary ascii-table below.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;=================================================================================
+                    coef    std err          t      P&amp;gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept         9.4616      0.248     38.182      0.000       8.966       9.957
+total_fear        0.0175      0.008      2.229      0.029       0.002       0.033
+total_joy        -0.0084      0.004     -2.316      0.024      -0.016      -0.001
+total_sadness    -0.0069      0.008     -0.894      0.375      -0.022       0.009
+total_anger      -0.0136      0.009     -1.533      0.130      -0.031       0.004
+==============================================================================
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This confirms even further that ratings for Game of Thrones have a positive relationship
+with &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; and a negative relationship with &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt;. Let’s visualize side by side the words that inspire &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; versus the words that inspire &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;word-clouds&quot;&gt;Word Clouds&lt;/h3&gt;
 

@@ -60,7 +60,7 @@ $$\text{dir_e} = \sum_{t\in T_e} v_e(t) - \sum_{t\in T_{e'}} v_{e'}(t)$$
 where $$e'$$ is the opposite emotion of $$e$$ according to the Plutchik wheel of emotions.
 
 
-### Correlation Analysis
+### Correlation and Regression Analysis
 
 <img style="margin: 20px -20px;" src='{{ site.baseurl }}/assets/posts/got-analysis/output_11_0.png' alt='Correlation matrix.'>
 
@@ -78,7 +78,25 @@ First and foremost, given the number of data points (67 episodes), these are not
 
 These plots don't provide new hard evidence (from what we could get out of the correlation analysis), but it's interesting to see the trends in scatter plots. From this, it's easy to see how `total_fear` doesn't explain the ratings as strongly as `avg_fear`, but both `total_joy` and `avg_joy` do have a similar trend, with a higher correlation for `total_joy`.
 
-Let's visualize side by side the words that inspire `fear` versus the words that inspire `joy`.
+Furthermore, after a quick regression analysis using variables $$\text{total_e}, \forall e$$, then you can see how `fear` has a
+positive impact over the ratings variable ($$p$$-value $$< 0.05$$), and `joy` has a negative impact ($$p$$-value $$< 0.05$$). Results
+for a regression analysis are presented in the summary ascii-table below.
+
+```
+=================================================================================
+                    coef    std err          t      P>|t|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept         9.4616      0.248     38.182      0.000       8.966       9.957
+total_fear        0.0175      0.008      2.229      0.029       0.002       0.033
+total_joy        -0.0084      0.004     -2.316      0.024      -0.016      -0.001
+total_sadness    -0.0069      0.008     -0.894      0.375      -0.022       0.009
+total_anger      -0.0136      0.009     -1.533      0.130      -0.031       0.004
+==============================================================================
+```
+
+This confirms even further that ratings for Game of Thrones have a positive relationship
+with `fear` and a negative relationship with `joy`. Let's visualize side by side the words that inspire `fear` versus the words that inspire `joy`.
+
 
 ### Word Clouds
 
