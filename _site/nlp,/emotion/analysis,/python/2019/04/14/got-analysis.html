@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+<meta http-equiv='x-ua-compatible' content='ie=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='google-site-verification' content='eYLUlW-Cr452cLvMYOYoqYtyqArzYvYYryVJV1jsV5o'>
+<meta name='twitter:card' content='summary_large_image'>
+<meta name='twitter:site' content='@glhuilli'>
+<meta name='twitter:creator' content='@glhuilli'>
+<meta property='og:url' content='http://localhost:4000/nlp,/emotion/analysis,/python/2019/04/14/got-analysis.html'>
+
+  <meta name='og:title' content="Game of Thrones Subtitles Analysis">
+
+
+  <meta name='description' content="This analysis is based on the limbic emotion analysis python package using all subtitles from all episodes in Game of Thrones">
+  <meta name='og:description' content="This analysis is based on the limbic emotion analysis python package using all subtitles from all episodes in Game of Thrones">
+
+
+  <meta property='og:image' content='http://localhost:4000/assets/posts/got-analysis/got-analysis-banner.png'>
+
+
+    <title>Game of Thrones Subtitles Analysis</title>
+    <!-- <link rel='icon' href='/assets/images/favicon.ico' type='image/x-icon'> -->
+    
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1555590441162650000'>
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1555590441162650000'>
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1555590441162650000'>
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1555590441162650000'>
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1555590441162650000'>
+    
+  
+    
+      
+      
+        <link type='text/css' rel='stylesheet' href='/assets/posts/virtual-environments/virtual-env.css'>
+      
+    
+      
+      
+        <link type='text/css' rel='stylesheet' href='/assets/posts/got-analysis/got-analysis.css'>
+      
+    
+  
+
+  </head>
+  <body>
+    <div id='content'>
+      
+  <svg style='width:0px; height:0px;'>
+  <filter id='header-duotone' color-interpolation-filters='sRGB'
+          x='0' y='0' height='100%' width='100%'>
+    <feColorMatrix type='matrix'
+      values='1  0  0  0  0
+              1  0  0  0  0
+              1  0  0  0  0
+              0  0  0  1  0'/>
+  </filter>
+</svg>
+<script src='/assets/js/duotone.js'></script>
+  <header class='header'>
+    
+      
+        <div class='background-image duotone-invert'
+          style='background-image: url(/assets/posts/got-analysis/got-analysis-banner.png)'></div>
+      
+    
+    <div class='home-icon'>
+  <a href='/#'>
+    <img src='/assets/images/icons/home.svg'
+      onerror="this.src='/assets/images/icons/home.png'"
+      alt='Home Icon'>
+  </a>
+</div>
+  </header>
+
+
+<noscript>This site works best with JavaScript enabled.</noscript>
+<div class='post'>
+  <div class='container'>
+    <div class='title'>Game of Thrones Subtitles Analysis</div>
+    <div class='date'>14 Apr 2019</div>
+    <div class='content'><p>The following is based on this <a href="https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb">this example</a> on how to do emotion analysis over an entire show (all episodes), posted in <a href="https://github.com/glhuilli/limbic/">limbic</a>  python package.</p>
+
+<h2 id="data-and-processing-setup">Data and Processing Setup</h2>
+
+<p>All subtitles for every episode of Game of Thrones were downloaded from <a href="https://subscene.com/">subscene</a> manually. IMDB information was obtained using the OMDB API using <code class="highlighter-rouge">limbic</code>’s IMDB integration. This data is freely available with the <code class="highlighter-rouge">limbic</code> package.</p>
+
+<p>As mentioned in <code class="highlighter-rouge">limbic</code>’s documentation, you need to set up a specific mapping when dealing with domain-specific terms that have a specific meaning. For example, in Game of Thrones, the term <code class="highlighter-rouge">lord</code> is widely used across all episodes and has a connotation
+close to <a href="https://en.wikipedia.org/wiki/Milord">my lord</a> rather than <a href="https://en.wikipedia.org/wiki/Lord">the lord</a>. In <a href="http://saifmohammad.com/WebPages/AccessResource.htm">NRC lexicons</a>, the term <code class="highlighter-rouge">lord</code> does have a strong <code class="highlighter-rouge">joy</code> value as it’s probably closely associated with the latter definition. As I don’t want to overestimate the emotion <code class="highlighter-rouge">joy</code> across the episodes, a new meaning for the word <code class="highlighter-rouge">my lord</code> can b done by associating it to the word <code class="highlighter-rouge">sir</code>.</p>
+
+<p>In the show, there are also composed terms (e.g. <code class="highlighter-rouge">your grace</code> or <code class="highlighter-rouge">white walkers</code>) that are partially included in the NRC lexicons as well as terms that are not included at all (e.g. <code class="highlighter-rouge">kingslayer</code>). Unfortunately, these words have particular meanings in the show, which will be associated with more precise terms when building the <code class="highlighter-rouge">limbic</code> lexicon-based emotion classifier as shown below.</p>
+
+<script src="https://gist.github.com/glhuilli/06a683260720c3dd4dc7ae5bac573480.js"></script>
+
+<p>A more detailed and rich context mapping could be built by analyzing how and where some frequent words are used, but it’s outside the scope of this analysis. This could be an interesting research project and extension for <code class="highlighter-rouge">limbic</code> if you are interested.</p>
+
+<h2 id="emotions-analysis">Emotions Analysis</h2>
+
+<p>The <code class="highlighter-rouge">limbic</code> package provides some tools that can make it easier to analyze subtitles. In particular, computing a set of emotions features, correlating it with IMDB ratings, and analyzing a moving window of emotions during the episodes are some examples of what could be interesting to see from this data.</p>
+
+<p>Regarding the features available in <code class="highlighter-rouge">limbic</code>, let’s define <script type="math/tex">E</script> as the set of emotions in the lexicon used, <script type="math/tex">T_e</script> the set of times (in seconds) of an episode where emotion <script type="math/tex">e \in E</script> is present, of size <script type="math/tex">N_{T_e}</script>, and <script type="math/tex">v_e(t)</script> the value associated to the emotion at time <script type="math/tex">t</script>. Then, for each episode of a season, the features computed are the following:</p>
+
+<p>First, the total_e is defined as the total emotion <script type="math/tex">e</script> across the whole episode,</p>
+
+<script type="math/tex; mode=display">\text{total_e} = \sum_{t\in T_e} v_e(t), \forall e\in E</script>
+
+<p>The average emotion,</p>
+
+<script type="math/tex; mode=display">\text{avg_e} = \frac{1}{N_{T_e}} \sum_{t\in T_e} v_e(t), \forall e \in E</script>
+
+<p>Max variation of total emotion for moving windows of time across the episode. Let <script type="math/tex">w_{e}(t)</script> be the total emotion between <script type="math/tex">t</script> and <script type="math/tex">t+w</script>, that is <script type="math/tex">w_{e}(t) = \sum_{i=t}^{t+w} v_e(i)</script>, then <code class="highlighter-rouge">max_delta_e</code> is defined as max value from the set of windows <script type="math/tex">\omega_e(t) = \{w_{e}(t) - w_{e}(t-s)\}</script>, for <script type="math/tex">t \in \{s, s+1, \dots, N_{T_e}-w\}</script>, <script type="math/tex">\forall e\in E</script> where <script type="math/tex">s</script> (default value 120 seconds) is the step of the moving window <script type="math/tex">w</script> (default 300 seconds).</p>
+
+<script type="math/tex; mode=display">\text{max_delta_e} = \max_{t} \omega_e(t), \forall e\in E</script>
+
+<p>The time at which the max variation of total emotion is present, defined as</p>
+
+<script type="math/tex; mode=display">\text{time_max_delta_e} = \arg\max_{t} \omega_{e}(t), \forall e\in E</script>
+
+<p>The direction of the emotion <script type="math/tex">e\in E</script>, defined as</p>
+
+<script type="math/tex; mode=display">\text{dir_e} = \sum_{t\in T_e} v_e(t) - \sum_{t\in T_{e'}} v_{e'}(t)</script>
+
+<p>where <script type="math/tex">e'</script> is the opposite emotion of <script type="math/tex">e</script> according to the Plutchik wheel of emotions.</p>
+
+<h3 id="correlation-analysis">Correlation Analysis</h3>
+
+<p><img style="margin: 20px -20px;" src="/assets/posts/got-analysis/output_11_0.png" alt="Correlation matrix." /></p>
+
+<p>Looking at the correlation matrix, the variable <code class="highlighter-rouge">ratings</code> seem to have a weak positive correlation with some <code class="highlighter-rouge">fear</code> related variables (<code class="highlighter-rouge">avg_fear</code>, <script type="math/tex">\rho \approx 0.39</script>) and a weak negative correlation with some <code class="highlighter-rouge">joy</code> related variables (<code class="highlighter-rouge">total_joy</code>, <script type="math/tex">\rho \approx -0.262</script>). This is more or less expected given the type of series that Game of Thrones is, and what people expects of a dark fantasy story. Note that <code class="highlighter-rouge">joy</code> is not the opposite of <code class="highlighter-rouge">fear</code>, that would be <code class="highlighter-rouge">sadness</code> and <code class="highlighter-rouge">anger</code> respectively. In this case, both <code class="highlighter-rouge">sadness</code> and <code class="highlighter-rouge">anger</code> related emotions were not particularly correlated to the user ratings.</p>
+
+<p>It’s also interesting to see how the episode number is highly correlated to the user ratings (<script type="math/tex">\rho \approx 0.478</script>), which means that early episodes are not rated the same that final episodes within a season, for all seasons. This could make sense if you think that most of the significant plot twists and outcomes are at the end of each season, where people are far more involved and expectant than at the beginning of a season. I’m sure several other shows have this same behavior when final episodes are well written and satisfying for the fans.</p>
+
+<p>Let’s take a more in-depth look into some of the <code class="highlighter-rouge">fear</code> and <code class="highlighter-rouge">joy</code> variables.</p>
+
+<div class="got">
+<img src="/assets/posts/got-analysis/output_13_0.png" alt="fear vs joy scatter plot" />
+</div>
+
+<p>First and foremost, given the number of data points (67 episodes), these are not results that someone could claim as statistically significant. However, these might be enough data points to reveal some trends that are worth discussing.</p>
+
+<p>These plots don’t provide new hard evidence (from what we could get out of the correlation analysis), but it’s interesting to see the trends in scatter plots. From this, it’s easy to see how <code class="highlighter-rouge">total_fear</code> doesn’t explain the ratings as strongly as <code class="highlighter-rouge">avg_fear</code>, but both <code class="highlighter-rouge">total_joy</code> and <code class="highlighter-rouge">avg_joy</code> do have a similar trend, with a higher correlation for <code class="highlighter-rouge">total_joy</code>.</p>
+
+<p>Let’s visualize side by side the words that inspire <code class="highlighter-rouge">fear</code> versus the words that inspire <code class="highlighter-rouge">joy</code>.</p>
+
+<h3 id="word-clouds">Word Clouds</h3>
+
+<div class="got">
+<img src="/assets/posts/got-analysis/output_16_0.png" alt="fear vs joy word clouds" />
+</div>
+
+<p>Based on this, audiences do prefer dialogs with more terms like <code class="highlighter-rouge">war</code>, <code class="highlighter-rouge">fight</code> or <code class="highlighter-rouge">afraid</code> rather than <code class="highlighter-rouge">friend</code>, <code class="highlighter-rouge">love</code>, or <code class="highlighter-rouge">mother</code>. Maybe GRRM Martin said it best in his book <code class="highlighter-rouge">A Dance with Dragons</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          "Words are wind, even words like love and peace.
+          I put more trust in deeds."
+</code></pre></div></div>
+
+<p>With this quote, he explains perfectly the observed effect. Words like <code class="highlighter-rouge">love</code> and <code class="highlighter-rouge">peace</code> (clearly joy-inducing words) are proven to be empty, not lasting or at risk (at least in the show), while words like <code class="highlighter-rouge">war</code> or <code class="highlighter-rouge">fight</code> are actions that will undoubtedly have some real effect and often painful consequences to the characters. In summary, you could say that audiences will give higher ratings to episodes where there are more action and less empty words.</p>
+
+<p>However, there’s an important factor I need to isolate before finishing this discussion. Why <code class="highlighter-rouge">sadness</code> and <code class="highlighter-rouge">anger</code> do not explain the ratings when words like <code class="highlighter-rouge">death</code> are indeed present in those emotions as well?</p>
+
+<p>Let’s review side by side all terms for <code class="highlighter-rouge">anger</code>, <code class="highlighter-rouge">sadness</code>, <code class="highlighter-rouge">fear</code>, and <code class="highlighter-rouge">joy</code> keeping the ones that are unique per emotion.</p>
+
+<div class="got">
+<img src="/assets/posts/got-analysis/output_18_0.png" alt="all emotions word clouds" />
+</div>
+
+<p>Words in <code class="highlighter-rouge">anger</code> plot seem to be mostly related to “short term” actions (e.g. <code class="highlighter-rouge">hit</code>), swearing (e.g. <code class="highlighter-rouge">damn</code>), and specific feelings (e.g. <code class="highlighter-rouge">jealousy</code>). Words in the <code class="highlighter-rouge">sadness</code> plot seem to be associated with the aftermath of significant events (<code class="highlighter-rouge">lost</code>, <code class="highlighter-rouge">sad</code>). However, it can be argued that the words included exclusively in the <code class="highlighter-rouge">fear</code> category, are the ones associated with the events that will actually cause sadness or anger.</p>
+
+<h3 id="emotions-over-time">Emotions over time</h3>
+
+<div class="got">
+  <figure class="image">
+    <img src="/assets/posts/got-analysis/output_21_0.png" alt="all episodes moving window of all emotions" />
+    <figcaption style=" margin-top:-1.5em;text-align: center;font-size: 12px;">All emotions moving windows for all episodes</figcaption>
+  </figure>
+</div>
+
+<p>Above you can see how each emotion is distributed per season. For example, you can see how <code class="highlighter-rouge">joy</code>, <code class="highlighter-rouge">sadness</code>, and <code class="highlighter-rouge">fear</code> have some spikes in season 3, season 5, and season 7 respectively.</p>
+
+<p>I invite you to correlate these patterns together with the ones presented below, which is the same but all emotions are fleshed out for each episode of each season. Here, each column represents a season and each row an episode.</p>
+
+<p>This <a href="https://www.reddit.com/r/asoiaf/comments/bbg2jp/spoilers_main_game_of_thrones_most_thorough_guide/">guide</a> (thanks to <a href="https://www.reddit.com/user/jjadjjadj">jjadjjadj</a> for this madness!) can help you go through certain episodes and see how emotions variations represent some of the main events in the show.</p>
+
+<p>For example, you can see above a spike in sadness in season 5. Below, in the sadness chart, you can see in row 10 and column 5 a high peak a little before the end of the episode. If you follow the insane guide above, this episode corresponds to <code class="highlighter-rouge">S5E10 "Mother's Mercy"</code> (column 50), which is when Cercei’s walk of atonement happened, and the word <code class="highlighter-rouge">shame</code> was said a quite a lot (<code class="highlighter-rouge">shame</code> has sadness score <code class="highlighter-rouge">0.594</code>).</p>
+
+<p>Also, you can see how low values are similar among all emotions, which might be associated to scenes in the episodes where none or little dialog is present, though it’s fascinating how this is most common across entire seasons. This could be explained by the fact that live-action scenes with battles, fights, dragons, and the like, are usually displayed approximately at the same time, often a little before the end of each episode.</p>
+
+<div class="got">
+  <figure class="image">
+    <img src="/assets/posts/got-analysis/output_23_0.png" alt="all episodes moving window of emotion fear" />
+    <figcaption style=" margin-top:-1.5em;text-align: center;font-size: 12px;">Fear moving window for all episodes (columns are season, rows are episodes)</figcaption>
+  </figure>
+</div>
+
+<div class="got">
+  <figure class="image">
+    <img src="/assets/posts/got-analysis/output_24_0.png" alt="all episodes moving window of emotion joy" />
+    <figcaption style=" margin-top:-1.5em;text-align: center;font-size: 12px;">Joy moving window for all episodes (columns are season, rows are episodes)</figcaption>
+  </figure>
+</div>
+
+<div class="got">
+  <figure class="image">
+    <img src="/assets/posts/got-analysis/output_25_0.png" alt="all episodes moving window of emotion anger" />
+    <figcaption style=" margin-top:-1.5em;text-align: center;font-size: 12px;">Anger moving window for all episodes (columns are season, rows are episodes)</figcaption>
+  </figure>
+</div>
+
+<div class="got">
+  <figure class="image">
+    <img src="/assets/posts/got-analysis/output_26_0.png" alt="all episodes moving window of emotion sadness" />
+    <figcaption style=" margin-top:-1.5em;text-align: center;font-size: 12px;">Sadness moving window for all episodes (columns are season, rows are episodes)</figcaption>
+  </figure>
+</div>
+
+<!-- <script id="dsq-count-scr" src="//glhuilli.disqus.com/count.js" async></script> -->
+<div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {
+this.page.url = virtual-environments;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = virtual-environments; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://glhuilli.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+  </div>
+</div>
+<footer class='footer'>
+  
+  <a target='_blank' href='http://github.com/glhuilli'>
+    <img class='footer-icon'
+      src='/assets/images/icons/github-dark.svg'
+      onerror="this.src='/assets/images/icons/github-dark.png'"
+      alt='GitHub Icon'>
+</a>
+  <!-- <a target='_blank' href='http://bl.ocks.org/glhuilli'>
+  <div class='footer-icon square-image'>
+      <img src='/assets/images/icons/blocks-dark.svg'
+        onerror="this.src='/assets/images/icons/blocks-dark.png'"
+        alt='Blocks Icon'>
+    
+  </div>
+</a> -->
+  <a target='_blank' href='http://twitter.com/glhuilli'>
+    <img class='footer-icon'
+      src='/assets/images/icons/twitter-dark.svg'
+      onerror="this.src='/assets/images/icons/twitter-dark.png'"
+      alt='Twitter Icon'>
+</a>
+  <a target='_blank' href='https://www.linkedin.com/in/glhuilli'>
+    <img class='footer-icon'
+      src='/assets/images/icons/linkedin-dark.svg'
+      onerror="this.src='/assets/images/icons/linkedin-dark.png'"
+      alt='LinkedIn Icon'>
+</a>
+
+  <a target='_blank' href='/feed.xml'>
+  <div class='footer-icon square-image'>
+      <img src='/assets/images/icons/rss-dark.svg'
+        onerror="this.src='/assets/images/icons/rss-dark.png'"
+        alt='RSS Icon'>
+  </div>
+</a>
+
+  <p style="font-size:13px; align-text: center">© 2019 Gaston L'Huillier.
+    <br>Powered by Jekyll.
+    Inspired by <a style="color:#ffffff;text-decoration: underline;" href='https://douglasduhaime.com/'>Douglas Duhaime</a>'s design.
+    <br>All rights reserved.
+  </p>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML-full" type="text/javascript"></script>
+
+    </div>
+  <!-- 
+    
+    <script src='/assets/bundle.js?1555590441162650000' type='text/javascript'></script>
+   -->
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2365015-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-2365015-1');
+</script>
+
+  </body>
+  <!-- like a copper fox on rust... -->
+</html>

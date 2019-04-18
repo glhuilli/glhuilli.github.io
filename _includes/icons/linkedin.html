@@ -1,0 +1,13 @@
+<a target='_blank' href='https://www.linkedin.com/in/{{ site.linkedin }}'>
+  {%- if include.style == 'dark' %}
+    <img class='footer-icon'
+      src='{{ site.baseurl }}/assets/images/icons/linkedin-dark.svg'
+      onerror="this.src='{{ site.baseurl }}/assets/images/icons/linkedin-dark.png'"
+      alt='LinkedIn Icon'>
+  {%- else %}
+    <img class='footer-icon'
+      src='{{ site.baseurl }}/assets/images/icons/linkedin-light.png'
+      onerror="this.src='{{ site.baseurl }}/assets/images/icons/linkedin-light.png'"
+      alt='LinkedIn Icon'>
+  {%- endif %}
+</a>

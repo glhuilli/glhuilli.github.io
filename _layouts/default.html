@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    {% include meta.html %}
+    <title>{{ page.title | strip_html }}</title>
+    <!-- <link rel='icon' href='{{ site.baseurl }}/assets/images/favicon.ico' type='image/x-icon'> -->
+    {% assign time = site.time | date: '%s%N' %}
+    {% capture href_main %}{{ site.baseurl }}/assets/css/main.css?{{ time }}{% endcapture %}
+    <link rel='stylesheet' type='text/css' href='{{ href_main }}'>
+    {% capture href_loader %}{{ site.baseurl }}/assets/css/loader.css?{{ time }}{% endcapture %}
+    <link rel='stylesheet' type='text/css' href='{{ href_loader }}'>
+    {% capture href_404 %}{{ site.baseurl }}/assets/css/404.css?{{ time }}{% endcapture %}
+    <link rel='stylesheet' type='text/css' href='{{ href_404 }}'>
+    {% capture href_monokai %}{{ site.baseurl }}/assets/css/monokai.css?{{ time }}{% endcapture %}
+    <link rel='stylesheet' type='text/css' href='{{ href_monokai }}'>
+    {% capture href_reset %}{{ site.baseurl }}/assets/css/reset.css?{{ time }}{% endcapture %}
+    <link rel='stylesheet' type='text/css' href='{{ href_reset }}'>
+    {% include page-css.html %}
+  </head>
+  <body>
+    <div id='content'>
+      {{ content }}
+    </div>
+  <!-- {% unless layout.bundle == false %}
+    {% capture src %}{{ site.baseurl }}/assets/bundle.js?{{ time }}{% endcapture %}
+    <script src='{{ src }}' type='text/javascript'></script>
+  {% endunless %} -->
+  {% include page-js.html %}
+  {% include analytics.html %}
+  </body>
+  <!-- like a copper fox on rust... -->
+</html>

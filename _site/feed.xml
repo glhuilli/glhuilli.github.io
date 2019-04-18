@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-18T05:27:21-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Game of Thrones Subtitles Analysis</title><link href="http://localhost:4000/nlp,/emotion/analysis,/python/2019/04/14/got-analysis.html" rel="alternate" type="text/html" title="Game of Thrones Subtitles Analysis" /><published>2019-04-14T00:00:00-07:00</published><updated>2019-04-14T00:00:00-07:00</updated><id>http://localhost:4000/nlp,/emotion/analysis,/python/2019/04/14/got-analysis</id><content type="html" xml:base="http://localhost:4000/nlp,/emotion/analysis,/python/2019/04/14/got-analysis.html">&lt;p&gt;The following is based on this &lt;a href=&quot;https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb&quot;&gt;this example&lt;/a&gt; on how to do emotion analysis over an entire show (all episodes), posted in &lt;a href=&quot;https://github.com/glhuilli/limbic/&quot;&gt;limbic&lt;/a&gt;  python package.&lt;/p&gt;
+
+&lt;h2 id=&quot;data-and-processing-setup&quot;&gt;Data and Processing Setup&lt;/h2&gt;
+
+&lt;p&gt;All subtitles for every episode of Game of Thrones were downloaded from &lt;a href=&quot;https://subscene.com/&quot;&gt;subscene&lt;/a&gt; manually. IMDB information was obtained using the OMDB API using &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt;’s IMDB integration. This data is freely available with the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package.&lt;/p&gt;
+
+&lt;p&gt;As mentioned in &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt;’s documentation, you need to set up a specific mapping when dealing with domain-specific terms that have a specific meaning. For example, in Game of Thrones, the term &lt;code class=&quot;highlighter-rouge&quot;&gt;lord&lt;/code&gt; is widely used across all episodes and has a connotation
+close to &lt;a href=&quot;https://en.wikipedia.org/wiki/Milord&quot;&gt;my lord&lt;/a&gt; rather than &lt;a href=&quot;https://en.wikipedia.org/wiki/Lord&quot;&gt;the lord&lt;/a&gt;. In &lt;a href=&quot;http://saifmohammad.com/WebPages/AccessResource.htm&quot;&gt;NRC lexicons&lt;/a&gt;, the term &lt;code class=&quot;highlighter-rouge&quot;&gt;lord&lt;/code&gt; does have a strong &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; value as it’s probably closely associated with the latter definition. As I don’t want to overestimate the emotion &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; across the episodes, a new meaning for the word &lt;code class=&quot;highlighter-rouge&quot;&gt;my lord&lt;/code&gt; can b done by associating it to the word &lt;code class=&quot;highlighter-rouge&quot;&gt;sir&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the show, there are also composed terms (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;your grace&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;white walkers&lt;/code&gt;) that are partially included in the NRC lexicons as well as terms that are not included at all (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;kingslayer&lt;/code&gt;). Unfortunately, these words have particular meanings in the show, which will be associated with more precise terms when building the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; lexicon-based emotion classifier as shown below.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/06a683260720c3dd4dc7ae5bac573480.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;A more detailed and rich context mapping could be built by analyzing how and where some frequent words are used, but it’s outside the scope of this analysis. This could be an interesting research project and extension for &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; if you are interested.&lt;/p&gt;
+
+&lt;h2 id=&quot;emotions-analysis&quot;&gt;Emotions Analysis&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package provides some tools that can make it easier to analyze subtitles. In particular, computing a set of emotions features, correlating it with IMDB ratings, and analyzing a moving window of emotions during the episodes are some examples of what could be interesting to see from this data.&lt;/p&gt;
+
+&lt;p&gt;Regarding the features available in &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt;, let’s define &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; as the set of emotions in the lexicon used, &lt;script type=&quot;math/tex&quot;&gt;T_e&lt;/script&gt; the set of times (in seconds) of an episode where emotion &lt;script type=&quot;math/tex&quot;&gt;e \in E&lt;/script&gt; is present, of size &lt;script type=&quot;math/tex&quot;&gt;N_{T_e}&lt;/script&gt;, and &lt;script type=&quot;math/tex&quot;&gt;v_e(t)&lt;/script&gt; the value associated to the emotion at time &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;. Then, for each episode of a season, the features computed are the following:&lt;/p&gt;
+
+&lt;p&gt;First, the total_e is defined as the total emotion &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; across the whole episode,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{total_e} = \sum_{t\in T_e} v_e(t), \forall e\in E&lt;/script&gt;
+
+&lt;p&gt;The average emotion,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{avg_e} = \frac{1}{N_{T_e}} \sum_{t\in T_e} v_e(t), \forall e \in E&lt;/script&gt;
+
+&lt;p&gt;Max variation of total emotion for moving windows of time across the episode. Let &lt;script type=&quot;math/tex&quot;&gt;w_{e}(t)&lt;/script&gt; be the total emotion between &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;t+w&lt;/script&gt;, that is &lt;script type=&quot;math/tex&quot;&gt;w_{e}(t) = \sum_{i=t}^{t+w} v_e(i)&lt;/script&gt;, then &lt;code class=&quot;highlighter-rouge&quot;&gt;max_delta_e&lt;/code&gt; is defined as max value from the set of windows &lt;script type=&quot;math/tex&quot;&gt;\omega_e(t) = \{w_{e}(t) - w_{e}(t-s)\}&lt;/script&gt;, for &lt;script type=&quot;math/tex&quot;&gt;t \in \{s, s+1, \dots, N_{T_e}-w\}&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\forall e\in E&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; (default value 120 seconds) is the step of the moving window &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; (default 300 seconds).&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{max_delta_e} = \max_{t} \omega_e(t), \forall e\in E&lt;/script&gt;
+
+&lt;p&gt;The time at which the max variation of total emotion is present, defined as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{time_max_delta_e} = \arg\max_{t} \omega_{e}(t), \forall e\in E&lt;/script&gt;
+
+&lt;p&gt;The direction of the emotion &lt;script type=&quot;math/tex&quot;&gt;e\in E&lt;/script&gt;, defined as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{dir_e} = \sum_{t\in T_e} v_e(t) - \sum_{t\in T_{e'}} v_{e'}(t)&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;e'&lt;/script&gt; is the opposite emotion of &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; according to the Plutchik wheel of emotions.&lt;/p&gt;
+
+&lt;h3 id=&quot;correlation-analysis&quot;&gt;Correlation Analysis&lt;/h3&gt;
+
+&lt;p&gt;&lt;img style=&quot;margin: 20px -20px;&quot; src=&quot;/assets/posts/got-analysis/output_11_0.png&quot; alt=&quot;Correlation matrix.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Looking at the correlation matrix, the variable &lt;code class=&quot;highlighter-rouge&quot;&gt;ratings&lt;/code&gt; seem to have a weak positive correlation with some &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; related variables (&lt;code class=&quot;highlighter-rouge&quot;&gt;avg_fear&lt;/code&gt;, &lt;script type=&quot;math/tex&quot;&gt;\rho \approx 0.39&lt;/script&gt;) and a weak negative correlation with some &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; related variables (&lt;code class=&quot;highlighter-rouge&quot;&gt;total_joy&lt;/code&gt;, &lt;script type=&quot;math/tex&quot;&gt;\rho \approx -0.262&lt;/script&gt;). This is more or less expected given the type of series that Game of Thrones is, and what people expects of a dark fantasy story. Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; is not the opposite of &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt;, that would be &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;anger&lt;/code&gt; respectively. In this case, both &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;anger&lt;/code&gt; related emotions were not particularly correlated to the user ratings.&lt;/p&gt;
+
+&lt;p&gt;It’s also interesting to see how the episode number is highly correlated to the user ratings (&lt;script type=&quot;math/tex&quot;&gt;\rho \approx 0.478&lt;/script&gt;), which means that early episodes are not rated the same that final episodes within a season, for all seasons. This could make sense if you think that most of the significant plot twists and outcomes are at the end of each season, where people are far more involved and expectant than at the beginning of a season. I’m sure several other shows have this same behavior when final episodes are well written and satisfying for the fans.&lt;/p&gt;
+
+&lt;p&gt;Let’s take a more in-depth look into some of the &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; variables.&lt;/p&gt;
+
+&lt;div class=&quot;got&quot;&gt;
+&lt;img src=&quot;/assets/posts/got-analysis/output_13_0.png&quot; alt=&quot;fear vs joy scatter plot&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;First and foremost, given the number of data points (67 episodes), these are not results that someone could claim as statistically significant. However, these might be enough data points to reveal some trends that are worth discussing.&lt;/p&gt;
+
+&lt;p&gt;These plots don’t provide new hard evidence (from what we could get out of the correlation analysis), but it’s interesting to see the trends in scatter plots. From this, it’s easy to see how &lt;code class=&quot;highlighter-rouge&quot;&gt;total_fear&lt;/code&gt; doesn’t explain the ratings as strongly as &lt;code class=&quot;highlighter-rouge&quot;&gt;avg_fear&lt;/code&gt;, but both &lt;code class=&quot;highlighter-rouge&quot;&gt;total_joy&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;avg_joy&lt;/code&gt; do have a similar trend, with a higher correlation for &lt;code class=&quot;highlighter-rouge&quot;&gt;total_joy&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s visualize side by side the words that inspire &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; versus the words that inspire &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;word-clouds&quot;&gt;Word Clouds&lt;/h3&gt;
+
+&lt;div class=&quot;got&quot;&gt;
+&lt;img src=&quot;/assets/posts/got-analysis/output_16_0.png&quot; alt=&quot;fear vs joy word clouds&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Based on this, audiences do prefer dialogs with more terms like &lt;code class=&quot;highlighter-rouge&quot;&gt;war&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;fight&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;afraid&lt;/code&gt; rather than &lt;code class=&quot;highlighter-rouge&quot;&gt;friend&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;love&lt;/code&gt;, or &lt;code class=&quot;highlighter-rouge&quot;&gt;mother&lt;/code&gt;. Maybe GRRM Martin said it best in his book &lt;code class=&quot;highlighter-rouge&quot;&gt;A Dance with Dragons&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;          &quot;Words are wind, even words like love and peace.
+          I put more trust in deeds.&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With this quote, he explains perfectly the observed effect. Words like &lt;code class=&quot;highlighter-rouge&quot;&gt;love&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;peace&lt;/code&gt; (clearly joy-inducing words) are proven to be empty, not lasting or at risk (at least in the show), while words like &lt;code class=&quot;highlighter-rouge&quot;&gt;war&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;fight&lt;/code&gt; are actions that will undoubtedly have some real effect and often painful consequences to the characters. In summary, you could say that audiences will give higher ratings to episodes where there are more action and less empty words.&lt;/p&gt;
+
+&lt;p&gt;However, there’s an important factor I need to isolate before finishing this discussion. Why &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;anger&lt;/code&gt; do not explain the ratings when words like &lt;code class=&quot;highlighter-rouge&quot;&gt;death&lt;/code&gt; are indeed present in those emotions as well?&lt;/p&gt;
+
+&lt;p&gt;Let’s review side by side all terms for &lt;code class=&quot;highlighter-rouge&quot;&gt;anger&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; keeping the ones that are unique per emotion.&lt;/p&gt;
+
+&lt;div class=&quot;got&quot;&gt;
+&lt;img src=&quot;/assets/posts/got-analysis/output_18_0.png&quot; alt=&quot;all emotions word clouds&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Words in &lt;code class=&quot;highlighter-rouge&quot;&gt;anger&lt;/code&gt; plot seem to be mostly related to “short term” actions (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;hit&lt;/code&gt;), swearing (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;damn&lt;/code&gt;), and specific feelings (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;jealousy&lt;/code&gt;). Words in the &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt; plot seem to be associated with the aftermath of significant events (&lt;code class=&quot;highlighter-rouge&quot;&gt;lost&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sad&lt;/code&gt;). However, it can be argued that the words included exclusively in the &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; category, are the ones associated with the events that will actually cause sadness or anger.&lt;/p&gt;
+
+&lt;h3 id=&quot;emotions-over-time&quot;&gt;Emotions over time&lt;/h3&gt;
+
+&lt;div class=&quot;got&quot;&gt;
+  &lt;figure class=&quot;image&quot;&gt;
+    &lt;img src=&quot;/assets/posts/got-analysis/output_21_0.png&quot; alt=&quot;all episodes moving window of all emotions&quot; /&gt;
+    &lt;figcaption style=&quot; margin-top:-1.5em;text-align: center;font-size: 12px;&quot;&gt;All emotions moving windows for all episodes&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Above you can see how each emotion is distributed per season. For example, you can see how &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; have some spikes in season 3, season 5, and season 7 respectively.&lt;/p&gt;
+
+&lt;p&gt;I invite you to correlate these patterns together with the ones presented below, which is the same but all emotions are fleshed out for each episode of each season. Here, each column represents a season and each row an episode.&lt;/p&gt;
+
+&lt;p&gt;This &lt;a href=&quot;https://www.reddit.com/r/asoiaf/comments/bbg2jp/spoilers_main_game_of_thrones_most_thorough_guide/&quot;&gt;guide&lt;/a&gt; (thanks to &lt;a href=&quot;https://www.reddit.com/user/jjadjjadj&quot;&gt;jjadjjadj&lt;/a&gt; for this madness!) can help you go through certain episodes and see how emotions variations represent some of the main events in the show.&lt;/p&gt;
+
+&lt;p&gt;For example, you can see above a spike in sadness in season 5. Below, in the sadness chart, you can see in row 10 and column 5 a high peak a little before the end of the episode. If you follow the insane guide above, this episode corresponds to &lt;code class=&quot;highlighter-rouge&quot;&gt;S5E10 &quot;Mother's Mercy&quot;&lt;/code&gt; (column 50), which is when Cercei’s walk of atonement happened, and the word &lt;code class=&quot;highlighter-rouge&quot;&gt;shame&lt;/code&gt; was said a quite a lot (&lt;code class=&quot;highlighter-rouge&quot;&gt;shame&lt;/code&gt; has sadness score &lt;code class=&quot;highlighter-rouge&quot;&gt;0.594&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Also, you can see how low values are similar among all emotions, which might be associated to scenes in the episodes where none or little dialog is present, though it’s fascinating how this is most common across entire seasons. This could be explained by the fact that live-action scenes with battles, fights, dragons, and the like, are usually displayed approximately at the same time, often a little before the end of each episode.&lt;/p&gt;
+
+&lt;div class=&quot;got&quot;&gt;
+  &lt;figure class=&quot;image&quot;&gt;
+    &lt;img src=&quot;/assets/posts/got-analysis/output_23_0.png&quot; alt=&quot;all episodes moving window of emotion fear&quot; /&gt;
+    &lt;figcaption style=&quot; margin-top:-1.5em;text-align: center;font-size: 12px;&quot;&gt;Fear moving window for all episodes (columns are season, rows are episodes)&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;got&quot;&gt;
+  &lt;figure class=&quot;image&quot;&gt;
+    &lt;img src=&quot;/assets/posts/got-analysis/output_24_0.png&quot; alt=&quot;all episodes moving window of emotion joy&quot; /&gt;
+    &lt;figcaption style=&quot; margin-top:-1.5em;text-align: center;font-size: 12px;&quot;&gt;Joy moving window for all episodes (columns are season, rows are episodes)&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;got&quot;&gt;
+  &lt;figure class=&quot;image&quot;&gt;
+    &lt;img src=&quot;/assets/posts/got-analysis/output_25_0.png&quot; alt=&quot;all episodes moving window of emotion anger&quot; /&gt;
+    &lt;figcaption style=&quot; margin-top:-1.5em;text-align: center;font-size: 12px;&quot;&gt;Anger moving window for all episodes (columns are season, rows are episodes)&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;got&quot;&gt;
+  &lt;figure class=&quot;image&quot;&gt;
+    &lt;img src=&quot;/assets/posts/got-analysis/output_26_0.png&quot; alt=&quot;all episodes moving window of emotion sadness&quot; /&gt;
+    &lt;figcaption style=&quot; margin-top:-1.5em;text-align: center;font-size: 12px;&quot;&gt;Sadness moving window for all episodes (columns are season, rows are episodes)&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;!-- &lt;script id=&quot;dsq-count-scr&quot; src=&quot;//glhuilli.disqus.com/count.js&quot; async&gt;&lt;/script&gt; --&gt;
+&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+var disqus_config = function () {
+this.page.url = virtual-environments;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = virtual-environments; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://glhuilli.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+&lt;/script&gt;
+
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">The following is based on this this example on how to do emotion analysis over an entire show (all episodes), posted in limbic python package.</summary></entry><entry><title type="html">Automatic activation of virtualenv (+ pyenv)</title><link href="http://localhost:4000/python,/bash/2019/03/03/virtual-environments.html" rel="alternate" type="text/html" title="Automatic activation of virtualenv (+ pyenv)" /><published>2019-03-03T00:00:00-08:00</published><updated>2019-03-03T00:00:00-08:00</updated><id>http://localhost:4000/python,/bash/2019/03/03/virtual-environments</id><content type="html" xml:base="http://localhost:4000/python,/bash/2019/03/03/virtual-environments.html">&lt;p&gt;There must be hundreds of alternatives for using Python virtualenv in a simple and clean way, but the following is by far the
+one that I find most intuitive and easy to set up. The idea is simple. Each time you want to use a &lt;code class=&quot;highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; in a project,
+you need to:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Add to your folder a new two files:
+    &lt;ul&gt;
+      &lt;li&gt;1.1. A .python-version file with the Python version you need.&lt;/li&gt;
+      &lt;li&gt;1.2. A .python-virtualenv file with the name of the virtual environment.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Switch to the project folder.&lt;/li&gt;
+  &lt;li&gt;Done. Your environment is loaded for that particular project, and you are ready to go.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For this, you will need to have &lt;a href=&quot;https://github.com/pyenv/pyenv&quot;&gt;pyenv&lt;/a&gt; and &lt;a href=&quot;https://github.com/pypa/virtualenv&quot;&gt;virtualenv&lt;/a&gt;
+installed in your development environment. Once that’s done, you need to source the following &lt;code class=&quot;highlighter-rouge&quot;&gt;bash&lt;/code&gt; script. Note that the &lt;code class=&quot;highlighter-rouge&quot;&gt;.python-version&lt;/code&gt; is a &lt;code class=&quot;highlighter-rouge&quot;&gt;pyenv&lt;/code&gt; requirement and all details related to its definition and usage can be found [&lt;a href=&quot;https://github.com/pyenv/pyenv&quot;&gt;here&lt;/a&gt;].&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/c1af87bde701ede4d218bab829d3817e.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;This script works roughly as follows. First, it verifies the &lt;code class=&quot;highlighter-rouge&quot;&gt;.python-version&lt;/code&gt; file which only contains
+the version of python you want to use. For example,&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cat .python-version
+3.7.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If &lt;code class=&quot;highlighter-rouge&quot;&gt;pyenv&lt;/code&gt; is available and supports the python version you are intending to use, a &lt;code class=&quot;highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; is then created
+pointing to a &lt;code class=&quot;highlighter-rouge&quot;&gt;.python&lt;/code&gt; folder within your projects home directory. The name of the &lt;code class=&quot;highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; is defined in
+the &lt;code class=&quot;highlighter-rouge&quot;&gt;.python-virtualenv&lt;/code&gt; file, for example,&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cat .python-virtualenv
+my_python_project
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you want to use a given python version, the script will verify if it’s available within &lt;code class=&quot;highlighter-rouge&quot;&gt;pyenv&lt;/code&gt;. If not, then
+it will prompt instructions on how to install it. Also, there are a few optimizations you might want to make to the
+strategy (e.g. using only one config file, prompting more options, etc.) but this should be enough to get you ready
+and set up to use Python virtual environments in an easy way.&lt;/p&gt;
+
+&lt;p&gt;You can use the script above in your development environment by sourcing it from your favorite bash/tcsh/zsh/other “autoloading” script (e.g. your &lt;code class=&quot;highlighter-rouge&quot;&gt;.bash_profile&lt;/code&gt; or your &lt;code class=&quot;highlighter-rouge&quot;&gt;.zshrc&lt;/code&gt;, etc.). Save the file locally (e.g. in &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.development_scripts/python_env_load.sh&lt;/code&gt;). Finally, I strongly suggest adding the following environment variables to your system so you make sure that anything
+you install is within a &lt;code class=&quot;highlighter-rouge&quot;&gt;vitualenv&lt;/code&gt;. Both the source of the script and the &lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt; environment variables together would look like this:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/3a1245fa37644766b47e6a1420e8cbbf.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Special thanks to &lt;a href=&quot;https://github.com/rzilleruelo&quot;&gt;@rzilleruelo&lt;/a&gt; for coming up with the first versions of this &lt;code class=&quot;highlighter-rouge&quot;&gt;virtualenv+pyenv&lt;/code&gt; bash script.&lt;/p&gt;
+
+&lt;!-- &lt;script id=&quot;dsq-count-scr&quot; src=&quot;//glhuilli.disqus.com/count.js&quot; async&gt;&lt;/script&gt; --&gt;
+&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+var disqus_config = function () {
+this.page.url = virtual-environments;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = virtual-environments; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://glhuilli.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+&lt;/script&gt;
+
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">There must be hundreds of alternatives for using Python virtualenv in a simple and clean way, but the following is by far the one that I find most intuitive and easy to set up. The idea is simple. Each time you want to use a virtualenv in a project, you need to:</summary></entry><entry><title type="html">Research trends in Machine Learning from 1987-2018</title><link href="http://localhost:4000/dataanalysis,/machinelearning/2019/02/24/research-trends-in-ml.html" rel="alternate" type="text/html" title="Research trends in Machine Learning from 1987-2018" /><published>2019-02-24T00:00:00-08:00</published><updated>2019-02-24T00:00:00-08:00</updated><id>http://localhost:4000/dataanalysis,/machinelearning/2019/02/24/research-trends-in-ml</id><content type="html" xml:base="http://localhost:4000/dataanalysis,/machinelearning/2019/02/24/research-trends-in-ml.html">&lt;p&gt;Coming soon.&lt;/p&gt;
+
+&lt;p&gt;Currently processing 8.8Gb of papers downloaded using the [&lt;a href=&quot;https://github.com/glhuilli/neurips_crawler&quot;&gt;NeurIPS crawler&lt;/a&gt;]&lt;/p&gt;</content><author><name></name></author><summary type="html">Coming soon.</summary></entry></feed>
