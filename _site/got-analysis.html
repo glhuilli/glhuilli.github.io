@@ -24,15 +24,15 @@
     <!-- <link rel='icon' href='/assets/images/favicon.ico' type='image/x-icon'> -->
     
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1555670071699027000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1555675690718377000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1555670071699027000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1555675690718377000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1555670071699027000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1555675690718377000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1555670071699027000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1555675690718377000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1555670071699027000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1555675690718377000'>
     
   
     
@@ -148,11 +148,10 @@ close to <a href="https://en.wikipedia.org/wiki/Milord">my lord</a> rather than 
 
 <p>These plots don’t provide new hard evidence (from what we could get out of the correlation analysis), but it’s interesting to see the trends in scatter plots. From this, it’s easy to see how <code class="highlighter-rouge">total_fear</code> doesn’t explain the ratings as strongly as <code class="highlighter-rouge">avg_fear</code>, but both <code class="highlighter-rouge">total_joy</code> and <code class="highlighter-rouge">avg_joy</code> do have a similar trend, with a higher correlation for <code class="highlighter-rouge">total_joy</code>.</p>
 
-<p>Furthermore, after a quick regression analysis using variables <script type="math/tex">\text{total_e}, \forall e</script>, then you can see how <code class="highlighter-rouge">fear</code> has a
-positive impact over the ratings variable (<script type="math/tex">p</script>-value <script type="math/tex">% <![CDATA[
-< 0.05 %]]></script>), and <code class="highlighter-rouge">joy</code> has a negative impact (<script type="math/tex">p</script>-value <script type="math/tex">% <![CDATA[
-< 0.05 %]]></script>). Results
-for a regression analysis are presented in the summary ascii-table below.</p>
+<p>Regression analysis results using variables <code class="highlighter-rouge">total_e</code>, <script type="math/tex">\forall e\in E</script>, are presented in the ascii-table below. Even though all regression coefficients are small and the regression intercept is quite substantial, <code class="highlighter-rouge">total_fear</code> has a positive impact over <code class="highlighter-rouge">ratings</code> (positive coefficient, <script type="math/tex">p</script>-value <script type="math/tex">% <![CDATA[
+< 0.05 %]]></script>), and <code class="highlighter-rouge">joy</code> has a negative impact (negative coefficient, <script type="math/tex">p</script>-value <script type="math/tex">% <![CDATA[
+< 0.05 %]]></script>). As the null hypothesis in such analysis is that there’s no relationship between <code class="highlighter-rouge">total_e</code>, <script type="math/tex">\forall e\in E</script> variables and <code class="highlighter-rouge">ratings</code>, at least
+for <code class="highlighter-rouge">joy</code> and <code class="highlighter-rouge">fear</code> we can reject it and conclude that the alternative hypothesis holds.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=================================================================================
                     coef    std err          t      P&gt;|t|      [0.025      0.975]
@@ -165,8 +164,7 @@ total_anger      -0.0136      0.009     -1.533      0.130      -0.031       0.00
 ==============================================================================
 </code></pre></div></div>
 
-<p>This confirms even further that ratings for Game of Thrones have a positive relationship
-with <code class="highlighter-rouge">fear</code> and a negative relationship with <code class="highlighter-rouge">joy</code>. Let’s visualize side by side the words that inspire <code class="highlighter-rouge">fear</code> versus the words that inspire <code class="highlighter-rouge">joy</code>.</p>
+<p>This confirms that ratings for Game of Thrones have, at some degree, a positive relationship with <code class="highlighter-rouge">fear</code> and a negative relationship with <code class="highlighter-rouge">joy</code>, but there’s no special relationship with <code class="highlighter-rouge">sadness</code> or <code class="highlighter-rouge">anger</code>. Let’s visualize side by side the words that inspire <code class="highlighter-rouge">fear</code> versus the words that inspire <code class="highlighter-rouge">joy</code>.</p>
 
 <h3 id="word-clouds">Word Clouds</h3>
 
@@ -239,6 +237,20 @@ I put more trust in deeds."
   </figure>
 </div>
 
+<h3 id="future-work">Future Work</h3>
+
+<p>Some of the missing elements that I’d love to add some time in the future to this analysis are the following:</p>
+
+<ol>
+  <li>Silence analysis. Given that not only emotions from words could be significant in a show where battles and action drives emotions to the audiences, it’s interesting to see whether the lack of verbal emotions have (or not) an impact on the ratings (e.g. episodes where battles are predominant vs. episodes where there’s a lot of talking).</li>
+  <li>Expand the context dictionary with other terms that could represent better the specific emotions in the series to get more precise results.</li>
+  <li>Compare these results with other results from similar and completely different shows to contrast by “how much” does fear and joy have an impact on ratings, and if such effect is somehow constant in drama shows or not.</li>
+</ol>
+
+<p>If you have any other interesting questions and future work, please let me know in the comments section. Your feedback can help to add more features and analysis tools to the <code class="highlighter-rouge">limbic</code> python package.</p>
+
+<p>In case you find any error (misinterpretation of results, typos, etc.) or any misleading or slightly debatable results, please let me know as well. I’ll try to fix the issues as soon as possible.</p>
+
 <!-- <script id="dsq-count-scr" src="//glhuilli.disqus.com/count.js" async></script> -->
 <div id="disqus_thread"></div>
 <script>
@@ -309,7 +321,7 @@ s.setAttribute('data-timestamp', +new Date());
     </div>
   <!-- 
     
-    <script src='/assets/bundle.js?1555670071699027000' type='text/javascript'></script>
+    <script src='/assets/bundle.js?1555675690718377000' type='text/javascript'></script>
    -->
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2365015-1"></script>

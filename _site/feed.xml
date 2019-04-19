@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-19T03:34:31-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Game of Thrones Subtitles Analysis</title><link href="http://localhost:4000/got-analysis.html" rel="alternate" type="text/html" title="Game of Thrones Subtitles Analysis" /><published>2019-04-14T00:00:00-07:00</published><updated>2019-04-14T00:00:00-07:00</updated><id>http://localhost:4000/got-analysis</id><content type="html" xml:base="http://localhost:4000/got-analysis.html">&lt;p&gt;The following is based on this &lt;a href=&quot;https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb&quot;&gt;this example&lt;/a&gt; on how to do emotion analysis over an entire show (all episodes), posted in &lt;a href=&quot;https://github.com/glhuilli/limbic/&quot;&gt;limbic&lt;/a&gt;  python package.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-19T05:08:10-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Game of Thrones Subtitles Analysis</title><link href="http://localhost:4000/got-analysis.html" rel="alternate" type="text/html" title="Game of Thrones Subtitles Analysis" /><published>2019-04-14T00:00:00-07:00</published><updated>2019-04-14T00:00:00-07:00</updated><id>http://localhost:4000/got-analysis</id><content type="html" xml:base="http://localhost:4000/got-analysis.html">&lt;p&gt;The following is based on this &lt;a href=&quot;https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb&quot;&gt;this example&lt;/a&gt; on how to do emotion analysis over an entire show (all episodes), posted in &lt;a href=&quot;https://github.com/glhuilli/limbic/&quot;&gt;limbic&lt;/a&gt;  python package.&lt;/p&gt;
 
 &lt;h2 id=&quot;data-and-processing-setup&quot;&gt;Data and Processing Setup&lt;/h2&gt;
 
@@ -61,11 +61,10 @@ close to &lt;a href=&quot;https://en.wikipedia.org/wiki/Milord&quot;&gt;my lord&
 
 &lt;p&gt;These plots don’t provide new hard evidence (from what we could get out of the correlation analysis), but it’s interesting to see the trends in scatter plots. From this, it’s easy to see how &lt;code class=&quot;highlighter-rouge&quot;&gt;total_fear&lt;/code&gt; doesn’t explain the ratings as strongly as &lt;code class=&quot;highlighter-rouge&quot;&gt;avg_fear&lt;/code&gt;, but both &lt;code class=&quot;highlighter-rouge&quot;&gt;total_joy&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;avg_joy&lt;/code&gt; do have a similar trend, with a higher correlation for &lt;code class=&quot;highlighter-rouge&quot;&gt;total_joy&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Furthermore, after a quick regression analysis using variables &lt;script type=&quot;math/tex&quot;&gt;\text{total_e}, \forall e&lt;/script&gt;, then you can see how &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; has a
-positive impact over the ratings variable (&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;-value &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-&lt; 0.05 %]]&gt;&lt;/script&gt;), and &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; has a negative impact (&lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;-value &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-&lt; 0.05 %]]&gt;&lt;/script&gt;). Results
-for a regression analysis are presented in the summary ascii-table below.&lt;/p&gt;
+&lt;p&gt;Regression analysis results using variables &lt;code class=&quot;highlighter-rouge&quot;&gt;total_e&lt;/code&gt;, &lt;script type=&quot;math/tex&quot;&gt;\forall e\in E&lt;/script&gt;, are presented in the ascii-table below. Even though all regression coefficients are small and the regression intercept is quite substantial, &lt;code class=&quot;highlighter-rouge&quot;&gt;total_fear&lt;/code&gt; has a positive impact over &lt;code class=&quot;highlighter-rouge&quot;&gt;ratings&lt;/code&gt; (positive coefficient, &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;-value &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+&lt; 0.05 %]]&gt;&lt;/script&gt;), and &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; has a negative impact (negative coefficient, &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;-value &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+&lt; 0.05 %]]&gt;&lt;/script&gt;). As the null hypothesis in such analysis is that there’s no relationship between &lt;code class=&quot;highlighter-rouge&quot;&gt;total_e&lt;/code&gt;, &lt;script type=&quot;math/tex&quot;&gt;\forall e\in E&lt;/script&gt; variables and &lt;code class=&quot;highlighter-rouge&quot;&gt;ratings&lt;/code&gt;, at least
+for &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; we can reject it and conclude that the alternative hypothesis holds.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;=================================================================================
                     coef    std err          t      P&amp;gt;|t|      [0.025      0.975]
@@ -78,8 +77,7 @@ total_anger      -0.0136      0.009     -1.533      0.130      -0.031       0.00
 ==============================================================================
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This confirms even further that ratings for Game of Thrones have a positive relationship
-with &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; and a negative relationship with &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt;. Let’s visualize side by side the words that inspire &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; versus the words that inspire &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This confirms that ratings for Game of Thrones have, at some degree, a positive relationship with &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; and a negative relationship with &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt;, but there’s no special relationship with &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;anger&lt;/code&gt;. Let’s visualize side by side the words that inspire &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; versus the words that inspire &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;word-clouds&quot;&gt;Word Clouds&lt;/h3&gt;
 
@@ -151,6 +149,20 @@ I put more trust in deeds.&quot;
     &lt;figcaption style=&quot; margin-top:-1.5em;text-align: center;font-size: 12px;&quot;&gt;Sadness moving window for all episodes (columns are season, rows are episodes)&lt;/figcaption&gt;
   &lt;/figure&gt;
 &lt;/div&gt;
+
+&lt;h3 id=&quot;future-work&quot;&gt;Future Work&lt;/h3&gt;
+
+&lt;p&gt;Some of the missing elements that I’d love to add some time in the future to this analysis are the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Silence analysis. Given that not only emotions from words could be significant in a show where battles and action drives emotions to the audiences, it’s interesting to see whether the lack of verbal emotions have (or not) an impact on the ratings (e.g. episodes where battles are predominant vs. episodes where there’s a lot of talking).&lt;/li&gt;
+  &lt;li&gt;Expand the context dictionary with other terms that could represent better the specific emotions in the series to get more precise results.&lt;/li&gt;
+  &lt;li&gt;Compare these results with other results from similar and completely different shows to contrast by “how much” does fear and joy have an impact on ratings, and if such effect is somehow constant in drama shows or not.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If you have any other interesting questions and future work, please let me know in the comments section. Your feedback can help to add more features and analysis tools to the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; python package.&lt;/p&gt;
+
+&lt;p&gt;In case you find any error (misinterpretation of results, typos, etc.) or any misleading or slightly debatable results, please let me know as well. I’ll try to fix the issues as soon as possible.&lt;/p&gt;
 
 &lt;!-- &lt;script id=&quot;dsq-count-scr&quot; src=&quot;//glhuilli.disqus.com/count.js&quot; async&gt;&lt;/script&gt; --&gt;
 &lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;

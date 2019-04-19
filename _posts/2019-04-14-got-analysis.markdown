@@ -80,9 +80,8 @@ First and foremost, given the number of data points (67 episodes), these are not
 
 These plots don't provide new hard evidence (from what we could get out of the correlation analysis), but it's interesting to see the trends in scatter plots. From this, it's easy to see how `total_fear` doesn't explain the ratings as strongly as `avg_fear`, but both `total_joy` and `avg_joy` do have a similar trend, with a higher correlation for `total_joy`.
 
-Furthermore, after a quick regression analysis using variables $$\text{total_e}, \forall e$$, then you can see how `fear` has a
-positive impact over the ratings variable ($$p$$-value $$< 0.05$$), and `joy` has a negative impact ($$p$$-value $$< 0.05$$). Results
-for a regression analysis are presented in the summary ascii-table below.
+Regression analysis results using variables `total_e`, $$\forall e\in E$$, are presented in the ascii-table below. Even though all regression coefficients are small and the regression intercept is quite substantial, `total_fear` has a positive impact over `ratings` (positive coefficient, $$p$$-value $$< 0.05$$), and `joy` has a negative impact (negative coefficient, $$p$$-value $$< 0.05$$). As the null hypothesis in such analysis is that there's no relationship between `total_e`, $$\forall e\in E$$ variables and `ratings`, at least
+for `joy` and `fear` we can reject it and conclude that the alternative hypothesis holds.
 
 ```
 =================================================================================
@@ -96,8 +95,7 @@ total_anger      -0.0136      0.009     -1.533      0.130      -0.031       0.00
 ==============================================================================
 ```
 
-This confirms even further that ratings for Game of Thrones have a positive relationship
-with `fear` and a negative relationship with `joy`. Let's visualize side by side the words that inspire `fear` versus the words that inspire `joy`.
+This confirms that ratings for Game of Thrones have, at some degree, a positive relationship with `fear` and a negative relationship with `joy`, but there's no special relationship with `sadness` or `anger`. Let's visualize side by side the words that inspire `fear` versus the words that inspire `joy`.
 
 
 ### Word Clouds
@@ -171,6 +169,18 @@ Also, you can see how low values are similar among all emotions, which might be 
     <figcaption style=" margin-top:-1.5em;text-align: center;font-size: 12px;">Sadness moving window for all episodes (columns are season, rows are episodes)</figcaption>
   </figure>
 </div>
+
+### Future Work
+
+Some of the missing elements that I'd love to add some time in the future to this analysis are the following:
+
+1. Silence analysis. Given that not only emotions from words could be significant in a show where battles and action drives emotions to the audiences, it's interesting to see whether the lack of verbal emotions have (or not) an impact on the ratings (e.g. episodes where battles are predominant vs. episodes where there's a lot of talking).
+2. Expand the context dictionary with other terms that could represent better the specific emotions in the series to get more precise results.
+3. Compare these results with other results from similar and completely different shows to contrast by "how much" does fear and joy have an impact on ratings, and if such effect is somehow constant in drama shows or not.
+
+If you have any other interesting questions and future work, please let me know in the comments section. Your feedback can help to add more features and analysis tools to the `limbic` python package.
+
+In case you find any error (misinterpretation of results, typos, etc.) or any misleading or slightly debatable results, please let me know as well. I'll try to fix the issues as soon as possible.
 
 {% if page.comments %}
 <!-- <script id="dsq-count-scr" src="//glhuilli.disqus.com/count.js" async></script> -->
