@@ -57,12 +57,14 @@ The direction of the emotion $$e\in E$$, defined as
 
 $$\text{dir_e} = \sum_{t\in T_e} v_e(t) - \sum_{t\in T_{e'}} v_{e'}(t)$$
 
-where $$e'$$ is the opposite emotion of $$e$$ according to the Plutchik wheel of emotions.
+where $$e'$$ is the opposite emotion of $$e$$ according to the [Plutchik wheel of emotions](https://en.wikipedia.org/wiki/Contrasting_and_categorization_of_emotions#Plutchik's_wheel_of_emotions).
 
 
 ### Correlation and Regression Analysis
 
-<img style="margin: 20px -20px;" src='{{ site.baseurl }}/assets/posts/got-analysis/output_11_0.png' alt='Correlation matrix.'>
+<div class='got'>
+<img style="margin: 10px auto;" src='{{ site.baseurl }}/assets/posts/got-analysis/output_11_0.png' alt='Correlation matrix.'>
+</div>
 
 Looking at the correlation matrix, the variable `ratings` seem to have a weak positive correlation with some `fear` related variables (`avg_fear`, $$\rho \approx 0.39$$) and a weak negative correlation with some `joy` related variables (`total_joy`, $$\rho \approx -0.262$$). This is more or less expected given the type of series that Game of Thrones is, and what people expects of a dark fantasy story. Note that `joy` is not the opposite of `fear`, that would be `sadness` and `anger` respectively. In this case, both `sadness` and `anger` related emotions were not particularly correlated to the user ratings.
 
@@ -104,11 +106,11 @@ with `fear` and a negative relationship with `joy`. Let's visualize side by side
 <img src='{{ site.baseurl }}/assets/posts/got-analysis/output_16_0.png' alt='fear vs joy word clouds'>
 </div>
 
-Based on this, audiences do prefer dialogs with more terms like `war`, `fight` or `afraid` rather than `friend`, `love`, or `mother`. Maybe GRRM Martin said it best in his book `A Dance with Dragons`:
+Based on this, audiences do prefer dialogs with more terms like `war`, `fight` or `afraid` rather than `friend`, `love`, or `mother`. Maybe GRRM Martin said it best in his book [A Dance with Dragons](https://awoiaf.westeros.org/index.php/A_Dance_with_Dragons):
 
 ```
-          "Words are wind, even words like love and peace.
-          I put more trust in deeds."
+"Words are wind, even words like love and peace.
+I put more trust in deeds."
 ```
 
 With this quote, he explains perfectly the observed effect. Words like `love` and `peace` (clearly joy-inducing words) are proven to be empty, not lasting or at risk (at least in the show), while words like `war` or `fight` are actions that will undoubtedly have some real effect and often painful consequences to the characters. In summary, you could say that audiences will give higher ratings to episodes where there are more action and less empty words.

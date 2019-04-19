@@ -29,7 +29,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: 750px;
+  max-width: 850px;
   display: inline-block;
   text-align: left;
   padding: 40px;
@@ -73,7 +73,7 @@ p {
 **/
 
 .container img {
-  max-width: 130%;
+  max-width: 100%;
   margin: 20px auto;
   display: block;
 }
@@ -325,7 +325,7 @@ body {
 
 .home-post {
   width: 100%;
-  margin-left: 100px;
+  /* margin-left: 100px; */
 }
 
 .home-post,
@@ -352,7 +352,7 @@ body {
 .home-post a {
   text-decoration: none;
   display: block;
-  font-size: 1.2em;
+  font-size: 0.8em;
   color: #555;
   font-weight: 400;
 }
@@ -527,7 +527,7 @@ noscript {
 }
 
 /* mobile */
-@media (max-width: 520px) {
+@media (max-width: 620px) {
   .post .container {
     padding: 10px;
   }

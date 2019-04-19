@@ -1,5 +1,5 @@
 .got img {
-  max-width: 130%;
-  margin: 20px -100px;
+  max-width: 100%;
+  margin: 20px auto;
   display: block;
 }
