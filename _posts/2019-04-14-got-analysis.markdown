@@ -138,7 +138,7 @@ I invite you to correlate these patterns together with the ones presented below,
 
 This [guide](https://www.reddit.com/r/asoiaf/comments/bbg2jp/spoilers_main_game_of_thrones_most_thorough_guide/) (thanks to [jjadjjadj](https://www.reddit.com/user/jjadjjadj) for this madness!) can help you go through certain episodes and see how emotions variations represent some of the main events in the show.
 
-For example, you can see above a spike in sadness in season 5. Below, in the sadness chart, you can see in row 10 and column 5 a high peak a little before the end of the episode. If you follow the insane guide above, this episode corresponds to `S5E10 "Mother's Mercy"` (column 50), which is when Cercei's walk of atonement happened, and the word `shame` was said a quite a lot (`shame` has sadness score `0.594`).
+For example, you can see above a spike in sadness in season 5. Below, in the sadness chart, you can see in row 10 and column 5 a high peak a little before the end of the episode. If you follow the insane guide above, this episode corresponds to `S5E10 "Mother's Mercy"` (column 50), which is when Cercei's walk of atonement happened, and the word `shame` was said quite a lot (`shame` has sadness score `0.594`).
 
 Also, you can see how low values are similar among all emotions, which might be associated to scenes in the episodes where none or little dialog is present, though it's fascinating how this is most common across entire seasons. This could be explained by the fact that live-action scenes with battles, fights, dragons, and the like, are usually displayed approximately at the same time, often a little before the end of each episode.
 
