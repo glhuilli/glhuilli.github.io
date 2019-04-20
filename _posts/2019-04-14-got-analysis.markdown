@@ -174,11 +174,11 @@ Also, you can see how low values are similar among all emotions, which might be 
 
 Some of the missing elements that I'd love to add some time in the future to this analysis are the following:
 
-1. Silence analysis. Given that not only emotions from words could be significant in a show where battles and action drives emotions to the audiences, it's interesting to see whether the lack of verbal emotions have (or not) an impact on the ratings (e.g. episodes where battles are predominant vs. episodes where there's a lot of talking).
-2. Expand the context dictionary with other terms that could represent better the specific emotions in the series to get more precise results.
+1. Silence analysis. Given that not only emotions from words could be significant in a show where battles, action, or even music, do have a substantial reception by audiences, it's interesting to see whether the lack of vocalized emotions have (or not) an impact on the ratings (e.g. episodes where battles are predominant vs. episodes where there's a lot of talking).
+2. Expand the context dictionary with other terms that could represent better the specific emotions in the series to get more precise results (e.g. add more subtle terms like "bend the knee" or "Azor Ahai").
 3. Compare these results with other results from similar and completely different shows to contrast by "how much" does fear and joy have an impact on ratings, and if such effect is somehow constant in drama shows or not.
 
-If you have any other interesting questions and future work, please let me know in the comments section. Your feedback can help to add more features and analysis tools to the `limbic` python package.
+If you have any other interesting questions and future work, please let me know in the comments section. Your feedback can help to add more features and analysis tools to the [limbic python package](https://github.com/glhuilli/limbic).
 
 In case you find any error (misinterpretation of results, typos, etc.) or any misleading or slightly debatable results, please let me know as well. I'll try to fix the issues as soon as possible.
 
