@@ -14,7 +14,7 @@ css:
 invert: true
 ---
 
-The following is based on this [this example](https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb) on how to do emotion analysis over an entire show (all episodes), posted in [limbic](https://github.com/glhuilli/limbic/)  python package.
+The following is based on this [this example](https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb) on how to do emotion analysis over an entire show (all episodes), posted in my [limbic](https://github.com/glhuilli/limbic/)  python package.
 
 
 ## Data and Processing Setup
