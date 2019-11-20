@@ -19,7 +19,7 @@ The following is based on this [this example](https://github.com/glhuilli/limbic
 
 ## Data and Processing Setup
 
-All subtitles for every episode of Game of Thrones were downloaded from [subscene](https://subscene.com/) manually. IMDB information was obtained using the OMDB API using `limbic`'s IMDB integration. This data is freely available with the `limbic` package.
+All subtitles for every episode of Game of Thrones (from season 1 to 7) were downloaded from [subscene](https://subscene.com/) manually. IMDB information was obtained using the OMDB API using `limbic`'s IMDB integration. This data is freely available with the `limbic` package.
 
 As mentioned in `limbic`'s documentation, you need to set up a specific mapping when dealing with domain-specific terms that have a specific meaning. For example, in Game of Thrones, the term `lord` is widely used across all episodes and has a connotation
 close to [my lord](https://en.wikipedia.org/wiki/Milord) rather than [the lord](https://en.wikipedia.org/wiki/Lord). In [NRC lexicons](http://saifmohammad.com/WebPages/AccessResource.htm), the term `lord` does have a strong `joy` value as it's probably closely associated with the latter definition. As I don't want to overestimate the emotion `joy` across the episodes, a new meaning for the word `my lord` can b done by associating it to the word `sir`.
