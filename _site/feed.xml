@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-20T08:17:47-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Game of Thrones Subtitles Analysis</title><link href="http://localhost:4000/got-analysis.html" rel="alternate" type="text/html" title="Game of Thrones Subtitles Analysis" /><published>2019-04-14T00:00:00-07:00</published><updated>2019-04-14T00:00:00-07:00</updated><id>http://localhost:4000/got-analysis</id><content type="html" xml:base="http://localhost:4000/got-analysis.html">&lt;p&gt;The following is based on this &lt;a href=&quot;https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb&quot;&gt;this example&lt;/a&gt; on how to do emotion analysis over an entire show (all episodes), posted in &lt;a href=&quot;https://github.com/glhuilli/limbic/&quot;&gt;limbic&lt;/a&gt;  python package.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-12-13T02:49:55-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Game of Thrones Subtitles Analysis</title><link href="http://localhost:4000/got-analysis.html" rel="alternate" type="text/html" title="Game of Thrones Subtitles Analysis" /><published>2019-04-14T00:00:00-07:00</published><updated>2019-04-14T00:00:00-07:00</updated><id>http://localhost:4000/got-analysis</id><content type="html" xml:base="http://localhost:4000/got-analysis.html">&lt;p&gt;The following is based on this &lt;a href=&quot;https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb&quot;&gt;this example&lt;/a&gt; on how to do emotion analysis over an entire show (all episodes), posted in my &lt;a href=&quot;https://github.com/glhuilli/limbic/&quot;&gt;limbic&lt;/a&gt;  python package.&lt;/p&gt;
 
 &lt;h2 id=&quot;data-and-processing-setup&quot;&gt;Data and Processing Setup&lt;/h2&gt;
 
-&lt;p&gt;All subtitles for every episode of Game of Thrones were downloaded from &lt;a href=&quot;https://subscene.com/&quot;&gt;subscene&lt;/a&gt; manually. IMDB information was obtained using the OMDB API using &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt;’s IMDB integration. This data is freely available with the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;All subtitles for every episode of Game of Thrones (from season 1 to 7) were downloaded from &lt;a href=&quot;https://subscene.com/&quot;&gt;subscene&lt;/a&gt; manually. IMDB information was obtained using the OMDB API using &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt;’s IMDB integration. This data is freely available with the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package.&lt;/p&gt;
 
 &lt;p&gt;As mentioned in &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt;’s documentation, you need to set up a specific mapping when dealing with domain-specific terms that have a specific meaning. For example, in Game of Thrones, the term &lt;code class=&quot;highlighter-rouge&quot;&gt;lord&lt;/code&gt; is widely used across all episodes and has a connotation
 close to &lt;a href=&quot;https://en.wikipedia.org/wiki/Milord&quot;&gt;my lord&lt;/a&gt; rather than &lt;a href=&quot;https://en.wikipedia.org/wiki/Lord&quot;&gt;the lord&lt;/a&gt;. In &lt;a href=&quot;http://saifmohammad.com/WebPages/AccessResource.htm&quot;&gt;NRC lexicons&lt;/a&gt;, the term &lt;code class=&quot;highlighter-rouge&quot;&gt;lord&lt;/code&gt; does have a strong &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; value as it’s probably closely associated with the latter definition. As I don’t want to overestimate the emotion &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; across the episodes, a new meaning for the word &lt;code class=&quot;highlighter-rouge&quot;&gt;my lord&lt;/code&gt; can b done by associating it to the word &lt;code class=&quot;highlighter-rouge&quot;&gt;sir&lt;/code&gt;.&lt;/p&gt;
@@ -158,6 +158,7 @@ I put more trust in deeds.&quot;
   &lt;li&gt;Silence analysis. Given that not only emotions from words could be significant in a show where battles, action, or even music, do have a substantial reception by audiences, it’s interesting to see whether the lack of vocalized emotions have (or not) an impact on the ratings (e.g. episodes where battles are predominant vs. episodes where there’s a lot of talking).&lt;/li&gt;
   &lt;li&gt;Expand the context dictionary with other terms that could represent better the specific emotions in the series to get more precise results (e.g. add more subtle terms like “bend the knee” or “Azor Ahai”).&lt;/li&gt;
   &lt;li&gt;Compare these results with other results from similar and completely different shows to contrast by “how much” does fear and joy have an impact on ratings, and if such effect is somehow constant in drama shows or not.&lt;/li&gt;
+  &lt;li&gt;Include season 8 subtitles into the analysis.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;If you have any other interesting questions and future work, please let me know in the comments section. Your feedback can help to add more features and analysis tools to the &lt;a href=&quot;https://github.com/glhuilli/limbic&quot;&gt;limbic python package&lt;/a&gt;.&lt;/p&gt;
@@ -179,7 +180,259 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 &lt;/script&gt;
 
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">The following is based on this this example on how to do emotion analysis over an entire show (all episodes), posted in limbic python package.</summary></entry><entry><title type="html">Automatic activation of virtualenv (+ pyenv)</title><link href="http://localhost:4000/virtual-environments.html" rel="alternate" type="text/html" title="Automatic activation of virtualenv (+ pyenv)" /><published>2019-03-03T00:00:00-08:00</published><updated>2019-03-03T00:00:00-08:00</updated><id>http://localhost:4000/virtual-environments</id><content type="html" xml:base="http://localhost:4000/virtual-environments.html">&lt;p&gt;There must be hundreds of alternatives for using Python virtualenv in a simple and clean way, but the following is by far the
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">The following is based on this this example on how to do emotion analysis over an entire show (all episodes), posted in my limbic python package.</summary></entry><entry><title type="html">Limbic: Python package for emotion analysis from text</title><link href="http://localhost:4000/limbic-package.html" rel="alternate" type="text/html" title="Limbic: Python package for emotion analysis from text" /><published>2019-04-10T00:00:00-07:00</published><updated>2019-04-10T00:00:00-07:00</updated><id>http://localhost:4000/limbic-package</id><content type="html" xml:base="http://localhost:4000/limbic-package.html">&lt;p&gt;This post contains a few basic examples of how to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package. First, a quick overview of the lexicon-based classifier is described, and then a few notes on how a machine learning model was trained and how it can be used to predict the emotions for a given text.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-building-this-package&quot;&gt;Why building this package?&lt;/h2&gt;
+
+&lt;p&gt;The objective of this package is simple: If you need to compute some emotion analysis on a word or a set of words this should be able to help. For now, it only supports plain text and subtitles, but the idea is to extend it to other formats (pdf, email, among other formats). In the meantime, this includes a basic example on how to use it on plain text and another example on how to use it in a collection of subtitles for series (all episodes for all seasons of a show). The name of the package is based on the limbic system, which is a set of brain structures that support different functions, like emotions or behavior among others.&lt;/p&gt;
+
+&lt;p&gt;In this package, there are two strategies to compute the emotions:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Via lexicon-based word matching, which is quite straightforward and examples of its usage are described below.&lt;/li&gt;
+  &lt;li&gt;Via a multi-label machine learning classifier trained with the specific purpose of identifying emotions and their strength in full sentences.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Limbic also has a set of tools that are easy to reuse and extend for different use cases. For example, contains tools for the analysis of subtitles in a show, but can be easily extended to analyze books, papers, websites, customer reviews, or even further applications like comparing a movie script with its book, comparing properties of movies in a sequel, among others.&lt;/p&gt;
+
+&lt;h2 id=&quot;installing-the-package&quot;&gt;Installing the package&lt;/h2&gt;
+
+&lt;p&gt;In the meantime, while I finish adding this as a pypi package, you can install it by building the source code from the repository by first installing all the dependencies from the requirements.txt file and the dependencies for Spacy, the NLP framework used through this package. However, it might be easier to use &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install&lt;/code&gt; directly from the Github repository, as shown below,&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install git+https://github.com/glhuilli/limbic.git
+python -m spacy download en_core_web_sm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When I finish uploading the package to pypi I’ll update this section accordingly,&lt;/p&gt;
+
+&lt;h2 id=&quot;importing-a-lexicon-based-emotion-classifier&quot;&gt;Importing a lexicon-based emotion classifier&lt;/h2&gt;
+
+&lt;p&gt;The only thing you need to create a new lexicon-based emotion classifier is, of course, the lexicon. However, in case you are dealing with a specific context, it’s possible to use a terms mapping dictionary,  which will automatically replace terms on the input you want to process.&lt;/p&gt;
+
+&lt;p&gt;The lexicon has to be loaded by the user, and it could be either a custom lexicon or a &lt;a href=&quot;http://saifmohammad.com/WebPages/AccessResource.htm&quot;&gt;lexicon from the NRC&lt;/a&gt;. To load a lexicon, you can either use a generic &lt;code class=&quot;highlighter-rouge&quot;&gt;load_lexicon&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;load_nrc_lexicon&lt;/code&gt; tailored for some NRC lexicons.&lt;/p&gt;
+
+&lt;p&gt;To use the generic &lt;code class=&quot;highlighter-rouge&quot;&gt;load_lexicon&lt;/code&gt; method you can do the following:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/447690ef2b498a49d6b9f5c025dc9f4c.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- ```python
+from limbic.emotion.utils import load_lexicon
+
+my_lexicon_file_path = '../data/my_lexicon.csv'
+lexicon = load_lexicon(my_lexicon_file_path)
+``` --&gt;
+
+&lt;p&gt;where the hypothetical file &lt;code class=&quot;highlighter-rouge&quot;&gt;../data/lexicon.csv&lt;/code&gt; is a &lt;code class=&quot;highlighter-rouge&quot;&gt;csv&lt;/code&gt; file with the header &lt;code class=&quot;highlighter-rouge&quot;&gt;term,emotion,score&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To use the &lt;code class=&quot;highlighter-rouge&quot;&gt;load_nrc_lexicon&lt;/code&gt; method, you need to download one of the supported NRC files and do&lt;/p&gt;
+
+&lt;!-- ```python
+from limbic.emotion.nrc_utils import load_nrc_lexicon
+
+nrc_lexcon_file_path = '../data/lexicons/NRC-AffectIntensity-Lexicon.txt'
+lexicon = load_nrc_lexicon(nrc_lexicon_file_path, 'affect_intensity')
+``` --&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/6d05e46c08218c3b3efb07b6cb6ad7fd.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;The supported files are the &lt;code class=&quot;highlighter-rouge&quot;&gt;affect_intensity&lt;/code&gt; lexicon, the &lt;code class=&quot;highlighter-rouge&quot;&gt;emotion&lt;/code&gt; lexicon (aka &lt;code class=&quot;highlighter-rouge&quot;&gt;EmoLex&lt;/code&gt;), and the &lt;code class=&quot;highlighter-rouge&quot;&gt;vad&lt;/code&gt; lexicon.&lt;/p&gt;
+
+&lt;p&gt;Once the lexicon is ready, you can create the &lt;code class=&quot;highlighter-rouge&quot;&gt;LexiconLimbicModel&lt;/code&gt;,&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/13c6eb1f3b9bad28b8184c6ea7c9f6b8.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Also, there’s an option to use a &lt;code class=&quot;highlighter-rouge&quot;&gt;terms mapping&lt;/code&gt; dictionary has to be of type &lt;code class=&quot;highlighter-rouge&quot;&gt;Dict[str, str]&lt;/code&gt;, where a given term or collection of terms will be mapped to another term of collection of terms when computing the emotions. This is specifically helpful for texts with a specific context that you would like to include in the model. This is specifically helpful for texts with a specific context that you would like to include in the model. An example of this included below (check out &lt;a href=&quot;https://glhuilli.github.io/got-analysis.html&quot;&gt;this example&lt;/a&gt; to use a mapping dictionary).&lt;/p&gt;
+
+&lt;h3 id=&quot;important-note&quot;&gt;Important note&lt;/h3&gt;
+
+&lt;p&gt;In case you are using NRC lexicons, you need to know that there are some constraints about using them for profit. Please refer to the NRC website for more information on how to notify and work with their data. Otherwise, you are free to use limbic however you want under the MIT license.&lt;/p&gt;
+
+&lt;h3 id=&quot;emotions-from-terms&quot;&gt;Emotions from Terms&lt;/h3&gt;
+
+&lt;p&gt;Once the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; model is loaded, you can either get the emotions that either a single term or a full-sentence has. For example, you can get the emotions associated with the word &lt;code class=&quot;highlighter-rouge&quot;&gt;love&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;hate&lt;/code&gt;. Alternatively, you can get the emotions associated with &lt;code class=&quot;highlighter-rouge&quot;&gt;not love&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;not hate&lt;/code&gt;, which is passing an &lt;code class=&quot;highlighter-rouge&quot;&gt;is_negated&lt;/code&gt; parameter to the method.&lt;/p&gt;
+
+&lt;p&gt;For each term, a list of &lt;code class=&quot;highlighter-rouge&quot;&gt;Emotion&lt;/code&gt; named tuples is returned. Each &lt;code class=&quot;highlighter-rouge&quot;&gt;Emotion&lt;/code&gt; has the fields &lt;code class=&quot;highlighter-rouge&quot;&gt;category&lt;/code&gt;, which indicates one of the motions that the term has been assigned, a &lt;code class=&quot;highlighter-rouge&quot;&gt;value&lt;/code&gt; that quantifies how strong the emotion category has been assigned to the term, and the &lt;code class=&quot;highlighter-rouge&quot;&gt;term&lt;/code&gt;. This term in case the method is called with &lt;code class=&quot;highlighter-rouge&quot;&gt;is_negated=True&lt;/code&gt;, has a dash as a prefix, e.g., &lt;code class=&quot;highlighter-rouge&quot;&gt;term=love, is_negated=True&lt;/code&gt; will generate an &lt;code class=&quot;highlighter-rouge&quot;&gt;Emotion&lt;/code&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;term=-love&lt;/code&gt;.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/78641312fb741eb30579d5d2a906d180.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- ```python
+print('-'* 50)
+print('Emotions for love, hate, not love, and not hate.')
+print('-'* 50)
+for term in ['love', 'hate']:
+    print(f'{term} -&gt; {lb.get_term_emotions(term)}')
+for term in ['LOVE', 'Hate']:
+    print(f'{term} (negated) -&gt; {lb.get_term_emotions(term, is_negated=True)}')
+``` --&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+    --------------------------------------------------
+    Emotions for love, hate, not love, and not hate.
+    --------------------------------------------------
+    love -&amp;gt; [Emotion(category='joy', value=0.828, term='love')]
+    hate -&amp;gt; [Emotion(category='anger', value=0.828, term='hate'),
+              Emotion(category='fear', value=0.484, term='hate'),
+              Emotion(category='sadness', value=0.656, term='hate')]
+    LOVE (negated) -&amp;gt; [Emotion(category='sadness', value=0.828, term='-love')]
+    Hate (negated) -&amp;gt; [Emotion(category='fear', value=0.828, term='-hate'),
+                        Emotion(category='anger', value=0.484, term='-hate'),
+                        Emotion(category='joy', value=0.656, term='-hate')]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;negated-terms&quot;&gt;Negated terms&lt;/h3&gt;
+
+&lt;p&gt;The categories supported for the &lt;code class=&quot;highlighter-rouge&quot;&gt;is_negated&lt;/code&gt; parameter are the ones included in the &lt;a href=&quot;https://en.wikipedia.org/wiki/Contrasting_and_categorization_of_emotions&quot;&gt;Plutchik’s wheel of emotions&lt;/a&gt;, shown below (source: Wikipedia)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/c/ce/Plutchik-wheel.svg&quot; alt=&quot;Drawing&quot; style=&quot;width: 450px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, each emotion is placed in a wheel where any emotion is facing its “opposite” on the other side. For example, &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; is on the opposite side of &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;rage&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;terror&lt;/code&gt;, and so on. When terms are negated, the opposite emotion will be used. For example, &lt;code class=&quot;highlighter-rouge&quot;&gt;love&lt;/code&gt; has an emotion of &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; with score &lt;code class=&quot;highlighter-rouge&quot;&gt;0.828&lt;/code&gt; (following the NRC &lt;code class=&quot;highlighter-rouge&quot;&gt;affect_intensity&lt;/code&gt; lexicon). Then &lt;code class=&quot;highlighter-rouge&quot;&gt;love&lt;/code&gt; negated will have an emotion of &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt; with score &lt;code class=&quot;highlighter-rouge&quot;&gt;0.828&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;emotions-for-sentences&quot;&gt;Emotions for sentences&lt;/h3&gt;
+
+&lt;p&gt;Like getting the emotions of a term, &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; has a method for getting the emotions for full or partial sentence. This is supported by the fact that each sentence has multiple terms, which some of them could have one or multiple emotions. Note that, in some cases, a sentence could have some negated terms that need to be considered. Some examples of how to process sentences and the expected output are presented below.&lt;/p&gt;
+
+&lt;!-- ```python
+sentence = 'I love and enjoy this string.'
+
+lb.get_sentence_emotions(sentence)
+``` --&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/08a86825885b9be650b376ad0ef184da.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+    [Emotion(category='joy', value=0.828, term='love'),
+     Emotion(category='joy', value=0.812, term='enjoy')]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then you can try checking a sentence with negated terms,&lt;/p&gt;
+
+&lt;!-- ```python
+sentence = &quot;I don't love but I enjoy this string.&quot;
+
+lb.get_sentence_emotions(sentence)
+``` --&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/2d5c462d633560f1b39af1c3147b7b14.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+    [Emotion(category='sadness', value=0.828, term='-love'),
+     Emotion(category='joy', value=0.812, term='enjoy')]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, if you try to get the emotions from the following sentence without context, you can get unexpected results,&lt;/p&gt;
+
+&lt;!-- ```python
+sentence = &quot;I don't love but I enjoy this sentence.&quot;
+
+lb.get_sentence_emotions(sentence)
+``` --&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/f85932099e2e7f0cdd2b1b586c6eff91.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+    [Emotion(category='sadness', value=0.828, term='-love'),
+     Emotion(category='joy', value=0.812, term='enjoy'),
+     Emotion(category='anger', value=0.203, term='sentence'),
+     Emotion(category='fear', value=0.266, term='sentence'),
+     Emotion(category='sadness', value=0.234, term='sentence')]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;emotions-using-the-terms-mapping&quot;&gt;Emotions using the terms mapping&lt;/h3&gt;
+
+&lt;p&gt;Note that in the last example &lt;code class=&quot;highlighter-rouge&quot;&gt;I don't love but I enjoy this sentence&lt;/code&gt;, the word &lt;code class=&quot;highlighter-rouge&quot;&gt;sentence&lt;/code&gt; could be placed under two different contexts: &lt;code class=&quot;highlighter-rouge&quot;&gt;sentence&lt;/code&gt; as in a set for words or &lt;code class=&quot;highlighter-rouge&quot;&gt;sentence&lt;/code&gt; as in punishment.&lt;/p&gt;
+
+&lt;p&gt;If you are under the context that &lt;code class=&quot;highlighter-rouge&quot;&gt;sentence&lt;/code&gt; is just a collection of words, you can use the &lt;code class=&quot;highlighter-rouge&quot;&gt;terms_mapping&lt;/code&gt; when defining the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; object.&lt;/p&gt;
+
+&lt;!-- ```python
+terms_mapping = {'sentence': 'string'}
+lb = LexiconLimbicModel(lexicon, terms_mapping=terms_mapping)
+
+sentence = &quot;I don't love but I enjoy this sentence.&quot;
+
+lb.get_sentence_emotions(sentence)
+``` --&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/2a05a110fdb53cb3b0db024150633f7f.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+    [Emotion(category='sadness', value=0.828, term='-love'),
+     Emotion(category='joy', value=0.812, term='enjoy')]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;using-a-machine-learning-model-for-emotion-analysis&quot;&gt;Using a Machine Learning model for Emotion Analysis&lt;/h2&gt;
+
+&lt;p&gt;Similar to the example above, using a lexicon-based model, this is just a quick walkthrough to understand how to load and use the machine learning model built in Tensorflow, which is included in the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package.&lt;/p&gt;
+
+&lt;p&gt;First, you need to understand the constraints and limitations of the model:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;It was built only for a very narrow set of emotions (called Affection Emotions in limbic), which are “joy”, “sadness”, “anger”, and “fear”.&lt;/li&gt;
+  &lt;li&gt;Using a synthetic dataset created using the lexicon-based model from a very particular dataset (top ~90 full books from different websites), a bidirectional RNN combined with a CNN was trained to predict multiple emotions as a multi-label classification problem. As future work, I’ll add a section on how the network was decided step by step and the reasons for some of the decisions I took when defining the layers’ parameters. Now you can see this in &lt;a href=&quot;https://github.com/glhuilli/limbic/blob/master/limbic/emotion/models/tf_limbic_model/utils.py#L104&quot;&gt;the code itself&lt;/a&gt;, where I added as many comments as I could for each step of the network construction code.&lt;/li&gt;
+  &lt;li&gt;Note that given that the data used to train was generated by using the lexicon-based model, this means that any biases that could come from that model will be included in the resulting trained model.&lt;/li&gt;
+  &lt;li&gt;Emotions were not computed using any context disambiguation. Any unfortunate relationship associated with the lexicon-based model could be included in the ML trained model.&lt;/li&gt;
+  &lt;li&gt;Parameters for the ML model were not tweaked with the full extent of hyper-parameter optimization, which means that it might not be the best version of itself. The same goes for the benchmark experiments with other models (FastText and Scikitlearn-based models). This is part of the future work still needed for this model to perform optimally.&lt;/li&gt;
+  &lt;li&gt;Negations are not being captured correctly in the training phase, so a full dive into why and what can be done to improve this, it’s necessary and will be .considered as future work.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The general idea behind the definition of the model is the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Use the embeddings layer first leveraging a pre-trained layer (e.g., Glove in this case).&lt;/li&gt;
+  &lt;li&gt;Create a bi-directional layer to capture contextual info from upstream and downstream directions.&lt;/li&gt;
+  &lt;li&gt;Allow some drop-out to include some regularization into the model and avoid over-fitting.&lt;/li&gt;
+  &lt;li&gt;Use a convolution layer to extract some relationships between the hypothesis from the previous layer.&lt;/li&gt;
+  &lt;li&gt;Using a pooling layer (avg and max) to group and allow more signal encoding from previous convolutions.&lt;/li&gt;
+  &lt;li&gt;Use the sigmoid activation function in the output layer for the multi-label problem.&lt;/li&gt;
+  &lt;li&gt;Use binary cross-entropy loss function, which is well suited for the multi-label classification problem.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;To use the model is fairly simple. All you need to do is to create a TfLimbicModel and pass down the sentence you want to extract the emotions from,&lt;/p&gt;
+
+&lt;!-- ```python
+from limbic.emotion.models.tf_limbic_model import TfLimbicModel
+
+tf_model = TfLimbicModel()  
+tf_model.predict('I have a lot of joy and sadness')
+``` --&gt;
+&lt;script src=&quot;https://gist.github.com/glhuilli/82e1ca190c05041863479215ebb19d72.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+    array([0.53164005, 0.95961887, 0.11894947, 0.05770496], dtype=float32)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The output represents the probability that each emotion was found in the input sentence. I included in &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; a more expressive way of returning such probabilities by using the &lt;code class=&quot;highlighter-rouge&quot;&gt;get_sentence_emotions&lt;/code&gt; method, where each emotion is mapped to the right probability of being included in the sentence,&lt;/p&gt;
+
+&lt;!-- ```python
+tf_model.get_sentence_emotions('I have a lot of joy and sadness.')
+``` --&gt;
+&lt;script src=&quot;https://gist.github.com/glhuilli/e8269c12d52a6b11a8359e39616292a0.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+    [EmotionValue(category='sadness', value=0.53164005),
+     EmotionValue(category='joy', value=0.95961887),
+     EmotionValue(category='fear', value=0.11894947),
+     EmotionValue(category='anger', value=0.057704955)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that this works within the boundaries for a full sentence. If the sentence is larger than 150 words, then it will be clipped to the first 150 words, given how the input layer of the network was constructed.&lt;/p&gt;
+
+&lt;p&gt;Improving this model is an on-going work, and I’ll be updating this post and the code accordingly. If you have any suggestions on how to improve it, please let me know! Contributions and comments are more than welcome.&lt;/p&gt;
+
+&lt;!-- &lt;script id=&quot;dsq-count-scr&quot; src=&quot;//glhuilli.disqus.com/count.js&quot; async&gt;&lt;/script&gt; --&gt;
+&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+var disqus_config = function () {
+this.page.url = virtual-environments;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = virtual-environments; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://glhuilli.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+&lt;/script&gt;
+
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">This post contains a few basic examples of how to use the limbic package. First, a quick overview of the lexicon-based classifier is described, and then a few notes on how a machine learning model was trained and how it can be used to predict the emotions for a given text.</summary></entry><entry><title type="html">Automatic activation of virtualenv (+ pyenv)</title><link href="http://localhost:4000/virtual-environments.html" rel="alternate" type="text/html" title="Automatic activation of virtualenv (+ pyenv)" /><published>2019-03-03T00:00:00-08:00</published><updated>2019-03-03T00:00:00-08:00</updated><id>http://localhost:4000/virtual-environments</id><content type="html" xml:base="http://localhost:4000/virtual-environments.html">&lt;p&gt;There must be hundreds of alternatives for using Python virtualenv in a simple and clean way, but the following is by far the
 one that I find most intuitive and easy to set up. The idea is simple. Each time you want to use a &lt;code class=&quot;highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; in a project,
 you need to:&lt;/p&gt;
 
