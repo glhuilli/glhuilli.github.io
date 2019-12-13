@@ -38,9 +38,6 @@ pip install git+https://github.com/glhuilli/limbic.git
 python -m spacy download en_core_web_sm
 ```
 
-When I finish uploading the package to pypi I'll update this section accordingly,
-
-
 ## Importing a lexicon-based emotion classifier
 
 The only thing you need to create a new lexicon-based emotion classifier is, of course, the lexicon. However, in case you are dealing with a specific context, it's possible to use a terms mapping dictionary,  which will automatically replace terms on the input you want to process.
