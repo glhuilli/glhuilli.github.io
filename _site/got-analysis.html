@@ -24,15 +24,15 @@
     <!-- <link rel='icon' href='/assets/images/favicon.ico' type='image/x-icon'> -->
     
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1555773467240359000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1576234195624669000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1555773467240359000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1576234195624669000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1555773467240359000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1576234195624669000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1555773467240359000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1576234195624669000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1555773467240359000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1576234195624669000'>
     
   
     
@@ -85,11 +85,11 @@
   <div class='container'>
     <div class='title'>Game of Thrones Subtitles Analysis</div>
     <div class='date'>14 Apr 2019</div>
-    <div class='content'><p>The following is based on this <a href="https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb">this example</a> on how to do emotion analysis over an entire show (all episodes), posted in <a href="https://github.com/glhuilli/limbic/">limbic</a>  python package.</p>
+    <div class='content'><p>The following is based on this <a href="https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb">this example</a> on how to do emotion analysis over an entire show (all episodes), posted in my <a href="https://github.com/glhuilli/limbic/">limbic</a>  python package.</p>
 
 <h2 id="data-and-processing-setup">Data and Processing Setup</h2>
 
-<p>All subtitles for every episode of Game of Thrones were downloaded from <a href="https://subscene.com/">subscene</a> manually. IMDB information was obtained using the OMDB API using <code class="highlighter-rouge">limbic</code>’s IMDB integration. This data is freely available with the <code class="highlighter-rouge">limbic</code> package.</p>
+<p>All subtitles for every episode of Game of Thrones (from season 1 to 7) were downloaded from <a href="https://subscene.com/">subscene</a> manually. IMDB information was obtained using the OMDB API using <code class="highlighter-rouge">limbic</code>’s IMDB integration. This data is freely available with the <code class="highlighter-rouge">limbic</code> package.</p>
 
 <p>As mentioned in <code class="highlighter-rouge">limbic</code>’s documentation, you need to set up a specific mapping when dealing with domain-specific terms that have a specific meaning. For example, in Game of Thrones, the term <code class="highlighter-rouge">lord</code> is widely used across all episodes and has a connotation
 close to <a href="https://en.wikipedia.org/wiki/Milord">my lord</a> rather than <a href="https://en.wikipedia.org/wiki/Lord">the lord</a>. In <a href="http://saifmohammad.com/WebPages/AccessResource.htm">NRC lexicons</a>, the term <code class="highlighter-rouge">lord</code> does have a strong <code class="highlighter-rouge">joy</code> value as it’s probably closely associated with the latter definition. As I don’t want to overestimate the emotion <code class="highlighter-rouge">joy</code> across the episodes, a new meaning for the word <code class="highlighter-rouge">my lord</code> can b done by associating it to the word <code class="highlighter-rouge">sir</code>.</p>
@@ -245,6 +245,7 @@ I put more trust in deeds."
   <li>Silence analysis. Given that not only emotions from words could be significant in a show where battles, action, or even music, do have a substantial reception by audiences, it’s interesting to see whether the lack of vocalized emotions have (or not) an impact on the ratings (e.g. episodes where battles are predominant vs. episodes where there’s a lot of talking).</li>
   <li>Expand the context dictionary with other terms that could represent better the specific emotions in the series to get more precise results (e.g. add more subtle terms like “bend the knee” or “Azor Ahai”).</li>
   <li>Compare these results with other results from similar and completely different shows to contrast by “how much” does fear and joy have an impact on ratings, and if such effect is somehow constant in drama shows or not.</li>
+  <li>Include season 8 subtitles into the analysis.</li>
 </ol>
 
 <p>If you have any other interesting questions and future work, please let me know in the comments section. Your feedback can help to add more features and analysis tools to the <a href="https://github.com/glhuilli/limbic">limbic python package</a>.</p>
@@ -321,7 +322,7 @@ s.setAttribute('data-timestamp', +new Date());
     </div>
   <!-- 
     
-    <script src='/assets/bundle.js?1555773467240359000' type='text/javascript'></script>
+    <script src='/assets/bundle.js?1576234195624669000' type='text/javascript'></script>
    -->
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2365015-1"></script>
