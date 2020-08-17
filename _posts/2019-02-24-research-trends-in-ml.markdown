@@ -8,7 +8,7 @@ keywords: D3, DataViz, ML
 thumbnail: /assets/posts/ml-analysis/ml-analysis-banner.png
 banner: /assets/posts/ml-analysis/ml-analysis-banner.png
 css:
-  - /assets/posts/virtual-environments/virtual-env.css
+  - /assets/posts/neurips-analysis/neurips-analysis.css
 invert: true
 ---
 
@@ -17,53 +17,27 @@ Coming soon.
 Currently processing 8.8Gb of papers downloaded using the [[NeurIPS crawler](https://github.com/glhuilli/neurips_crawler)]
 
 
-<style type="text/css">
-
-div.example {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.box {
-  font: 10px sans-serif;
-}
-
-.box line,
-.box rect,
-.box circle {
-  fill: #fff;
-  stroke: #000;
-  stroke-width: 1.5px;
-}
-
-.box .center {
-  stroke-dasharray: 3,3;
-}
-
-.box .outlier {
-  fill: none;
-  stroke: #ccc;
-}
-
-svg {
-  font: 10px sans-serif;
-  shape-rendering: crispEdges;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-}
-
-path.domain {
-  stroke: none;
-}
-
-.y .tick line {
-  stroke: #ddd;
-}
-</style>
-<div id="example"></div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<script type="text/javascript"></script>
-<script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/stack_plot1.js"></script>
+
+<div id="example1"></div>
+<script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/stack-plot1.js"></script>
+
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet ornare sapien. Vestibulum id mattis eros, at sodales erat. Phasellus odio felis, ultricies in velit et, efficitur sodales ante. Maecenas nibh quam, ultrices sit amet arcu et, fringilla ornare ligula. Nam hendrerit dolor volutpat sapien interdum, sit amet ultrices nunc ultricies. In hac habitasse platea dictumst. Sed non justo leo. Proin aliquam turpis non lorem auctor tincidunt. Ut tincidunt dui sit amet ligula euismod laoreet. Nulla sit amet massa metus. Duis eros eros, aliquet vel finibus a, placerat ac erat. Nam vel pharetra ipsum. Nullam libero ex, laoreet vitae placerat nec, aliquet a nulla. In hac habitasse platea dictumst. In cursus consectetur ante, in ultricies lacus. Vestibulum sed scelerisque ipsum, mattis lacinia risus.
+</p>
+
+<div id="example2"></div>
+<script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/stack-plot2.js"></script>
+
+
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet ornare sapien. Vestibulum id mattis eros, at sodales erat. Phasellus odio felis, ultricies in velit et, efficitur sodales ante. Maecenas nibh quam, ultrices sit amet arcu et, fringilla ornare ligula. Nam hendrerit dolor volutpat sapien interdum, sit amet ultrices nunc ultricies. In hac habitasse platea dictumst. Sed non justo leo. Proin aliquam turpis non lorem auctor tincidunt. Ut tincidunt dui sit amet ligula euismod laoreet. Nulla sit amet massa metus. Duis eros eros, aliquet vel finibus a, placerat ac erat. Nam vel pharetra ipsum. Nullam libero ex, laoreet vitae placerat nec, aliquet a nulla. In hac habitasse platea dictumst. In cursus consectetur ante, in ultricies lacus. Vestibulum sed scelerisque ipsum, mattis lacinia risus.
+</p>
+
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<div id='hierarchical-edge-bundling-mobile'></div>
+<script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/hierarchical-edge-bundling-mobile.js"></script>
+
+<div id='hierarchical-edge-bundling'></div>
+<script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/hierarchical-edge-bundling.js"></script>
