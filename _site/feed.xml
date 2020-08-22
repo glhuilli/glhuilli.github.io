@@ -1,4 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-12-13T02:49:55-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Game of Thrones Subtitles Analysis</title><link href="http://localhost:4000/got-analysis.html" rel="alternate" type="text/html" title="Game of Thrones Subtitles Analysis" /><published>2019-04-14T00:00:00-07:00</published><updated>2019-04-14T00:00:00-07:00</updated><id>http://localhost:4000/got-analysis</id><content type="html" xml:base="http://localhost:4000/got-analysis.html">&lt;p&gt;The following is based on this &lt;a href=&quot;https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb&quot;&gt;this example&lt;/a&gt; on how to do emotion analysis over an entire show (all episodes), posted in my &lt;a href=&quot;https://github.com/glhuilli/limbic/&quot;&gt;limbic&lt;/a&gt;  python package.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-08-22T08:13:10-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">kronosparser: Python package for parsing time from text</title><link href="http://localhost:4000/kronosparser-package.html" rel="alternate" type="text/html" title="kronosparser: Python package for parsing time from text" /><published>2020-03-10T00:00:00-07:00</published><updated>2020-03-10T00:00:00-07:00</updated><id>http://localhost:4000/kronosparser-package</id><content type="html" xml:base="http://localhost:4000/kronosparser-package.html">&lt;p&gt;This post contains a few basic examples of how to use the &lt;a href=&quot;https://github.com/glhuilli/kronosparser&quot;&gt;kronosparser&lt;/a&gt; package. I particularly don’t like the name, but it’s descriptive enough so people know what it does. This post is just an extended version of the readme document available in Github.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-building-this-package&quot;&gt;Why building this package?&lt;/h2&gt;
+
+&lt;p&gt;I build this package together with &lt;a href=&quot;https://github.com/roalonso&quot;&gt;@roalonso&lt;/a&gt; back in the Sudo Technology, Inc. days, which we decided to open source. The main use case was when receiving input messages from users via the Sudo chatbot, we needed to extract some metadata from text (in particular dates), which were then used to decide the upcoming actions that the chatbot had to do.&lt;/p&gt;
+
+&lt;p&gt;With this package you can parse any type of time instance from text and translate it into a &lt;code class=&quot;highlighter-rouge&quot;&gt;date&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;datetime&lt;/code&gt;, or time interval. This could be for either future dates or past dates, and you can set the timezone if available.&lt;/p&gt;
+
+&lt;p&gt;This package is based on a Parsing Expression Grammar defined using &lt;code class=&quot;highlighter-rouge&quot;&gt;pyparsing&lt;/code&gt;. If you have any comments feel free to create issues or send pull requests in the Github repository.&lt;/p&gt;
+
+&lt;h2 id=&quot;installing-the-package&quot;&gt;Installing the package&lt;/h2&gt;
+
+&lt;p&gt;In the meantime, while I finish adding this as a &lt;code class=&quot;highlighter-rouge&quot;&gt;pypi&lt;/code&gt; package, you can install it directly
+from the Github repository, as shown below,&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install git+https://github.com/Zapship/kronosparser.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
+
+&lt;p&gt;To use it you need to import the parse_dates method. There are 3 parameters you can define, besides the input text for your parsing use case:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;future: which states whether you are parsing a text that is supposed to be in the future or the past (particularly helpful for chatbots that asks users questions frame in the past or the future)&lt;/li&gt;
+  &lt;li&gt;interval_to_date: useful when you have an interval, but you want to just pick a date (usually the closest date).&lt;/li&gt;
+  &lt;li&gt;timezone: the timezone you want to use for your specific use case.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A very simple example on how this package can be used is the following:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/5880d1d281d2cc1bc19cef0de5b494eb.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[{'end': 21,
+      'parsed': {'datetime': '2020-03-11 14:20:38-07:00'},
+      'start': 18,
+      'text': 'now'},
+     {'end': 39,
+      'parsed': {'datetime': '2020-03-12 12:00:00'},
+      'start': 26,
+      'text': 'tomorrow noon'},
+     {'end': 53,
+      'parsed': {'interval': {'end': '2020-03-22', 'start': '2020-03-16'}},
+      'start': 44,
+      'text': 'next week'}]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that the example above has 3 types of identified instances: a &lt;code class=&quot;highlighter-rouge&quot;&gt;datetime&lt;/code&gt; with timezone, a &lt;code class=&quot;highlighter-rouge&quot;&gt;datetime&lt;/code&gt; without timezone, and a time interval.&lt;/p&gt;
+
+&lt;p&gt;Another simple example is just &lt;code class=&quot;highlighter-rouge&quot;&gt;tomorrow&lt;/code&gt;, which is parsed into a &lt;code class=&quot;highlighter-rouge&quot;&gt;date&lt;/code&gt; format without timezone.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/822bfa82b56f4eba9ac00a63ee3049bf.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[{'end': 29, 'parsed': {'date': '2020-03-12'}, 'start': 21, 'text': 'tomorrow'}]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The following example shows how the &lt;code class=&quot;highlighter-rouge&quot;&gt;future&lt;/code&gt; flag option works. If you parse an input with a date (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;friday&lt;/code&gt;) with the &lt;code class=&quot;highlighter-rouge&quot;&gt;future&lt;/code&gt; option set &lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;, it will find the closest instance of the date in the future.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/50dba909c8e9b00942a3b45e007303d9.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[{'end': 6, 'parsed': {'date': '2020-03-13'}, 'start': 0, 'text': 'friday'}]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;However, if you use the &lt;code class=&quot;highlighter-rouge&quot;&gt;future&lt;/code&gt; flag set to &lt;code class=&quot;highlighter-rouge&quot;&gt;False&lt;/code&gt;, it will find the closest instance of the date, but in the past.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/glhuilli/fc079927716e3e74e1478b23c1fed5bd.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[{'end': 6, 'parsed': {'date': '2020-03-06'}, 'start': 0, 'text': 'friday'}]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Very important to note that if you don’t define the &lt;code class=&quot;highlighter-rouge&quot;&gt;timezone&lt;/code&gt;, it will use &lt;code class=&quot;highlighter-rouge&quot;&gt;US/Pacific&lt;/code&gt; by default. Also, if no parameters are specified, it will use &lt;code class=&quot;highlighter-rouge&quot;&gt;future&lt;/code&gt; as &lt;code class=&quot;highlighter-rouge&quot;&gt;False&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;interval_to_date&lt;/code&gt; as &lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;. Many more examples are available in the package’s &lt;a href=&quot;https://github.com/glhuilli/kronosparser/tree/master/tests&quot;&gt;test cases&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let me know if this package is useful and/or you’d like to see it as an official &lt;code class=&quot;highlighter-rouge&quot;&gt;pypi&lt;/code&gt; package, which I plan to do at some point. This way I can prioritize that item from my never ending TODO list.&lt;/p&gt;
+
+&lt;!-- &lt;script id=&quot;dsq-count-scr&quot; src=&quot;//glhuilli.disqus.com/count.js&quot; async&gt;&lt;/script&gt; --&gt;
+&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+var disqus_config = function () {
+this.page.url = virtual-environments;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = virtual-environments; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://glhuilli.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+&lt;/script&gt;
+
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">This post contains a few basic examples of how to use the kronosparser package. I particularly don’t like the name, but it’s descriptive enough so people know what it does. This post is just an extended version of the readme document available in Github.</summary></entry><entry><title type="html">Game of Thrones Subtitles Analysis</title><link href="http://localhost:4000/got-analysis.html" rel="alternate" type="text/html" title="Game of Thrones Subtitles Analysis" /><published>2019-04-14T00:00:00-07:00</published><updated>2019-04-14T00:00:00-07:00</updated><id>http://localhost:4000/got-analysis</id><content type="html" xml:base="http://localhost:4000/got-analysis.html">&lt;p&gt;The following is based on this &lt;a href=&quot;https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb&quot;&gt;this example&lt;/a&gt; on how to do emotion analysis over an entire show (all episodes), posted in my &lt;a href=&quot;https://github.com/glhuilli/limbic/&quot;&gt;limbic&lt;/a&gt;  python package.&lt;/p&gt;
 
 &lt;h2 id=&quot;data-and-processing-setup&quot;&gt;Data and Processing Setup&lt;/h2&gt;
 
@@ -202,8 +290,6 @@ s.setAttribute('data-timestamp', +new Date());
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install git+https://github.com/glhuilli/limbic.git
 python -m spacy download en_core_web_sm
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;When I finish uploading the package to pypi I’ll update this section accordingly,&lt;/p&gt;
 
 &lt;h2 id=&quot;importing-a-lexicon-based-emotion-classifier&quot;&gt;Importing a lexicon-based emotion classifier&lt;/h2&gt;
 

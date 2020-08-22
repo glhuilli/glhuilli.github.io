@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+<meta http-equiv='x-ua-compatible' content='ie=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='google-site-verification' content='eYLUlW-Cr452cLvMYOYoqYtyqArzYvYYryVJV1jsV5o'>
+<meta name='twitter:card' content='summary_large_image'>
+<meta name='twitter:site' content='@glhuilli'>
+<meta name='twitter:creator' content='@glhuilli'>
+<meta property='og:url' content='http://localhost:4000/kronosparser-package.html'>
+
+  <meta name='og:title' content="kronosparser: Python package for parsing time from text">
+
+
+  <meta name='description' content="Python package for parsing time from text">
+  <meta name='og:description' content="Python package for parsing time from text">
+
+
+  <meta property='og:image' content='http://localhost:4000/assets/posts/limbic/github-banner.png'>
+
+
+    <title>kronosparser: Python package for parsing time from text</title>
+    <!-- <link rel='icon' href='/assets/images/favicon.ico' type='image/x-icon'> -->
+    
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1598109190342389000'>
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1598109190342389000'>
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1598109190342389000'>
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1598109190342389000'>
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1598109190342389000'>
+    
+  
+    
+      
+      
+        <link type='text/css' rel='stylesheet' href='/assets/posts/virtual-environments/virtual-env.css'>
+      
+    
+  
+
+  </head>
+  <body>
+    <div id='content'>
+      
+  <svg style='width:0px; height:0px;'>
+  <filter id='header-duotone' color-interpolation-filters='sRGB'
+          x='0' y='0' height='100%' width='100%'>
+    <feColorMatrix type='matrix'
+      values='1  0  0  0  0
+              1  0  0  0  0
+              1  0  0  0  0
+              0  0  0  1  0'/>
+  </filter>
+</svg>
+<script src='/assets/js/duotone.js'></script>
+  <header class='header'>
+    
+      
+        <div class='background-image duotone-invert'
+          style='background-image: url(/assets/posts/limbic/github-banner.png)'></div>
+      
+    
+    <div class='home-icon'>
+  <a href='/#'>
+    <img src='/assets/images/icons/home.svg'
+      onerror="this.src='/assets/images/icons/home.png'"
+      alt='Home Icon'>
+  </a>
+</div>
+  </header>
+
+
+<noscript>This site works best with JavaScript enabled.</noscript>
+<div class='post'>
+  <div class='container'>
+    <div class='title'>kronosparser: Python package for parsing time from text</div>
+    <div class='date'>10 Mar 2020</div>
+    <div class='content'><p>This post contains a few basic examples of how to use the <a href="https://github.com/glhuilli/kronosparser">kronosparser</a> package. I particularly don’t like the name, but it’s descriptive enough so people know what it does. This post is just an extended version of the readme document available in Github.</p>
+
+<h2 id="why-building-this-package">Why building this package?</h2>
+
+<p>I build this package together with <a href="https://github.com/roalonso">@roalonso</a> back in the Sudo Technology, Inc. days, which we decided to open source. The main use case was when receiving input messages from users via the Sudo chatbot, we needed to extract some metadata from text (in particular dates), which were then used to decide the upcoming actions that the chatbot had to do.</p>
+
+<p>With this package you can parse any type of time instance from text and translate it into a <code class="highlighter-rouge">date</code>, <code class="highlighter-rouge">datetime</code>, or time interval. This could be for either future dates or past dates, and you can set the timezone if available.</p>
+
+<p>This package is based on a Parsing Expression Grammar defined using <code class="highlighter-rouge">pyparsing</code>. If you have any comments feel free to create issues or send pull requests in the Github repository.</p>
+
+<h2 id="installing-the-package">Installing the package</h2>
+
+<p>In the meantime, while I finish adding this as a <code class="highlighter-rouge">pypi</code> package, you can install it directly
+from the Github repository, as shown below,</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install git+https://github.com/Zapship/kronosparser.git
+</code></pre></div></div>
+
+<h2 id="usage">Usage</h2>
+
+<p>To use it you need to import the parse_dates method. There are 3 parameters you can define, besides the input text for your parsing use case:</p>
+
+<ol>
+  <li>future: which states whether you are parsing a text that is supposed to be in the future or the past (particularly helpful for chatbots that asks users questions frame in the past or the future)</li>
+  <li>interval_to_date: useful when you have an interval, but you want to just pick a date (usually the closest date).</li>
+  <li>timezone: the timezone you want to use for your specific use case.</li>
+</ol>
+
+<p>A very simple example on how this package can be used is the following:</p>
+
+<script src="https://gist.github.com/glhuilli/5880d1d281d2cc1bc19cef0de5b494eb.js"></script>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'end': 21,
+      'parsed': {'datetime': '2020-03-11 14:20:38-07:00'},
+      'start': 18,
+      'text': 'now'},
+     {'end': 39,
+      'parsed': {'datetime': '2020-03-12 12:00:00'},
+      'start': 26,
+      'text': 'tomorrow noon'},
+     {'end': 53,
+      'parsed': {'interval': {'end': '2020-03-22', 'start': '2020-03-16'}},
+      'start': 44,
+      'text': 'next week'}]
+</code></pre></div></div>
+
+<p>Note that the example above has 3 types of identified instances: a <code class="highlighter-rouge">datetime</code> with timezone, a <code class="highlighter-rouge">datetime</code> without timezone, and a time interval.</p>
+
+<p>Another simple example is just <code class="highlighter-rouge">tomorrow</code>, which is parsed into a <code class="highlighter-rouge">date</code> format without timezone.</p>
+
+<script src="https://gist.github.com/glhuilli/822bfa82b56f4eba9ac00a63ee3049bf.js"></script>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'end': 29, 'parsed': {'date': '2020-03-12'}, 'start': 21, 'text': 'tomorrow'}]
+</code></pre></div></div>
+
+<p>The following example shows how the <code class="highlighter-rouge">future</code> flag option works. If you parse an input with a date (e.g. <code class="highlighter-rouge">friday</code>) with the <code class="highlighter-rouge">future</code> option set <code class="highlighter-rouge">True</code>, it will find the closest instance of the date in the future.</p>
+
+<script src="https://gist.github.com/glhuilli/50dba909c8e9b00942a3b45e007303d9.js"></script>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'end': 6, 'parsed': {'date': '2020-03-13'}, 'start': 0, 'text': 'friday'}]
+</code></pre></div></div>
+
+<p>However, if you use the <code class="highlighter-rouge">future</code> flag set to <code class="highlighter-rouge">False</code>, it will find the closest instance of the date, but in the past.</p>
+
+<script src="https://gist.github.com/glhuilli/fc079927716e3e74e1478b23c1fed5bd.js"></script>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'end': 6, 'parsed': {'date': '2020-03-06'}, 'start': 0, 'text': 'friday'}]
+</code></pre></div></div>
+
+<p>Very important to note that if you don’t define the <code class="highlighter-rouge">timezone</code>, it will use <code class="highlighter-rouge">US/Pacific</code> by default. Also, if no parameters are specified, it will use <code class="highlighter-rouge">future</code> as <code class="highlighter-rouge">False</code> and <code class="highlighter-rouge">interval_to_date</code> as <code class="highlighter-rouge">True</code>. Many more examples are available in the package’s <a href="https://github.com/glhuilli/kronosparser/tree/master/tests">test cases</a>.</p>
+
+<p>Let me know if this package is useful and/or you’d like to see it as an official <code class="highlighter-rouge">pypi</code> package, which I plan to do at some point. This way I can prioritize that item from my never ending TODO list.</p>
+
+<!-- <script id="dsq-count-scr" src="//glhuilli.disqus.com/count.js" async></script> -->
+<div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {
+this.page.url = virtual-environments;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = virtual-environments; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://glhuilli.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+  </div>
+</div>
+<footer class='footer'>
+  
+  <a target='_blank' href='http://github.com/glhuilli'>
+    <img class='footer-icon'
+      src='/assets/images/icons/github-dark.svg'
+      onerror="this.src='/assets/images/icons/github-dark.png'"
+      alt='GitHub Icon'>
+</a>
+  <!-- <a target='_blank' href='http://bl.ocks.org/glhuilli'>
+  <div class='footer-icon square-image'>
+      <img src='/assets/images/icons/blocks-dark.svg'
+        onerror="this.src='/assets/images/icons/blocks-dark.png'"
+        alt='Blocks Icon'>
+    
+  </div>
+</a> -->
+  <a target='_blank' href='http://twitter.com/glhuilli'>
+    <img class='footer-icon'
+      src='/assets/images/icons/twitter-dark.svg'
+      onerror="this.src='/assets/images/icons/twitter-dark.png'"
+      alt='Twitter Icon'>
+</a>
+  <a target='_blank' href='https://www.linkedin.com/in/glhuilli'>
+    <img class='footer-icon'
+      src='/assets/images/icons/linkedin-dark.svg'
+      onerror="this.src='/assets/images/icons/linkedin-dark.png'"
+      alt='LinkedIn Icon'>
+</a>
+
+  <a target='_blank' href='/feed.xml'>
+  <div class='footer-icon square-image'>
+      <img src='/assets/images/icons/rss-dark.svg'
+        onerror="this.src='/assets/images/icons/rss-dark.png'"
+        alt='RSS Icon'>
+  </div>
+</a>
+
+  <p style="font-size:13px; align-text: center">© 2019 Gaston L'Huillier.
+    <br>Powered by Jekyll.
+    Inspired by <a style="color:#ffffff;text-decoration: underline;" href='https://douglasduhaime.com/'>Douglas Duhaime</a>'s design.
+    <br>All rights reserved.
+  </p>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML-full" type="text/javascript"></script>
+
+    </div>
+  <!-- 
+    
+    <script src='/assets/bundle.js?1598109190342389000' type='text/javascript'></script>
+   -->
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2365015-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-2365015-1');
+</script>
+
+  </body>
+  <!-- like a copper fox on rust... -->
+</html>
