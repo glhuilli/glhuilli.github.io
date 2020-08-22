@@ -13,15 +13,15 @@ css:
 invert: true
 ---
 
-This post contains a few basic examples of how to use the [kronosparser](https://github.com/glhuilli/kronosparser) package. I particularly don't like the name, but it's descriptive enough so people know what it does. This post is just an extended version of the readme document available in Github.
+This post contains a few basic examples of how to use the [kronosparser](https://github.com/glhuilli/kronosparser) package. I particularly don't like the name, but it's descriptive enough to know what it does. This post is just an extended version of the readme document available in Github.
 
 ## Why building this package?
 
-I build this package together with [@roalonso](https://github.com/roalonso) back in the Sudo Technology, Inc. days, which we decided to open source. The main use case was when receiving input messages from users via the Sudo chatbot, we needed to extract some metadata from text (in particular dates), which were then used to decide the upcoming actions that the chatbot had to do.
+We built this package together with [@roalonso](https://github.com/roalonso) back in the Sudo Technology, Inc. days, which we decided to open source. The primary use case for this package was to parse input text from users using the Sudo Chatbot.  We needed to extract some metadata from input text (e.g., dates), which were then used to decide the upcoming actions that the chatbot had to do.
 
-With this package you can parse any type of time instance from text and translate it into a `date`, `datetime`, or time interval. This could be for either future dates or past dates, and you can set the timezone if available.
+With this package, you can parse any type of time instance from text and translate it into a `date`, `datetime`, or time interval. This could be for either future dates or past dates, and you can set the timezone if available.
 
-This package is based on a Parsing Expression Grammar defined using `pyparsing`. If you have any comments feel free to create issues or send pull requests in the Github repository.
+This package is based on a Parsing Expression Grammar defined using `pyparsing`. If you have any comments, feel free to create issues or send pull requests in the Github repository.
 
 ## Installing the package
 
@@ -35,13 +35,13 @@ pip install git+https://github.com/Zapship/kronosparser.git
 
 ## Usage
 
-To use it you need to import the parse_dates method. There are 3 parameters you can define, besides the input text for your parsing use case:
+To use it, you need to import the parse_dates method. There are 3 parameters you can define, besides the input text for your parsing use case:
 
 1. future: which states whether you are parsing a text that is supposed to be in the future or the past (particularly helpful for chatbots that asks users questions frame in the past or the future)
 2. interval_to_date: useful when you have an interval, but you want to just pick a date (usually the closest date).
-3. timezone: the timezone you want to use for your specific use case.
+3. timezone: the timezone you wish to use for your specific use case.
 
-A very simple example on how this package can be used is the following:
+A straightforward example of how this package can be used is the following:
 
 <script src="https://gist.github.com/glhuilli/5880d1d281d2cc1bc19cef0de5b494eb.js"></script>
 
@@ -69,7 +69,7 @@ Another simple example is just `tomorrow`, which is parsed into a `date` format 
 [{'end': 29, 'parsed': {'date': '2020-03-12'}, 'start': 21, 'text': 'tomorrow'}]
 ```
 
-The following example shows how the `future` flag option works. If you parse an input with a date (e.g. `friday`) with the `future` option set `True`, it will find the closest instance of the date in the future.
+The following example shows how the `future` flag option works. If you parse an input text with a date (e.g., `friday`) with the `future` option set `True`, it will find the closest instance of the date but in the future.
 
 <script src="https://gist.github.com/glhuilli/50dba909c8e9b00942a3b45e007303d9.js"></script>
 ```
@@ -83,9 +83,9 @@ However, if you use the `future` flag set to `False`, it will find the closest i
 [{'end': 6, 'parsed': {'date': '2020-03-06'}, 'start': 0, 'text': 'friday'}]
 ```
 
-Very important to note that if you don't define the ``timezone``, it will use ``US/Pacific`` by default. Also, if no parameters are specified, it will use ``future`` as ``False`` and ``interval_to_date`` as ``True``. Many more examples are available in the package's [test cases](https://github.com/glhuilli/kronosparser/tree/master/tests).
+Very important to note that if you don't define the ``timezone``, it will use ``US/Pacific`` by default. Also, if no parameters are specified, it will use the ``future`` flag as ``False`` and the ``interval_to_date`` flag as ``True``. Many more examples are available in the package's [test cases](https://github.com/glhuilli/kronosparser/tree/master/tests).
 
-Let me know if this package is useful and/or you'd like to see it as an official `pypi` package, which I plan to do at some point. This way I can prioritize that item from my never ending TODO list.
+Let me know if this package is useful and/or you'd like to see it as an official `pypi` package, which I plan to do, but it's buried in my backlog. This way, I can prioritize that item from my never-ending TODO list.
 
 
 {% if page.comments %}
