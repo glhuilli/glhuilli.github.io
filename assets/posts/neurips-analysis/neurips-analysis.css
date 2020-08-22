@@ -94,3 +94,11 @@ path.domain {
   #hierarchical-edge-bundling {display: none;}
   #hierarchical-edge-bundling-mobile {display: block;}
 }
+
+form {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* svg {
+  font: 10px sans-serif;
+} */

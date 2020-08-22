@@ -41,3 +41,32 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet ornare sa
 
 <div id='hierarchical-edge-bundling'></div>
 <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/hierarchical-edge-bundling.js"></script>
+
+
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet ornare sapien. Vestibulum id mattis eros, at sodales erat. Phasellus odio felis, ultricies in velit et, efficitur sodales ante. Maecenas nibh quam, ultrices sit amet arcu et, fringilla ornare ligula. Nam hendrerit dolor volutpat sapien interdum, sit amet ultrices nunc ultricies. In hac habitasse platea dictumst. Sed non justo leo. Proin aliquam turpis non lorem auctor tincidunt. Ut tincidunt dui sit amet ligula euismod laoreet. Nulla sit amet massa metus. Duis eros eros, aliquet vel finibus a, placerat ac erat. Nam vel pharetra ipsum. Nullam libero ex, laoreet vitae placerat nec, aliquet a nulla. In hac habitasse platea dictumst. In cursus consectetur ante, in ultricies lacus. Vestibulum sed scelerisque ipsum, mattis lacinia risus.
+</p>
+
+<!-- width="960" height="570" -->
+<svg width="760" height="470" id="flare_treemap"></svg>
+<form>
+<!-- sumBySize, sumByCount, sumByHub, sumByAuthority, sumByBetweenness, sumByCloseness, sumByKatz, sumByEigen -->
+  <label><input type="radio" name="mode" value="sumBySize" checked> Degree</label>
+  <label><input type="radio" name="mode" value="sumByCount"> Count</label>
+  <label><input type="radio" name="mode" value="sumByHub"> Hub</label>
+  <label><input type="radio" name="mode" value="sumByAuthority"> Authority</label>
+  <label><input type="radio" name="mode" value="sumByBetweenness"> Betweenness</label>
+  <label><input type="radio" name="mode" value="sumByCloseness"> Closeness</label>
+  <label><input type="radio" name="mode" value="sumByKatz"> Katz</label>
+  <label><input type="radio" name="mode" value="sumByEigen"> Eigen</label>
+</form>
+<script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/treemap.js"></script>
+
+
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet ornare sapien. Vestibulum id mattis eros, at sodales erat. Phasellus odio felis, ultricies in velit et, efficitur sodales ante. Maecenas nibh quam, ultrices sit amet arcu et, fringilla ornare ligula. Nam hendrerit dolor volutpat sapien interdum, sit amet ultrices nunc ultricies. In hac habitasse platea dictumst. Sed non justo leo. Proin aliquam turpis non lorem auctor tincidunt. Ut tincidunt dui sit amet ligula euismod laoreet. Nulla sit amet massa metus. Duis eros eros, aliquet vel finibus a, placerat ac erat. Nam vel pharetra ipsum. Nullam libero ex, laoreet vitae placerat nec, aliquet a nulla. In hac habitasse platea dictumst. In cursus consectetur ante, in ultricies lacus. Vestibulum sed scelerisque ipsum, mattis lacinia risus.
+</p>
+
+<div>
+<img src='{{ site.baseurl }}/assets/posts/neurips-analysis/neurips-keywords-word-cloud.png' alt='Wordcloud with keywords per year'>
+</div>
