@@ -17,9 +17,7 @@ This post contains a few basic examples of how to use the [kronosparser](https:/
 
 ## Why building this package?
 
-We built this package together with [@roalonso](https://github.com/roalonso) back in the Sudo Technology, Inc. days, which we decided to open source. The primary use case for this package was to parse input text from users using the Sudo Chatbot.  We needed to extract some metadata from input text (e.g., dates), which were then used to decide the upcoming actions that the chatbot had to do.
-
-With this package, you can parse any type of time instance from text and translate it into a `date`, `datetime`, or time interval. This could be for either future dates or past dates, and you can set the timezone if available.
+We built this package together with [@roalonso](https://github.com/roalonso) back in the Sudo Technologies, Inc. days, which we decided to open source. The primary use case for this package was to parse input text from users using the Sudo Chatbot.  We needed to extract some metadata from input text (e.g., dates), which were then used to decide the upcoming actions that the chatbot had to do. And now with this package, you can do the same for any use case you'd like: parse any type of time instance from text and translate it into a `date`, `datetime`, or time interval. This could be for either future dates or past dates, and you can set the timezone if available.
 
 This package is based on a Parsing Expression Grammar defined using `pyparsing`. If you have any comments, feel free to create issues or send pull requests in the Github repository.
 
