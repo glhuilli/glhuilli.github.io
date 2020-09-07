@@ -87,12 +87,50 @@ path.domain {
   stroke: #2ca02c;
 }
 
-#hierarchical-edge-bundling {display: block;}
-#hierarchical-edge-bundling-mobile {display: none;}
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  box-sizing: border-box;
+}
+
+.desk{
+}
+
+.div-only-mobile{
+}
+
+@media screen and (max-width : 1920px){
+  #hierarchical-edge-bundling {display: block;}
+  #hierarchical-edge-bundling-mobile {display: none;}
+  .desk{
+    /* visibility:hidden; */
+    display: block;
+   }
+  .div-only-mobile{
+    /* visibility:hidden; */
+    display: none;
+  }
+}
 
 @media screen and (max-width: 768px) {
   #hierarchical-edge-bundling {display: none;}
   #hierarchical-edge-bundling-mobile {display: block;}
+  .desk{
+    /* visibility:hidden; */
+    display: none;
+   }
+  .div-only-mobile{
+    /* visibility:visible; */
+    display: block;
+   }
 }
 
 form {

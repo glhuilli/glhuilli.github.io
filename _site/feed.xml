@@ -1,4 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-08-22T08:31:36-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">kronosparser: Python package for parsing time from text</title><link href="http://localhost:4000/kronosparser-package.html" rel="alternate" type="text/html" title="kronosparser: Python package for parsing time from text" /><published>2020-03-10T00:00:00-07:00</published><updated>2020-03-10T00:00:00-07:00</updated><id>http://localhost:4000/kronosparser-package</id><content type="html" xml:base="http://localhost:4000/kronosparser-package.html">&lt;p&gt;This post contains a few basic examples of how to use the &lt;a href=&quot;https://github.com/glhuilli/kronosparser&quot;&gt;kronosparser&lt;/a&gt; package. I particularly don’t like the name, but it’s descriptive enough to know what it does. This post is just an extended version of the readme document available in Github.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-07T15:59:40-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Machine Learning research from 2009-2019</title><link href="http://localhost:4000/research-trends-in-ml.html" rel="alternate" type="text/html" title="Machine Learning research from 2009-2019" /><published>2020-08-20T00:00:00-07:00</published><updated>2020-08-20T00:00:00-07:00</updated><id>http://localhost:4000/research-trends-in-ml</id><content type="html" xml:base="http://localhost:4000/research-trends-in-ml.html">&lt;p&gt;This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [&lt;a href=&quot;https://github.com/glhuilli/neurips_crawler&quot;&gt;NeurIPS crawler&lt;/a&gt;]. Originally I wanted to process and analyze all papers from 1987 to this date as I do have all the data, but I’ll table that for time in the future. Given that it took me a while to re-start the work on this (at least two years), I decided to focus in the last 10 years of data.&lt;/p&gt;
+
+&lt;p&gt;This post’s main purpose was to explore D3.js in a more extensive way, so you’ll see that most of the results are presented below by using some D3.js option.&lt;/p&gt;
+
+&lt;p&gt;There were some few tricks I had to find to make the following visualizations work. Not being particularly experienced in &lt;code class=&quot;highlighter-rouge&quot;&gt;Javascript&lt;/code&gt; was an issue, and most of “basic” things that are expected to be basic or “trivial” were mostly not documented by the D3.js communities, so I’ll share some of these findings along with some of the findings that is possible to extract from the data.&lt;/p&gt;
+
+&lt;p&gt;A secondary purpose of this post, was to put much of the processing code into a new python package which I called &lt;a href=&quot;https://github.com/glhuilli/papeles&quot;&gt;papeles&lt;/a&gt;. The word &lt;code class=&quot;highlighter-rouge&quot;&gt;papeles&lt;/code&gt; is a literal translation for &lt;code class=&quot;highlighter-rouge&quot;&gt;papers&lt;/code&gt; into Spanish. Most of this code is not exceptionally interesting, but it was worth cleaning and refactoring into a lightweight package for others to use. This is a very experimental package so I did not include unit tests.&lt;/p&gt;
+
+&lt;h2 id=&quot;which-research-institutions-are-the-most-influential-in-ml-research-today&quot;&gt;Which research institutions are the most influential in ML research today?&lt;/h2&gt;
+
+&lt;p&gt;This is a very odd starting point for such analysis, but I honestly was checking D3.js and thought that looking at how institutions are interconnected between them by co-authoring papers using this visualization would be something interesting to see.&lt;/p&gt;
+
+&lt;p&gt;I believe this is an alternative to see how a graph looks like. I tried building some approximations about the co-authoring institutions graph, and none gave better information than the following viz.&lt;/p&gt;
+
+&lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;https://d3js.org/d3.v4.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;div id=&quot;hierarchical-edge-bundling-mobile&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/hierarchical-edge-bundling-mobile.js&quot;&gt;&lt;/script&gt;
+
+&lt;div id=&quot;hierarchical-edge-bundling&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/hierarchical-edge-bundling.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Using hierarchical edge bundling, it’s easy to find which institutions share the most ML research with other institutions. For example CMU and MIT are very well into the top of this list, while Microsoft Research and Google among the top institutions without being educational institutions themselves.&lt;/p&gt;
+
+&lt;h2 id=&quot;are-there-institutions-that-mostly-publish-with-a-specific-group&quot;&gt;Are there institutions that mostly publish with a specific group?&lt;/h2&gt;
+
+&lt;p&gt;Let’s run some cluster algorithm on the co-author institution graph and see what happens. For this, I’m using the well known community detection algorithm in graphs created by researchers at Louvain, which gives the name for this algorithm.&lt;/p&gt;
+
+&lt;p&gt;This is a very simple model, non parametric and completely unsupervised. It finds some of the most recurrent connections within the graph, and results in a finite number of group of nodes that are most likely to share an edge between them. (add citation and actual explanation of the method).&lt;/p&gt;
+
+&lt;p&gt;To visualize the result, I decided to use a TreeMap, which at the same time allows us to inspect visually other properties of the network (e.g. centrality measures). These measures are computed over each node in the graph, and provides some insights on which are the institutions that connects most of the nodes in the graph, among other particular properties. The only one that is very different from the original results is Katz centrality measure which measures xxxx. This means that there’s something very interesting about the behavior of these nodes (name the nodes that Katz rank higher).&lt;/p&gt;
+
+&lt;svg width=&quot;760&quot; height=&quot;470&quot; id=&quot;flare_treemap&quot;&gt;&lt;/svg&gt;
+&lt;form&gt;
+&lt;!-- sumBySize, sumByCount, sumByHub, sumByAuthority, sumByBetweenness, sumByCloseness, sumByKatz, sumByEigen --&gt;
+  &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;sumBySize&quot; checked=&quot;&quot; /&gt; Degree&lt;/label&gt;
+  &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;sumByCount&quot; /&gt; Count&lt;/label&gt;
+  &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;sumByHub&quot; /&gt; Hub&lt;/label&gt;
+  &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;sumByAuthority&quot; /&gt; Authority&lt;/label&gt;
+  &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;sumByBetweenness&quot; /&gt; Betweenness&lt;/label&gt;
+  &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;sumByCloseness&quot; /&gt; Closeness&lt;/label&gt;
+  &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;sumByKatz&quot; /&gt; Katz&lt;/label&gt;
+  &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;mode&quot; value=&quot;sumByEigen&quot; /&gt; Eigen&lt;/label&gt;
+&lt;/form&gt;
+&lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/treemap.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;In the TreeMap you can see painted with 6 different colors that corresponds to the top 6 communities that can be identified in the co-authoring institutions network.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-are-the-trends-of-ml-research&quot;&gt;What are the trends of ML research?&lt;/h2&gt;
+
+&lt;p&gt;The answer to this question is for sure well known. Anyone with some degree of understanding about this area should be able to answer &lt;code class=&quot;highlighter-rouge&quot;&gt;deep learning&lt;/code&gt;. However, while deep learning is capturing all the mainstream attention with GPT-3 and Deep-fakes, there are other fields that are very interesting to keep an eye on. For example XXX is an area of research that has gotten some traction over the last N years, and was pretty much inexistent 10 years ago. Also, I find particularly interesting what is going on with topics that were very hot 10 years ago and today are almost abandoned. “Classical” machine learning models like Support Vector Machines were the darlings for conferences like NeurIPS, but today are really out of the spotlight.&lt;/p&gt;
+
+&lt;p&gt;As listing all the possible research topics in machine learning could be a daunting task, I used some fairly simple non supervised NLP models that helped me listing the top 100 topics in ML. For this, I created first a list of keywords from the abstracts from all papers. Then, while just keeping the keywords that are present more than N times across topics in a particular year, I used a non-supervised topic modeling tool called LDA. There’s a vast number of tricks and recommendations about how and when to use this model.&lt;/p&gt;
+
+&lt;!-- &lt;div id=&quot;example1&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/stack-plot1.js&quot;&gt;&lt;/script&gt; --&gt;
+
+&lt;!-- &lt;div id=&quot;example2&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/stack-plot2.js&quot;&gt;&lt;/script&gt; --&gt;
+
+&lt;div&gt;
+&lt;img src=&quot;/assets/posts/neurips-analysis/neurips-keywords-word-cloud.png&quot; alt=&quot;Wordcloud with keywords per year&quot; /&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;what-are-the-trends-of-ml-research-1&quot;&gt;What are the trends of ML research?&lt;/h2&gt;
+
+&lt;p&gt;something something&lt;/p&gt;
+
+&lt;div class=&quot;desk&quot;&gt;
+  &lt;div class=&quot;row&quot; id=&quot;desk&quot;&gt;
+    &lt;div class=&quot;column&quot; id=&quot;desk&quot;&gt;
+      &lt;div class=&quot;desk&quot; id=&quot;heb-2009-topic1&quot;&gt;&lt;/div&gt;
+      &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2009-topic1.js&quot;&gt;&lt;/script&gt;
+      &lt;p align=&quot;center&quot;&gt;2009 - Topic 1 (asdasd)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;column&quot;&gt;
+      &lt;div class=&quot;desk&quot; id=&quot;heb-2009-topic2&quot;&gt;&lt;/div&gt;
+      &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2009-topic2.js&quot;&gt;&lt;/script&gt;
+      &lt;p align=&quot;center&quot;&gt;2009 - Topic 2 (asdasd)&lt;/p&gt;
+    &lt;/div&gt;  
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;div-only-mobile&quot;&gt;
+  &lt;div class=&quot;div-only-mobile&quot; id=&quot;heb-2009-topic1-mobile&quot;&gt;&lt;/div&gt;
+  &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2009-topic1-mobile.js&quot;&gt;&lt;/script&gt;
+  &lt;p align=&quot;center&quot;&gt;2009 - Topic 1 (asdasd)&lt;/p&gt;
+  &lt;!-- &lt;div id='heb-2009-topic2-mobile'&gt;&lt;/div&gt; --&gt;
+  &lt;!-- &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2009-topic2.js&quot;&gt;&lt;/script&gt; --&gt;
+  &lt;!-- &lt;p align='center'&gt;2009 - Topic 2 (asdasd)&lt;/p&gt; --&gt;
+&lt;/div&gt;
+
+&lt;p&gt;hola&lt;/p&gt;</content><author><name></name></author><summary type="html">This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [NeurIPS crawler]. Originally I wanted to process and analyze all papers from 1987 to this date as I do have all the data, but I’ll table that for time in the future. Given that it took me a while to re-start the work on this (at least two years), I decided to focus in the last 10 years of data.</summary></entry><entry><title type="html">kronosparser: Python package for parsing time from text</title><link href="http://localhost:4000/kronosparser-package.html" rel="alternate" type="text/html" title="kronosparser: Python package for parsing time from text" /><published>2020-03-10T00:00:00-07:00</published><updated>2020-03-10T00:00:00-07:00</updated><id>http://localhost:4000/kronosparser-package</id><content type="html" xml:base="http://localhost:4000/kronosparser-package.html">&lt;p&gt;This post contains a few basic examples of how to use the &lt;a href=&quot;https://github.com/glhuilli/kronosparser&quot;&gt;kronosparser&lt;/a&gt; package. I particularly don’t like the name, but it’s descriptive enough to know what it does. This post is just an extended version of the readme document available in Github.&lt;/p&gt;
 
 &lt;h2 id=&quot;why-building-this-package&quot;&gt;Why building this package?&lt;/h2&gt;
 
@@ -476,7 +570,7 @@ lb.get_sentence_emotions(sentence)
 &lt;!-- ```python
 from limbic.emotion.models.tf_limbic_model import TfLimbicModel
 
-tf_model = TfLimbicModel()
+tf_model = TfLimbicModel()  
 tf_model.predict('I have a lot of joy and sadness')
 ``` --&gt;
 &lt;script src=&quot;https://gist.github.com/glhuilli/82e1ca190c05041863479215ebb19d72.js&quot;&gt;&lt;/script&gt;
@@ -580,13 +674,4 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 &lt;/script&gt;
 
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">There must be hundreds of alternatives for using Python virtualenv in a simple and clean way, but the following is by far the one that I find most intuitive and easy to set up. The idea is simple. Each time you want to use a virtualenv in a project, you need to:</summary></entry><entry><title type="html">Research trends in Machine Learning from 1987-2018</title><link href="http://localhost:4000/research-trends-in-ml.html" rel="alternate" type="text/html" title="Research trends in Machine Learning from 1987-2018" /><published>2019-02-24T00:00:00-08:00</published><updated>2019-02-24T00:00:00-08:00</updated><id>http://localhost:4000/research-trends-in-ml</id><content type="html" xml:base="http://localhost:4000/research-trends-in-ml.html">&lt;p&gt;Coming soon.&lt;/p&gt;
-
-&lt;p&gt;Currently processing 8.8Gb of papers downloaded using the [&lt;a href=&quot;https://github.com/glhuilli/neurips_crawler&quot;&gt;NeurIPS crawler&lt;/a&gt;]&lt;/p&gt;
-
-&lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot;&gt;&lt;/script&gt;
-
-&lt;div id=&quot;example1&quot;&gt;&lt;/div&gt;
-&lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/stack-plot1.js&quot;&gt;&lt;/script&gt;
-
-&lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/stack_plot1.js&quot;&gt;&lt;/script&gt;</content><author><name></name></author><summary type="html">Coming soon.</summary></entry></feed>
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">There must be hundreds of alternatives for using Python virtualenv in a simple and clean way, but the following is by far the one that I find most intuitive and easy to set up. The idea is simple. Each time you want to use a virtualenv in a project, you need to:</summary></entry></feed>

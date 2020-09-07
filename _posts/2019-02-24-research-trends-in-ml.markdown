@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Research trends in Machine Learning from 1987-2018"
-date:   2019-02-24
-description: This analysis covers all papers downloaded from NeurIPS conferences between 1987 and 2018
+title:  "Machine Learning research from 2009-2019"
+date:   2020-08-20
+description: This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019
 categories: DataAnalysis, MachineLearning
 keywords: D3, DataViz, ML
 thumbnail: /assets/posts/ml-analysis/ml-analysis-banner.png
@@ -12,29 +12,22 @@ css:
 invert: true
 ---
 
-Coming soon.
+This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [[NeurIPS crawler](https://github.com/glhuilli/neurips_crawler)]. Originally I wanted to process and analyze all papers from 1987 to this date as I do have all the data, but I'll table that for time in the future. Given that it took me a while to re-start the work on this (at least two years), I decided to focus in the last 10 years of data.
 
-Currently processing 8.8Gb of papers downloaded using the [[NeurIPS crawler](https://github.com/glhuilli/neurips_crawler)]
+This post's main purpose was to explore D3.js in a more extensive way, so you'll see that most of the results are presented below by using some D3.js option.
 
+There were some few tricks I had to find to make the following visualizations work. Not being particularly experienced in `Javascript` was an issue, and most of "basic" things that are expected to be basic or "trivial" were mostly not documented by the D3.js communities, so I'll share some of these findings along with some of the findings that is possible to extract from the data.
+
+A secondary purpose of this post, was to put much of the processing code into a new python package which I called [papeles](https://github.com/glhuilli/papeles). The word `papeles` is a literal translation for `papers` into Spanish. Most of this code is not exceptionally interesting, but it was worth cleaning and refactoring into a lightweight package for others to use. This is a very experimental package so I did not include unit tests.
+
+
+## Which research institutions are the most influential in ML research today?
+
+This is a very odd starting point for such analysis, but I honestly was checking D3.js and thought that looking at how institutions are interconnected between them by co-authoring papers using this visualization would be something interesting to see.
+
+I believe this is an alternative to see how a graph looks like. I tried building some approximations about the co-authoring institutions graph, and none gave better information than the following viz.
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
-
-<div id="example1"></div>
-<script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/stack-plot1.js"></script>
-
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet ornare sapien. Vestibulum id mattis eros, at sodales erat. Phasellus odio felis, ultricies in velit et, efficitur sodales ante. Maecenas nibh quam, ultrices sit amet arcu et, fringilla ornare ligula. Nam hendrerit dolor volutpat sapien interdum, sit amet ultrices nunc ultricies. In hac habitasse platea dictumst. Sed non justo leo. Proin aliquam turpis non lorem auctor tincidunt. Ut tincidunt dui sit amet ligula euismod laoreet. Nulla sit amet massa metus. Duis eros eros, aliquet vel finibus a, placerat ac erat. Nam vel pharetra ipsum. Nullam libero ex, laoreet vitae placerat nec, aliquet a nulla. In hac habitasse platea dictumst. In cursus consectetur ante, in ultricies lacus. Vestibulum sed scelerisque ipsum, mattis lacinia risus.
-</p>
-
-<div id="example2"></div>
-<script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/stack-plot2.js"></script>
-
-
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet ornare sapien. Vestibulum id mattis eros, at sodales erat. Phasellus odio felis, ultricies in velit et, efficitur sodales ante. Maecenas nibh quam, ultrices sit amet arcu et, fringilla ornare ligula. Nam hendrerit dolor volutpat sapien interdum, sit amet ultrices nunc ultricies. In hac habitasse platea dictumst. Sed non justo leo. Proin aliquam turpis non lorem auctor tincidunt. Ut tincidunt dui sit amet ligula euismod laoreet. Nulla sit amet massa metus. Duis eros eros, aliquet vel finibus a, placerat ac erat. Nam vel pharetra ipsum. Nullam libero ex, laoreet vitae placerat nec, aliquet a nulla. In hac habitasse platea dictumst. In cursus consectetur ante, in ultricies lacus. Vestibulum sed scelerisque ipsum, mattis lacinia risus.
-</p>
-
-
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <div id='hierarchical-edge-bundling-mobile'></div>
 <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/hierarchical-edge-bundling-mobile.js"></script>
@@ -42,12 +35,17 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet ornare sa
 <div id='hierarchical-edge-bundling'></div>
 <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/hierarchical-edge-bundling.js"></script>
 
+Using hierarchical edge bundling, it's easy to find which institutions share the most ML research with other institutions. For example CMU and MIT are very well into the top of this list, while Microsoft Research and Google among the top institutions without being educational institutions themselves.
 
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet ornare sapien. Vestibulum id mattis eros, at sodales erat. Phasellus odio felis, ultricies in velit et, efficitur sodales ante. Maecenas nibh quam, ultrices sit amet arcu et, fringilla ornare ligula. Nam hendrerit dolor volutpat sapien interdum, sit amet ultrices nunc ultricies. In hac habitasse platea dictumst. Sed non justo leo. Proin aliquam turpis non lorem auctor tincidunt. Ut tincidunt dui sit amet ligula euismod laoreet. Nulla sit amet massa metus. Duis eros eros, aliquet vel finibus a, placerat ac erat. Nam vel pharetra ipsum. Nullam libero ex, laoreet vitae placerat nec, aliquet a nulla. In hac habitasse platea dictumst. In cursus consectetur ante, in ultricies lacus. Vestibulum sed scelerisque ipsum, mattis lacinia risus.
-</p>
 
-<!-- width="960" height="570" -->
+## Are there institutions that mostly publish with a specific group?
+
+Let's run some cluster algorithm on the co-author institution graph and see what happens. For this, I'm using the well known community detection algorithm in graphs created by researchers at Louvain, which gives the name for this algorithm.
+
+This is a very simple model, non parametric and completely unsupervised. It finds some of the most recurrent connections within the graph, and results in a finite number of group of nodes that are most likely to share an edge between them. (add citation and actual explanation of the method).
+
+To visualize the result, I decided to use a TreeMap, which at the same time allows us to inspect visually other properties of the network (e.g. centrality measures). These measures are computed over each node in the graph, and provides some insights on which are the institutions that connects most of the nodes in the graph, among other particular properties. The only one that is very different from the original results is Katz centrality measure which measures xxxx. This means that there's something very interesting about the behavior of these nodes (name the nodes that Katz rank higher).
+
 <svg width="760" height="470" id="flare_treemap"></svg>
 <form>
 <!-- sumBySize, sumByCount, sumByHub, sumByAuthority, sumByBetweenness, sumByCloseness, sumByKatz, sumByEigen -->
@@ -62,11 +60,55 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet ornare sa
 </form>
 <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/treemap.js"></script>
 
+In the TreeMap you can see painted with 6 different colors that corresponds to the top 6 communities that can be identified in the co-authoring institutions network.
 
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet ornare sapien. Vestibulum id mattis eros, at sodales erat. Phasellus odio felis, ultricies in velit et, efficitur sodales ante. Maecenas nibh quam, ultrices sit amet arcu et, fringilla ornare ligula. Nam hendrerit dolor volutpat sapien interdum, sit amet ultrices nunc ultricies. In hac habitasse platea dictumst. Sed non justo leo. Proin aliquam turpis non lorem auctor tincidunt. Ut tincidunt dui sit amet ligula euismod laoreet. Nulla sit amet massa metus. Duis eros eros, aliquet vel finibus a, placerat ac erat. Nam vel pharetra ipsum. Nullam libero ex, laoreet vitae placerat nec, aliquet a nulla. In hac habitasse platea dictumst. In cursus consectetur ante, in ultricies lacus. Vestibulum sed scelerisque ipsum, mattis lacinia risus.
-</p>
+
+## What are the trends of ML research?
+
+The answer to this question is for sure well known. Anyone with some degree of understanding about this area should be able to answer `deep learning`. However, while deep learning is capturing all the mainstream attention with GPT-3 and Deep-fakes, there are other fields that are very interesting to keep an eye on. For example XXX is an area of research that has gotten some traction over the last N years, and was pretty much inexistent 10 years ago. Also, I find particularly interesting what is going on with topics that were very hot 10 years ago and today are almost abandoned. "Classical" machine learning models like Support Vector Machines were the darlings for conferences like NeurIPS, but today are really out of the spotlight.
+
+As listing all the possible research topics in machine learning could be a daunting task, I used some fairly simple non supervised NLP models that helped me listing the top 100 topics in ML. For this, I created first a list of keywords from the abstracts from all papers. Then, while just keeping the keywords that are present more than N times across topics in a particular year, I used a non-supervised topic modeling tool called LDA. There's a vast number of tricks and recommendations about how and when to use this model.
+
+
+<!-- <div id="example1"></div>
+<script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/stack-plot1.js"></script> -->
+
+<!-- <div id="example2"></div>
+<script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/stack-plot2.js"></script> -->
 
 <div>
 <img src='{{ site.baseurl }}/assets/posts/neurips-analysis/neurips-keywords-word-cloud.png' alt='Wordcloud with keywords per year'>
 </div>
+
+
+## What are the trends of ML research?
+
+
+something something
+
+<div class='desk'>
+  <div class='row' id='desk'>
+    <div class='column' id='desk'>
+      <div class='desk' id='heb-2009-topic1'></div>
+      <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2009-topic1.js"></script>
+      <p align='center'>2009 - Topic 1 (asdasd)</p>
+    </div>
+    <div class='column'>
+      <div class='desk' id='heb-2009-topic2'></div>
+      <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2009-topic2.js"></script>
+      <p align='center'>2009 - Topic 2 (asdasd)</p>
+    </div>  
+  </div>
+</div>
+
+<div class='div-only-mobile'>
+  <div class='div-only-mobile' id='heb-2009-topic1-mobile'></div>
+  <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2009-topic1-mobile.js"></script>
+  <p align='center'>2009 - Topic 1 (asdasd)</p>
+  <!-- <div id='heb-2009-topic2-mobile'></div> -->
+  <!-- <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2009-topic2.js"></script> -->
+  <!-- <p align='center'>2009 - Topic 2 (asdasd)</p> -->
+</div>
+
+
+<p>hola</p>
