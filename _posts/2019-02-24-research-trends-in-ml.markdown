@@ -83,32 +83,77 @@ As listing all the possible research topics in machine learning could be a daunt
 
 ## What are the trends of ML research?
 
-
-something something
+<p>something something</p>
 
 <div class='desk'>
   <div class='row' id='desk'>
     <div class='column' id='desk'>
       <div class='desk' id='heb-2009-topic1'></div>
       <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2009-topic1.js"></script>
-      <p align='center'>2009 - Topic 1 (asdasd)</p>
+      <p align='center'>2009 - 1st Topic (Probabilistic Graphical Models)</p>
     </div>
     <div class='column'>
       <div class='desk' id='heb-2009-topic2'></div>
       <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2009-topic2.js"></script>
-      <p align='center'>2009 - Topic 2 (asdasd)</p>
+      <p align='center'>2009 - 2nd Topic (Bayesian Methods)</p>
     </div>  
   </div>
 </div>
-
 <div class='div-only-mobile'>
   <div class='div-only-mobile' id='heb-2009-topic1-mobile'></div>
   <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2009-topic1-mobile.js"></script>
-  <p align='center'>2009 - Topic 1 (asdasd)</p>
-  <!-- <div id='heb-2009-topic2-mobile'></div> -->
-  <!-- <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2009-topic2.js"></script> -->
-  <!-- <p align='center'>2009 - Topic 2 (asdasd)</p> -->
+  <p align='center'>2009 - 1st Topic (Probabilistic Graphical Models)</p>
+  <div id='heb-2009-topic2-mobile'></div>
+  <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2009-topic2-mobile.js"></script>
+  <p align='center'>2009 - 2nd Topic (Bayesian Methods)</p>
 </div>
 
+<p>something something</p>
 
-<p>hola</p>
+<div class='desk'>
+  <div class='row' id='desk'>
+    <div class='column' id='desk'>
+      <div class='desk' id='heb-2010-topic1'></div>
+      <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2010-topic1.js"></script>
+      <p align='center'>2010 - 1st Topic (Probabilistic Graphical Models)</p>
+    </div>
+    <div class='column'>
+      <div class='desk' id='heb-2010-topic2'></div>
+      <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2010-topic2.js"></script>
+      <p align='center'>2010 - 2nd Topic (Reinforcement learning)</p>
+    </div>  
+  </div>
+</div>
+<div class='div-only-mobile'>
+  <div class='div-only-mobile' id='heb-2010-topic1-mobile'></div>
+  <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2010-topic1-mobile.js"></script>
+  <p align='center'>2010 - 1st Topic (Probabilistic Graphical Models)</p>
+  <div id='heb-2010-topic2-mobile'></div>
+  <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2010-topic2-mobile.js"></script>
+  <p align='center'>2010 - 2nd Topic (Reinforcement learning)</p>
+</div>
+
+<p>something something</p>
+
+<div class='desk'>
+  <div class='row' id='desk'>
+    <div class='column' id='desk'>
+      <div class='desk' id='heb-2011-topic1'></div>
+      <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2011-topic1.js"></script>
+      <p align='center'>2011 - 1st Topic (Probabilistic Graphical Models - Inference)</p>
+    </div>
+    <div class='column'>
+      <div class='desk' id='heb-2011-topic2'></div>
+      <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2011-topic2.js"></script>
+      <p align='center'>2011 - 2nd Topic (Neural networks)</p>
+    </div>  
+  </div>
+</div>
+<div class='div-only-mobile'>
+  <div class='div-only-mobile' id='heb-2011-topic1-mobile'></div>
+  <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2011-topic1-mobile.js"></script>
+  <p align='center'>2011 - 1st Topic (Probabilistic Graphical Models - Inference)</p>
+  <div id='heb-2011-topic2-mobile'></div>
+  <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2011-topic2-mobile.js"></script>
+  <p align='center'>2011 - 2nd Topic (Neural networks)</p>
+</div>

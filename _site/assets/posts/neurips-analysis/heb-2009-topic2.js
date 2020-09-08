@@ -22,7 +22,6 @@ var link_09t2 = svg_09t2.append("g").selectAll(".link"),
     node_09t2 = svg_09t2.append("g").selectAll(".node");
 
 d3.json("assets/posts/neurips-analysis/heb-files/2009-topic_2-bayesian_methods_graph.json", function(error, classes) {
-// d3.json("assets/posts/neurips-analysis/n20_graph_all_years.json", function(error, classes) {
   if (error) throw error;
 
   var root = packageHierarchy(classes)
