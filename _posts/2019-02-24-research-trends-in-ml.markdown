@@ -283,3 +283,30 @@ As listing all the possible research topics in machine learning could be a daunt
   <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2016-topic2-mobile.js"></script>
   <p align='center'>2016 - 2nd Topic (Deep Learning Models)</p>
 </div>
+
+
+
+<p>something something</p>
+
+<div class='desk'>
+  <div class='row' id='desk'>
+    <div class='column' id='desk'>
+      <div class='desk' id='heb-2017-topic1'></div>
+      <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2017-topic1.js"></script>
+      <p align='center'>2017 - 1st Topic (Deep Learning Optimization)</p>
+    </div>
+    <div class='column'>
+      <div class='desk' id='heb-2017-topic2'></div>
+      <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2017-topic2.js"></script>
+      <p align='center'>2017 - 2nd Topic (Deep Learning Models)</p>
+    </div>  
+  </div>
+</div>
+<div class='div-only-mobile'>
+  <div class='div-only-mobile' id='heb-2017-topic1-mobile'></div>
+  <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2017-topic1-mobile.js"></script>
+  <p align='center'>2017 - 1st Topic (Deep Learning Optimization)</p>
+  <div class='div-only-mobile' id='heb-2017-topic2-mobile'></div>
+  <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/heb-2017-topic2-mobile.js"></script>
+  <p align='center'>2017 - 2nd Topic (Deep Learning Models)</p>
+</div>
