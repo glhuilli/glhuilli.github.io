@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-07T19:03:46-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Machine Learning research from 2009-2019</title><link href="http://localhost:4000/research-trends-in-ml.html" rel="alternate" type="text/html" title="Machine Learning research from 2009-2019" /><published>2020-08-20T00:00:00-07:00</published><updated>2020-08-20T00:00:00-07:00</updated><id>http://localhost:4000/research-trends-in-ml</id><content type="html" xml:base="http://localhost:4000/research-trends-in-ml.html">&lt;p&gt;This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [&lt;a href=&quot;https://github.com/glhuilli/neurips_crawler&quot;&gt;NeurIPS crawler&lt;/a&gt;]. Originally I wanted to process and analyze all papers from 1987 to this date as I do have all the data, but I’ll table that for time in the future. Given that it took me a while to re-start the work on this (at least two years), I decided to focus in the last 10 years of data.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-07T19:12:54-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Machine Learning research from 2009-2019</title><link href="http://localhost:4000/research-trends-in-ml.html" rel="alternate" type="text/html" title="Machine Learning research from 2009-2019" /><published>2020-08-20T00:00:00-07:00</published><updated>2020-08-20T00:00:00-07:00</updated><id>http://localhost:4000/research-trends-in-ml</id><content type="html" xml:base="http://localhost:4000/research-trends-in-ml.html">&lt;p&gt;This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [&lt;a href=&quot;https://github.com/glhuilli/neurips_crawler&quot;&gt;NeurIPS crawler&lt;/a&gt;]. Originally I wanted to process and analyze all papers from 1987 to this date as I do have all the data, but I’ll table that for time in the future. Given that it took me a while to re-start the work on this (at least two years), I decided to focus in the last 10 years of data.&lt;/p&gt;
 
 &lt;p&gt;This post’s main purpose was to explore D3.js in a more extensive way, so you’ll see that most of the results are presented below by using some D3.js option.&lt;/p&gt;
 
@@ -289,6 +289,56 @@
   &lt;div class=&quot;div-only-mobile&quot; id=&quot;heb-2017-topic2-mobile&quot;&gt;&lt;/div&gt;
   &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2017-topic2-mobile.js&quot;&gt;&lt;/script&gt;
   &lt;p align=&quot;center&quot;&gt;2017 - 2nd Topic (Deep Learning Models)&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;something something&lt;/p&gt;
+
+&lt;div class=&quot;desk&quot;&gt;
+  &lt;div class=&quot;row&quot; id=&quot;desk&quot;&gt;
+    &lt;div class=&quot;column&quot; id=&quot;desk&quot;&gt;
+      &lt;div class=&quot;desk&quot; id=&quot;heb-2018-topic1&quot;&gt;&lt;/div&gt;
+      &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2018-topic1.js&quot;&gt;&lt;/script&gt;
+      &lt;p align=&quot;center&quot;&gt;2018 - 1st Topic (Deep Learning Optimization)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;column&quot;&gt;
+      &lt;div class=&quot;desk&quot; id=&quot;heb-2018-topic2&quot;&gt;&lt;/div&gt;
+      &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2018-topic2.js&quot;&gt;&lt;/script&gt;
+      &lt;p align=&quot;center&quot;&gt;2018 - 2nd Topic (Deep Learning Models)&lt;/p&gt;
+    &lt;/div&gt;  
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;div-only-mobile&quot;&gt;
+  &lt;div class=&quot;div-only-mobile&quot; id=&quot;heb-2018-topic1-mobile&quot;&gt;&lt;/div&gt;
+  &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2018-topic1-mobile.js&quot;&gt;&lt;/script&gt;
+  &lt;p align=&quot;center&quot;&gt;2018 - 1st Topic (Deep Learning Optimization)&lt;/p&gt;
+  &lt;div class=&quot;div-only-mobile&quot; id=&quot;heb-2018-topic2-mobile&quot;&gt;&lt;/div&gt;
+  &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2018-topic2-mobile.js&quot;&gt;&lt;/script&gt;
+  &lt;p align=&quot;center&quot;&gt;2018 - 2nd Topic (Deep Learning Models)&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;something something&lt;/p&gt;
+
+&lt;div class=&quot;desk&quot;&gt;
+  &lt;div class=&quot;row&quot; id=&quot;desk&quot;&gt;
+    &lt;div class=&quot;column&quot; id=&quot;desk&quot;&gt;
+      &lt;div class=&quot;desk&quot; id=&quot;heb-2019-topic1&quot;&gt;&lt;/div&gt;
+      &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2019-topic1.js&quot;&gt;&lt;/script&gt;
+      &lt;p align=&quot;center&quot;&gt;2019 - 1st Topic (Deep Learning Optimization)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;column&quot;&gt;
+      &lt;div class=&quot;desk&quot; id=&quot;heb-2019-topic2&quot;&gt;&lt;/div&gt;
+      &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2019-topic2.js&quot;&gt;&lt;/script&gt;
+      &lt;p align=&quot;center&quot;&gt;2019 - 2nd Topic (Deep Learning Models)&lt;/p&gt;
+    &lt;/div&gt;  
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;div-only-mobile&quot;&gt;
+  &lt;div class=&quot;div-only-mobile&quot; id=&quot;heb-2019-topic1-mobile&quot;&gt;&lt;/div&gt;
+  &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2019-topic1-mobile.js&quot;&gt;&lt;/script&gt;
+  &lt;p align=&quot;center&quot;&gt;2019 - 1st Topic (Deep Learning Optimization)&lt;/p&gt;
+  &lt;div class=&quot;div-only-mobile&quot; id=&quot;heb-2019-topic2-mobile&quot;&gt;&lt;/div&gt;
+  &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2019-topic2-mobile.js&quot;&gt;&lt;/script&gt;
+  &lt;p align=&quot;center&quot;&gt;2019 - 2nd Topic (Deep Learning Models)&lt;/p&gt;
 &lt;/div&gt;</content><author><name></name></author><summary type="html">This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [NeurIPS crawler]. Originally I wanted to process and analyze all papers from 1987 to this date as I do have all the data, but I’ll table that for time in the future. Given that it took me a while to re-start the work on this (at least two years), I decided to focus in the last 10 years of data.</summary></entry><entry><title type="html">kronosparser: Python package for parsing time from text</title><link href="http://localhost:4000/kronosparser-package.html" rel="alternate" type="text/html" title="kronosparser: Python package for parsing time from text" /><published>2020-03-10T00:00:00-07:00</published><updated>2020-03-10T00:00:00-07:00</updated><id>http://localhost:4000/kronosparser-package</id><content type="html" xml:base="http://localhost:4000/kronosparser-package.html">&lt;p&gt;This post contains a few basic examples of how to use the &lt;a href=&quot;https://github.com/glhuilli/kronosparser&quot;&gt;kronosparser&lt;/a&gt; package. I particularly don’t like the name, but it’s descriptive enough to know what it does. This post is just an extended version of the readme document available in Github.&lt;/p&gt;
 
 &lt;h2 id=&quot;why-building-this-package&quot;&gt;Why building this package?&lt;/h2&gt;
