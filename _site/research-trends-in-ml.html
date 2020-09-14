@@ -10,35 +10,35 @@
 <meta name='twitter:creator' content='@glhuilli'>
 <meta property='og:url' content='http://localhost:4000/research-trends-in-ml.html'>
 
-  <meta name='og:title' content="Research trends in Machine Learning from 1987-2018">
+  <meta name='og:title' content="Machine Learning research from 2009-2019">
 
 
-  <meta name='description' content="This analysis covers all papers downloaded from NeurIPS conferences between 1987 and 2018">
-  <meta name='og:description' content="This analysis covers all papers downloaded from NeurIPS conferences between 1987 and 2018">
+  <meta name='description' content="This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019">
+  <meta name='og:description' content="This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019">
 
 
   <meta property='og:image' content='http://localhost:4000/assets/posts/ml-analysis/ml-analysis-banner.png'>
 
 
-    <title>Research trends in Machine Learning from 1987-2018</title>
+    <title>Machine Learning research from 2009-2019</title>
     <!-- <link rel='icon' href='/assets/images/favicon.ico' type='image/x-icon'> -->
     
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1598110296820623000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1600070467926793000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1598110296820623000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1600070467926793000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1598110296820623000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1600070467926793000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1598110296820623000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1600070467926793000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1598110296820623000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1600070467926793000'>
     
   
     
       
       
-        <link type='text/css' rel='stylesheet' href='/assets/posts/virtual-environments/virtual-env.css'>
+        <link type='text/css' rel='stylesheet' href='/assets/posts/neurips-analysis/neurips-analysis.css'>
       
     
   
@@ -78,11 +78,325 @@
 <noscript>This site works best with JavaScript enabled.</noscript>
 <div class='post'>
   <div class='container'>
-    <div class='title'>Research trends in Machine Learning from 1987-2018</div>
-    <div class='date'>24 Feb 2019</div>
-    <div class='content'><p>Coming soon.</p>
+    <div class='title'>Machine Learning research from 2009-2019</div>
+    <div class='date'>14 Sep 2020</div>
+    <div class='content'><p>This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [<a href="https://github.com/glhuilli/neurips_crawler">NeurIPS crawler</a>]. Originally I wanted to process and analyze all papers from 1987 to this date as I have all the data, but I decided to focus just in the last ten years of data.</p>
 
-<p>Currently processing 8.8Gb of papers downloaded using the [<a href="https://github.com/glhuilli/neurips_crawler">NeurIPS crawler</a>]</p>
+<p>This post’s primary goal was to explore <code class="highlighter-rouge">D3.js</code> more extensively using some well-known data from a different angle. I know there are probably dozens of blog posts and Kaggle scripts that do a comprehensive analysis of NeurIPs data. I haven’t seen an analysis for co-authorship on main topics from an Institution’s perspective.</p>
+
+<p>This post’s secondary goal was to put much of the processing code into a new python package that I called <a href="https://github.com/glhuilli/papeles">papeles</a>. The word <code class="highlighter-rouge">papeles</code> is a literal translation for <code class="highlighter-rouge">papers</code> into Spanish. Most of this code is not exceptionally interesting, but it was worth cleaning and refactoring into a lightweight package for others (or my future self) to use. This package is very experimental, so I did not include unit tests and can be significantly improved. If you want to add something, you are more than welcome to send pull requests or create issues. I’ll be checking on those regularly.</p>
+
+<h2 id="how-institutions-interact-with-each-other-in-machine-learning-research">How institutions interact with each other in machine learning research?</h2>
+
+<p>To answer this question, I pulled all the papers raw content using the <code class="highlighter-rouge">papeles</code> package and extracted the first page (or so) for each paper, focusing exclusively on the first section just before the abstract. From this section, <code class="highlighter-rouge">papeles</code> has some tooling to identify which institutions are mentioned and find a relationship between all authors in said paper.</p>
+
+<p>When visualizing graphs, most examples I’ve seen are using the graph’s force-directed representation (e.g., <a href="https://observablehq.com/@d3/force-directed-graph">this one</a>). I tried this and got a very messy view that wouldn’t provide any visualization insight. Looking at interconnected institutions in a hierarchical edge bundling graph offers a sweet spot between observing which institutions are highly connected and who, in a summarized way, can be enriched with extra signals by hovering the mouse over each institution.</p>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<div id="hierarchical-edge-bundling-mobile"></div>
+<script src="http://localhost:4000/assets/posts/neurips-analysis/hierarchical-edge-bundling-mobile.js"></script>
+
+<div id="hierarchical-edge-bundling"></div>
+<script src="http://localhost:4000/assets/posts/neurips-analysis/hierarchical-edge-bundling.js"></script>
+
+<h2 id="are-there-institutions-that-mostly-publish-with-a-specific-group">Are there institutions that mostly publish with a specific group?</h2>
+
+<p>For this, I’m using the well known <a href="https://sites.google.com/site/findcommunities/">Louvain method</a> for community detection in graphs. For more details about this method, please check <a href="https://arxiv.org/abs/0803.0476">[Blonder et al. (2008)]</a>.</p>
+
+<p>To visualize the results, I decided to use a <code class="highlighter-rouge">TreeMap</code> based on the results published in <a href="http://users.umiacs.umd.edu/~elm/projects/ranked-list/ranked-list.pdf">[Mylavanparu et al. (2019)]</a>, which at the same time allows us to inspect visually other properties of the network, in particular centrality measures. These measures provide insights into how institutions are connected to other nodes in the graph.</p>
+
+<svg width="760" height="470" id="flare_treemap"></svg>
+<form>
+  <label><input type="radio" name="mode" value="sumBySize" checked="" /> Degree</label>
+  <!-- <label><input type="radio" name="mode" value="sumByCount"> Count</label> -->
+  <!-- <label><input type="radio" name="mode" value="sumByHub"> Hub</label> -->
+  <label><input type="radio" name="mode" value="sumByAuthority" /> Authority</label>
+  <label><input type="radio" name="mode" value="sumByBetweenness" /> Betweenness</label>
+  <label><input type="radio" name="mode" value="sumByCloseness" /> Closeness</label>
+  <!-- <label><input type="radio" name="mode" value="sumByKatz"> Katz</label> -->
+  <label><input type="radio" name="mode" value="sumByEigen" /> Eigen</label>
+</form>
+<script src="http://localhost:4000/assets/posts/neurips-analysis/treemap.js"></script>
+
+<p>In the <code class="highlighter-rouge">TreeMap</code>, you can see painted with six different colors that correspond to the top six communities identified in the co-authoring institution’s network. Most of the centrality measures show very similar behavior.</p>
+
+<h2 id="what-are-the-trends-of-ml-research">What are the trends of ML research?</h2>
+
+<p>The answer to this question is, for sure, well known. Anyone with some degree of understanding about this area should be able to answer <code class="highlighter-rouge">Deep Learning</code>. However, while Deep Learning research captures all the mainstream attention, other fields are exciting to keep an eye on. For example, <code class="highlighter-rouge">Adversarial Machine Learning</code> is an area of research that has gotten some traction over the last few years. Yes, it has been fueled by Deep Learning and Generative Adversarial Networks (aka GANs), but back in the day (~10 years ago), this was very fringe and pretty much inexistent (trust me, <a href="https://www.kdd.org/exploration_files/v11-2-18-CSI-LHuillier.pdf">I know</a>).</p>
+
+<p>Also, I find it very interesting what is going on with topics that were very hot +10 years ago and today are almost abandoned. “Classical” machine learning models like Kernel methods or Graphical models are rarely mentioned. They are far from being mentioned and investigated to the level that Neural Networks and Deep Learning are being researched today.</p>
+
+<p>As listing all the possible research topics in machine learning could be a daunting task, I used some fairly simple non supervised NLP models that helped me listing the top 100 topics in ML. For this, I created first a list of keywords from the abstracts from all papers. Then, while just keeping the keywords that are present more than N times across topics in a particular year, I used a non-supervised topic modeling tool called Latent Dirichlet Allocation (particularly the one available in the <code class="highlighter-rouge">gensim</code> package). All this code is available in the <code class="highlighter-rouge">papeles</code> package, and examples on how to use it is available in <a href="https://github.com/glhuilli/papeles/blob/master/scripts/papeles%20-%20keywords%20topics%20analysis.ipynb">this script</a>.</p>
+
+<div>
+<img src="/assets/posts/neurips-analysis/neurips-keywords-word-cloud.png" alt="Wordcloud with keywords per year" />
+</div>
+
+<h2 id="how-has-been-the-collaboration-between-institutions-over-time">How has been the collaboration between institutions over time?</h2>
+
+<p>In the following, you can see how institutions have been increasingly collaborating as NeurIPS got more popular. This is most likely the effect of having a larger volume of papers in recent years (higher volume of papers means a probability of institution collaborating).</p>
+
+<p>Please check the <a href="http://localhost:8888/notebooks/papeles%20-%20institutions%20and%20topics%20analysis.ipynb">script</a> in <code class="highlighter-rouge">papeles</code> for details on how the topics were computed and how the names were assigned.</p>
+
+<p>Several follow-up questions can be done by using this dataset, analysis tool, and visualization strategies, but I’ll leave that for another time. Questions like “which are the institutions that have co-authoring papers the most together over time” or “which are the institutions with more influence on topics like ConvNets” could be done quickly using <code class="highlighter-rouge">papeles</code> and the set of scripts available.</p>
+
+<p>Interestingly, the answer to the first question is <code class="highlighter-rouge">University of Washington</code> and <code class="highlighter-rouge">Microsoft Research</code>.</p>
+
+<div class="desk">
+  <div class="row" id="desk">
+    <div class="column" id="desk">
+      <div class="desk" id="heb-2009-topic1"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2009-topic1.js"></script>
+      <p align="center">2009 - 1st Topic (Probabilistic Graphical Models)</p>
+    </div>
+    <div class="column">
+      <div class="desk" id="heb-2009-topic2"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2009-topic2.js"></script>
+      <p align="center">2009 - 2nd Topic (Bayesian Methods)</p>
+    </div>  
+  </div>
+</div>
+<div class="div-only-mobile">
+  <div class="div-only-mobile" id="heb-2009-topic1-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2009-topic1-mobile.js"></script>
+  <p align="center">2009 - 1st Topic (Probabilistic Graphical Models)</p>
+  <div id="heb-2009-topic2-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2009-topic2-mobile.js"></script>
+  <p align="center">2009 - 2nd Topic (Bayesian Methods)</p>
+</div>
+
+<div class="desk">
+  <div class="row" id="desk">
+    <div class="column" id="desk">
+      <div class="desk" id="heb-2010-topic1"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2010-topic1.js"></script>
+      <p align="center">2010 - 1st Topic (Probabilistic Graphical Models)</p>
+    </div>
+    <div class="column">
+      <div class="desk" id="heb-2010-topic2"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2010-topic2.js"></script>
+      <p align="center">2010 - 2nd Topic (Reinforcement learning)</p>
+    </div>  
+  </div>
+</div>
+<div class="div-only-mobile">
+  <div class="div-only-mobile" id="heb-2010-topic1-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2010-topic1-mobile.js"></script>
+  <p align="center">2010 - 1st Topic (Probabilistic Graphical Models)</p>
+  <div id="heb-2010-topic2-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2010-topic2-mobile.js"></script>
+  <p align="center">2010 - 2nd Topic (Reinforcement learning)</p>
+</div>
+
+<div class="desk">
+  <div class="row" id="desk">
+    <div class="column" id="desk">
+      <div class="desk" id="heb-2011-topic1"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2011-topic1.js"></script>
+      <p align="center">2011 - 1st Topic (Probabilistic Graphical Models - Inference)</p>
+    </div>
+    <div class="column">
+      <div class="desk" id="heb-2011-topic2"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2011-topic2.js"></script>
+      <p align="center">2011 - 2nd Topic (Neural networks)</p>
+    </div>  
+  </div>
+</div>
+<div class="div-only-mobile">
+  <div class="div-only-mobile" id="heb-2011-topic1-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2011-topic1-mobile.js"></script>
+  <p align="center">2011 - 1st Topic (Probabilistic Graphical Models - Inference)</p>
+  <div id="heb-2011-topic2-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2011-topic2-mobile.js"></script>
+  <p align="center">2011 - 2nd Topic (Neural networks)</p>
+</div>
+
+<div class="desk">
+  <div class="row" id="desk">
+    <div class="column" id="desk">
+      <div class="desk" id="heb-2012-topic1"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2012-topic1.js"></script>
+      <p align="center">2012 - 1st Topic (Bayesian Inference)</p>
+    </div>
+    <div class="column">
+      <div class="desk" id="heb-2012-topic2"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2012-topic2.js"></script>
+      <p align="center">2012 - 2nd Topic (Probabilistic Graphical Models)</p>
+    </div>  
+  </div>
+</div>
+<div class="div-only-mobile">
+  <div class="div-only-mobile" id="heb-2012-topic1-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2012-topic1-mobile.js"></script>
+  <p align="center">2012 - 1st Topic (Bayesian Inference)</p>
+  <div class="div-only-mobile" id="heb-2012-topic2-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2012-topic2-mobile.js"></script>
+  <p align="center">2012 - 2nd Topic (Probabilistic Graphical Models)</p>
+</div>
+
+<div class="desk">
+  <div class="row" id="desk">
+    <div class="column" id="desk">
+      <div class="desk" id="heb-2013-topic1"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2013-topic1.js"></script>
+      <p align="center">2013 - 1st Topic (Markov Decision Processes)</p>
+    </div>
+    <div class="column">
+      <div class="desk" id="heb-2013-topic2"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2013-topic2.js"></script>
+      <p align="center">2013 - 2nd Topic (Matrix decomposition)</p>
+    </div>  
+  </div>
+</div>
+<div class="div-only-mobile">
+  <div class="div-only-mobile" id="heb-2013-topic1-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2013-topic1-mobile.js"></script>
+  <p align="center">2013 - 1st Topic (Markov Decision Processes)</p>
+  <div class="div-only-mobile" id="heb-2013-topic2-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2013-topic2-mobile.js"></script>
+  <p align="center">2013 - 2nd Topic (Matrix decomposition)</p>
+</div>
+
+<div class="desk">
+  <div class="row" id="desk">
+    <div class="column" id="desk">
+      <div class="desk" id="heb-2014-topic1"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2014-topic1.js"></script>
+      <p align="center">2014 - 1st Topic (Probabilistic Graphical Models)</p>
+    </div>
+    <div class="column">
+      <div class="desk" id="heb-2014-topic2"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2014-topic2.js"></script>
+      <p align="center">2014 - 2nd Topic (Neural Networks)</p>
+    </div>  
+  </div>
+</div>
+<div class="div-only-mobile">
+  <div class="div-only-mobile" id="heb-2014-topic1-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2014-topic1-mobile.js"></script>
+  <p align="center">2014 - 1st Topic (Probabilistic Graphical Models)</p>
+  <div class="div-only-mobile" id="heb-2014-topic2-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2014-topic2-mobile.js"></script>
+  <p align="center">2014 - 2nd Topic (Neural Networks)</p>
+</div>
+
+<div class="desk">
+  <div class="row" id="desk">
+    <div class="column" id="desk">
+      <div class="desk" id="heb-2015-topic1"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2015-topic1.js"></script>
+      <p align="center">2015 - 1st Topic (Deep Learning Optimization)</p>
+    </div>
+    <div class="column">
+      <div class="desk" id="heb-2015-topic2"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2015-topic2.js"></script>
+      <p align="center">2015 - 2nd Topic (Deep Learning Models)</p>
+    </div>  
+  </div>
+</div>
+<div class="div-only-mobile">
+  <div class="div-only-mobile" id="heb-2015-topic1-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2015-topic1-mobile.js"></script>
+  <p align="center">2015 - 1st Topic (Deep Learning Optimization)</p>
+  <div class="div-only-mobile" id="heb-2015-topic2-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2015-topic2-mobile.js"></script>
+  <p align="center">2015 - 2nd Topic (Deep Learning Models)</p>
+</div>
+
+<div class="desk">
+  <div class="row" id="desk">
+    <div class="column" id="desk">
+      <div class="desk" id="heb-2016-topic1"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2016-topic1.js"></script>
+      <p align="center">2016 - 1st Topic (Deep Learning Optimization)</p>
+    </div>
+    <div class="column">
+      <div class="desk" id="heb-2016-topic2"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2016-topic2.js"></script>
+      <p align="center">2016 - 2nd Topic (Deep Learning Models)</p>
+    </div>  
+  </div>
+</div>
+<div class="div-only-mobile">
+  <div class="div-only-mobile" id="heb-2016-topic1-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2016-topic1-mobile.js"></script>
+  <p align="center">2016 - 1st Topic (Deep Learning Optimization)</p>
+  <div class="div-only-mobile" id="heb-2016-topic2-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2016-topic2-mobile.js"></script>
+  <p align="center">2016 - 2nd Topic (Deep Learning Models)</p>
+</div>
+
+<div class="desk">
+  <div class="row" id="desk">
+    <div class="column" id="desk">
+      <div class="desk" id="heb-2017-topic1"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2017-topic1.js"></script>
+      <p align="center">2017 - 1st Topic (Deep Learning Optimization)</p>
+    </div>
+    <div class="column">
+      <div class="desk" id="heb-2017-topic2"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2017-topic2.js"></script>
+      <p align="center">2017 - 2nd Topic (Deep Learning Models)</p>
+    </div>  
+  </div>
+</div>
+<div class="div-only-mobile">
+  <div class="div-only-mobile" id="heb-2017-topic1-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2017-topic1-mobile.js"></script>
+  <p align="center">2017 - 1st Topic (Deep Learning Optimization)</p>
+  <div class="div-only-mobile" id="heb-2017-topic2-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2017-topic2-mobile.js"></script>
+  <p align="center">2017 - 2nd Topic (Deep Learning Models)</p>
+</div>
+
+<div class="desk">
+  <div class="row" id="desk">
+    <div class="column" id="desk">
+      <div class="desk" id="heb-2018-topic1"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2018-topic1.js"></script>
+      <p align="center">2018 - 1st Topic (Deep Learning Optimization)</p>
+    </div>
+    <div class="column">
+      <div class="desk" id="heb-2018-topic2"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2018-topic2.js"></script>
+      <p align="center">2018 - 2nd Topic (Deep Learning Models)</p>
+    </div>  
+  </div>
+</div>
+<div class="div-only-mobile">
+  <div class="div-only-mobile" id="heb-2018-topic1-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2018-topic1-mobile.js"></script>
+  <p align="center">2018 - 1st Topic (Deep Learning Optimization)</p>
+  <div class="div-only-mobile" id="heb-2018-topic2-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2018-topic2-mobile.js"></script>
+  <p align="center">2018 - 2nd Topic (Deep Learning Models)</p>
+</div>
+
+<div class="desk">
+  <div class="row" id="desk">
+    <div class="column" id="desk">
+      <div class="desk" id="heb-2019-topic1"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2019-topic1.js"></script>
+      <p align="center">2019 - 1st Topic (Deep Learning Optimization)</p>
+    </div>
+    <div class="column">
+      <div class="desk" id="heb-2019-topic2"></div>
+      <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2019-topic2.js"></script>
+      <p align="center">2019 - 2nd Topic (Deep Learning Models)</p>
+    </div>  
+  </div>
+</div>
+<div class="div-only-mobile">
+  <div class="div-only-mobile" id="heb-2019-topic1-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2019-topic1-mobile.js"></script>
+  <p align="center">2019 - 1st Topic (Deep Learning Optimization)</p>
+  <div class="div-only-mobile" id="heb-2019-topic2-mobile"></div>
+  <script src="http://localhost:4000/assets/posts/neurips-analysis/heb-2019-topic2-mobile.js"></script>
+  <p align="center">2019 - 2nd Topic (Deep Learning Models)</p>
+</div>
 </div>
   </div>
 </div>
@@ -136,7 +450,7 @@
     </div>
   <!-- 
     
-    <script src='/assets/bundle.js?1598110296820623000' type='text/javascript'></script>
+    <script src='/assets/bundle.js?1600070467926793000' type='text/javascript'></script>
    -->
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2365015-1"></script>
