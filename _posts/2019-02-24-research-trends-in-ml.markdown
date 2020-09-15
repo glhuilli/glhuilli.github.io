@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Machine Learning research from 2009-2019"
+title:  "Co-authorship analysis at institutions level on Machine Learning research from 2009-2019"
 date:   2020-09-14
 description: This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019
 categories: DataAnalysis, MachineLearning
@@ -14,13 +14,13 @@ invert: true
 
 This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [[NeurIPS crawler](https://github.com/glhuilli/neurips_crawler)]. Originally I wanted to process and analyze all papers from 1987 to this date as I have all the data, but I decided to focus just in the last ten years of data.
 
-This post's primary goal was to explore `D3.js` more extensively using some well-known data from a different angle. I know there are probably dozens of blog posts and Kaggle scripts that do a comprehensive analysis of NeurIPs data. I haven't seen an analysis for co-authorship on main topics from an Institution's perspective.
+This post's primary goal was to explore `D3.js` more extensively using some well-known data from a different angle. I know there are probably dozens of blog posts and Kaggle scripts that do a comprehensive analysis of NeurIPs data, but I haven't seen an analysis for co-authorship on main topics from an Institution's perspective.
 
-This post's secondary goal was to put much of the processing code into a new python package that I called [papeles](https://github.com/glhuilli/papeles). The word `papeles` is a literal translation for `papers` into Spanish. Most of this code is not exceptionally interesting, but it was worth cleaning and refactoring into a lightweight package for others (or my future self) to use. This package is very experimental, so I did not include unit tests and can be significantly improved. If you want to add something, you are more than welcome to send pull requests or create issues. I'll be checking on those regularly.
+This post's secondary goal was to put much of the processing code into a new python package that I called [papeles](https://github.com/glhuilli/papeles). The word `papeles` is a literal translation for `papers` into Spanish. Most of this code is not exceptionally interesting, but it was worth cleaning and refactoring into a lightweight package for others (or my future self) to use. This package is very experimental, so I did not include unit tests and it can be significantly improved. If you want to improve something, you are more than welcome to send pull requests or create issues. I'll be checking on those regularly.
 
 ## How institutions interact with each other in machine learning research?
 
-To answer this question, I pulled all the papers raw content using the `papeles` package and extracted the first page (or so) for each paper, focusing exclusively on the first section just before the abstract. From this section, `papeles` has some tooling to identify which institutions are mentioned and find a relationship between all authors in said paper.
+To answer this question, I pulled all the papers raw content using the `papeles` package and extracted the first page (or so) for each paper, focusing exclusively on the first section just before the abstract. From this section, I was able to identify which institutions are mentioned with some tooling I added to `papeles`. Then, using all institutions extracted per paper, it was easy to create a graph representation of the co-authors (at the institutions level) for each paper: Each institution is a node, and for each time I found two institutions as co-authors, I created an edge (or increased the weight) between each node. 
 
 When visualizing graphs, most examples I've seen are using the graph's force-directed representation (e.g., [this one](https://observablehq.com/@d3/force-directed-graph)). I tried this and got a very messy view that wouldn't provide any visualization insight. Looking at interconnected institutions in a hierarchical edge bundling graph offers a sweet spot between observing which institutions are highly connected and who, in a summarized way, can be enriched with extra signals by hovering the mouse over each institution.
 
@@ -32,9 +32,50 @@ When visualizing graphs, most examples I've seen are using the graph's force-dir
 <div id='hierarchical-edge-bundling'></div>
 <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/hierarchical-edge-bundling.js"></script>
 
+In this plot, red line means that the origin node has a lower degree than the destination node, and blue line means that it has a higher degree. Also, note that I'm not using all nodes, this is just a subset filtering the original graph by all nodes with at least 20 papers in NeurIPS.
+
+The general properties of the graph are the following: 
+
+```
+Number of nodes: 63
+Number of edges: 723
+Average degree:  22.9524
+```
+
 ## Are there institutions that mostly publish with a specific group?
 
 For this, I'm using the well known [Louvain method](https://sites.google.com/site/findcommunities/) for community detection in graphs. For more details about this method, please check [[Blonder et al. (2008)]](https://arxiv.org/abs/0803.0476).
+
+When applying this method to the graph, there are at least 8 clusters that have enough information to be interesting (more details in the script). Checking for example the first cluster (as presented below), it's interesting to see that it reflects a mainly european institutions, with some exceptions. More in-depth analysis can be done to understand why these exceptions are clustered together with european institutions and not with other similar or regional institutions (e.g. Kyoto University, City University of Hong Kong, University of Sidney, Université de Montreal, and École Polytechnique de Montreal). Note that Twitter and Google have strong precense in the U.K. so it's not surprising to see a strong co-authorship dependency with other U.K. institutions. 
+
+```['university of oxford',
+ 'deepmind',
+ 'universite de montreal',
+ 'university of cambridge',
+ 'google brain',
+ 'university of edinburgh',
+ 'university of british columbia',
+ 'university of california los angeles',
+ 'alan turing institute',
+ 'max planck institute for intelligent systems',
+ 'city university of hong kong',
+ 'university of texas at arlington',
+ 'university college london',
+ 'technical university of munich',
+ 'university of bristol',
+ 'uber',
+ 'university of virginia',
+ 'technical university of denmark',
+ 'imperial college london',
+ 'university of sydney',
+ 'technische universitat berlin',
+ 'university of southampton',
+ 'university of freiburg',
+ 'ecole polytechnique de montreal',
+ 'twitter',
+ 'ghent university',
+ 'university of warwick']
+ ```
 
 To visualize the results, I decided to use a `TreeMap` based on the results published in [[Mylavanparu et al. (2019)]](http://users.umiacs.umd.edu/~elm/projects/ranked-list/ranked-list.pdf), which at the same time allows us to inspect visually other properties of the network, in particular centrality measures. These measures provide insights into how institutions are connected to other nodes in the graph.
 
@@ -51,7 +92,7 @@ To visualize the results, I decided to use a `TreeMap` based on the results publ
 </form>
 <script src="{{ base.url | prepend: site.url }}/assets/posts/neurips-analysis/treemap.js"></script>
 
-In the `TreeMap`, you can see painted with six different colors that correspond to the top six communities identified in the co-authoring institution's network. Most of the centrality measures show very similar behavior.
+In the `TreeMap`, you can see painted with different colors that correspond to the top communities (ranked by number of nodes) identified in the co-authoring institution's network. Most of the centrality measures show very similar behavior.
 
 
 ## What are the trends of ML research?
