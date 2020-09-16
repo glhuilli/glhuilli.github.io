@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Co-authorship analysis at institutions level on Machine Learning research from 2009-2019"
+title:  "Institutions co-authorship analysis on NeurIPS from 2009-2019"
 date:   2020-09-14
 description: This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019
 categories: DataAnalysis, MachineLearning
@@ -46,7 +46,7 @@ Average degree:  22.9524
 
 For this, I'm using the well known [Louvain method](https://sites.google.com/site/findcommunities/) for community detection in graphs. For more details about this method, please check [[Blonder et al. (2008)]](https://arxiv.org/abs/0803.0476).
 
-When applying this method to the graph, there are at least 8 clusters that have enough information to be interesting (more details in the script). Checking for example the first cluster (as presented below), it's interesting to see that it reflects a mainly european institutions, with some exceptions. More in-depth analysis can be done to understand why these exceptions are clustered together with european institutions and not with other similar or regional institutions (e.g. Kyoto University, City University of Hong Kong, University of Sidney, Université de Montreal, and École Polytechnique de Montreal). Note that Twitter and Google have strong precense in the U.K. so it's not surprising to see a strong co-authorship dependency with other U.K. institutions. 
+When applying this method to the graph, there are at least 8 clusters that have enough information to be interesting (more details in the script). Checking for example the first cluster (as presented below), it's interesting to see that it reflects a mainly european institutions, with some exceptions. More in-depth analysis can be done to understand why these exceptions are clustered together with european institutions and not with other similar or regional institutions (e.g. Kyoto University, City University of Hong Kong, University of Sidney, Université de Montreal, and École Polytechnique de Montreal). Note that Twitter and Google have strong precense in the U.K. so it's not surprising to see a strong co-authorship dependency with other U.K. institutions, however, it's very interesting to see Uber in this particular cluster.
 
 ```['university of oxford',
  'deepmind',
@@ -95,13 +95,13 @@ To visualize the results, I decided to use a `TreeMap` based on the results publ
 In the `TreeMap`, you can see painted with different colors that correspond to the top communities (ranked by number of nodes) identified in the co-authoring institution's network. Most of the centrality measures show very similar behavior.
 
 
-## What are the trends of ML research?
+## What are the current trends of ML research?
 
-The answer to this question is, for sure, well known. Anyone with some degree of understanding about this area should be able to answer `Deep Learning`. However, while Deep Learning research captures all the mainstream attention, other fields are exciting to keep an eye on. For example, `Adversarial Machine Learning` is an area of research that has gotten some traction over the last few years. Yes, it has been fueled by Deep Learning and Generative Adversarial Networks (aka GANs), but back in the day (~10 years ago), this was very fringe and pretty much inexistent (trust me, [I know](https://www.kdd.org/exploration_files/v11-2-18-CSI-LHuillier.pdf)).
+The answer to this question is very well known. Anyone with some degree of understanding about ML should be able to answer this with `Deep Learning`. However, while `Deep Learning` research captures all the mainstream attention, there are other exciting areas to keep an eye on. For example, `Adversarial Machine Learning` is an area of research that has gotten some traction over the last few years. It has been fueled by Deep Learning and Generative Adversarial Networks (aka GANs), but ~10 years ago this was a very fringe and pretty much inexistent research area.
 
-Also, I find it very interesting what is going on with topics that were very hot +10 years ago and today are almost abandoned. "Classical" machine learning models like Kernel methods or Graphical models are rarely mentioned. They are far from being mentioned and investigated to the level that Neural Networks and Deep Learning are being researched today.
+Also, I find it very interesting what is going on with topics that were very hot +10 years ago and today are almost abandoned. "Classical" machine learning models like Kernel methods or Graphical models are rarely mentioned these days, far less mentioned than more popular research topics lie Neural Networks and Deep Learning.
 
-As listing all the possible research topics in machine learning could be a daunting task, I used some fairly simple non supervised NLP models that helped me listing the top 100 topics in ML. For this, I created first a list of keywords from the abstracts from all papers. Then, while just keeping the keywords that are present more than N times across topics in a particular year, I used a non-supervised topic modeling tool called Latent Dirichlet Allocation (particularly the one available in the `gensim` package). All this code is available in the `papeles` package, and examples on how to use it is available in [this script](https://github.com/glhuilli/papeles/blob/master/scripts/papeles%20-%20keywords%20topics%20analysis.ipynb).
+Listing all the possible research topics in machine learning could be a daunting task, so I used a fairly simple non supervised NLP model to extract this automatically from the research papers with the goal of generating the top 100 topics in ML. For this, I created first a list of keywords from the abstracts from all papers. Then, while just keeping the keywords that are present more than N times across topics in a particular year, I used a non-supervised topic modeling tool called Latent Dirichlet Allocation (particularly the one available in the `gensim` package). All this code is available in the `papeles` package, and examples on how to use it is available in [this script](https://github.com/glhuilli/papeles/blob/master/scripts/papeles%20-%20keywords%20topics%20analysis.ipynb).
 
 <div>
 <img src='{{ site.baseurl }}/assets/posts/neurips-analysis/neurips-keywords-word-cloud.png' alt='Wordcloud with keywords per year'>
@@ -112,7 +112,7 @@ As listing all the possible research topics in machine learning could be a daunt
 
 In the following, you can see how institutions have been increasingly collaborating as NeurIPS got more popular. This is most likely the effect of having a larger volume of papers in recent years (higher volume of papers means a probability of institution collaborating).
 
-Please check the [script](http://localhost:8888/notebooks/papeles%20-%20institutions%20and%20topics%20analysis.ipynb) in `papeles` for details on how the topics were computed and how the names were assigned.
+Please check the [script](https://github.com/glhuilli/papeles/blob/master/scripts/papeles%20-%20institutions%20and%20topics%20analysis.ipynb) in `papeles` for details on how the topics were computed and how the names were assigned.
 
 Several follow-up questions can be done by using this dataset, analysis tool, and visualization strategies, but I'll leave that for another time. Questions like "which are the institutions that have co-authoring papers the most together over time" or "which are the institutions with more influence on topics like ConvNets" could be done quickly using `papeles` and the set of scripts available.
 
