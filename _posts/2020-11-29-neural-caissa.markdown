@@ -16,8 +16,8 @@ invert: true
 `Neural Caissa` is yet another attempt to build a neural network improved Chess bot (Caissa is the [goddess of Chess](https://en.wikipedia.org/wiki/Ca%C3%AFssa)). For more details on building and playing with the Chess bot or playing Chess puzzles, you can go to the [NeuralCaissa](https://github.com/glhuilli/neural_caissa) README and check the code available on Github.
 
 <div class='got'>
-<img style="margin: 10px auto;" width="450" src='{{ site.baseurl }}/assets/posts/neural-caissa/chess-board.png' alt='Example of game between human vs NeuralCaissa.'>
-<p align="center">Game between human vs NeuralCaissa</p>
+  <img style="margin: 10px auto;" width="450" src='{{ site.baseurl }}/assets/posts/neural-caissa/chess-board.png' alt='Example of game between human vs NeuralCaissa.'>
+  <p align="center">Game between human vs NeuralCaissa</p>
 </div>
 
 How does NeuralCaissa work?
@@ -102,7 +102,6 @@ Besides playing Chess against the bot, you can also play "Chess puzzles", where 
 
 
 {% if page.comments %}
-<!-- <script id="dsq-count-scr" src="//glhuilli.disqus.com/count.js" async></script> -->
 <div id="disqus_thread"></div>
 <script>
 var disqus_config = function () {
