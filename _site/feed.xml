@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-08-19T02:00:28-10:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Neural Caissa: Building a Chess bot with Deep Learning</title><link href="http://localhost:4000/neural-caissa.html" rel="alternate" type="text/html" title="Neural Caissa: Building a Chess bot with Deep Learning" /><published>2020-12-20T00:00:00-10:00</published><updated>2020-12-20T00:00:00-10:00</updated><id>http://localhost:4000/neural-caissa</id><content type="html" xml:base="http://localhost:4000/neural-caissa.html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Neural Caissa&lt;/code&gt; is yet another attempt to build a neural network improved Chess bot (Caissa is the &lt;a href=&quot;https://en.wikipedia.org/wiki/Ca%C3%AFssa&quot;&gt;goddess of Chess&lt;/a&gt;). For more details on building and playing with the Chess bot or playing Chess puzzles, you can go to the &lt;a href=&quot;https://github.com/glhuilli/neural_caissa&quot;&gt;NeuralCaissa&lt;/a&gt; README and check the code available on Github.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-08-19T02:51:25-10:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Data Science / Machine Learning Engineering</title><subtitle>Gaston L'Huillier's personal website.</subtitle><entry><title type="html">Neural Caissa: Building a Chess bot with Deep Learning</title><link href="http://localhost:4000/neural-caissa.html" rel="alternate" type="text/html" title="Neural Caissa: Building a Chess bot with Deep Learning" /><published>2020-12-20T00:00:00-10:00</published><updated>2020-12-20T00:00:00-10:00</updated><id>http://localhost:4000/neural-caissa</id><content type="html" xml:base="http://localhost:4000/neural-caissa.html">&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Neural Caissa&lt;/code&gt; is yet another attempt to build a neural network improved Chess bot (Caissa is the &lt;a href=&quot;https://en.wikipedia.org/wiki/Ca%C3%AFssa&quot;&gt;goddess of Chess&lt;/a&gt;). For more details on building and playing with the Chess bot or playing Chess puzzles, you can go to the &lt;a href=&quot;https://github.com/glhuilli/neural_caissa&quot;&gt;NeuralCaissa&lt;/a&gt; README and check the code available on Github.&lt;/p&gt;
 
 &lt;div class=&quot;got&quot;&gt;
   &lt;img style=&quot;margin: 10px auto;&quot; width=&quot;450&quot; src=&quot;/assets/posts/neural-caissa/chess-board.png&quot; alt=&quot;Example of game between human vs NeuralCaissa.&quot; /&gt;
@@ -15,23 +15,23 @@
   &lt;li&gt;The next state that has higher score is used as the next move (&lt;a href=&quot;https://github.com/glhuilli/neural_caissa/blob/main/neural_caissa/board/move.py#L19&quot;&gt;code&lt;/a&gt;).&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;The current &lt;code class=&quot;highlighter-rouge&quot;&gt;valuators&lt;/code&gt; available are two: a baseline and a neural &lt;code class=&quot;highlighter-rouge&quot;&gt;valuator&lt;/code&gt;. The baseline &lt;code class=&quot;highlighter-rouge&quot;&gt;valuator&lt;/code&gt; is fairly simple but works surprisingly well. The current formula implemented is the following:&lt;/p&gt;
+&lt;p&gt;The current &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;valuators&lt;/code&gt; available are two: a baseline and a neural &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;valuator&lt;/code&gt;. The baseline &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;valuator&lt;/code&gt; is fairly simple but works surprisingly well. The current formula implemented is the following:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;value = SUM(piece in white)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;value = SUM(piece in white)
         - SUM(piece in black)
         + 0.1 * (White pieces mobility score)
         - 0.1 * (Black pieces mobility score)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The neural &lt;code class=&quot;highlighter-rouge&quot;&gt;valuator&lt;/code&gt; is a scoring function trained using a deep learning model built in &lt;code class=&quot;highlighter-rouge&quot;&gt;PyTorch&lt;/code&gt;. This scoring function is currently built using a series of ConvNets, which are then mapped into a rectified linear activation function (ReLU) and evaluated using a &lt;script type=&quot;math/tex&quot;&gt;tanh \rightarrow [-1, +1]&lt;/script&gt;. The model was trained using &lt;code class=&quot;highlighter-rouge&quot;&gt;Adam&lt;/code&gt; as optimizer, &lt;code class=&quot;highlighter-rouge&quot;&gt;MSE&lt;/code&gt; as the loss function, mini-batches of size 256, and 100 epochs.&lt;/p&gt;
+&lt;p&gt;The neural &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;valuator&lt;/code&gt; is a scoring function trained using a deep learning model built in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PyTorch&lt;/code&gt;. This scoring function is currently built using a series of ConvNets, which are then mapped into a rectified linear activation function (ReLU) and evaluated using a \(tanh \rightarrow [-1, +1]\). The model was trained using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adam&lt;/code&gt; as optimizer, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MSE&lt;/code&gt; as the loss function, mini-batches of size 256, and 100 epochs.&lt;/p&gt;
 
-&lt;p&gt;The input is determined by a very simple and naive serialization strategy: each state is represented as a tensor with binary variables (12 x (8 x 8) variables). For each piece &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; (&lt;script type=&quot;math/tex&quot;&gt;k \in [1, 12]&lt;/script&gt;), there’s a 1 if piece &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; is in position &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; else 0 (&lt;script type=&quot;math/tex&quot;&gt;i \in [1, 64]&lt;/script&gt;). The target label is either &lt;script type=&quot;math/tex&quot;&gt;+1&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;-1&lt;/script&gt; depending on whether the player that is moving in given state won the game or not.&lt;/p&gt;
+&lt;p&gt;The input is determined by a very simple and naive serialization strategy: each state is represented as a tensor with binary variables (12 x (8 x 8) variables). For each piece \(k\) (\(k \in [1, 12]\)), there’s a 1 if piece \(k\) is in position \(i\) else 0 (\(i \in [1, 64]\)). The target label is either \(+1\) or \(-1\) depending on whether the player that is moving in given state won the game or not.&lt;/p&gt;
 
-&lt;p&gt;The data used to train this model was downloaded from &lt;a href=&quot;http://caissabase.co.uk/&quot;&gt;caissabase&lt;/a&gt;. All the code used to pre-process and serialize &lt;code class=&quot;highlighter-rouge&quot;&gt;caissabase&lt;/code&gt; (which is in the &lt;a href=&quot;https://en.wikipedia.org/wiki/Portable_Game_Notation&quot;&gt;Portable Game Notation&lt;/a&gt;) is available in &lt;a href=&quot;https://github.com/glhuilli/neural_caissa/blob/main/neural_caissa/data/generate.py&quot;&gt;NeuralCaissa&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The data used to train this model was downloaded from &lt;a href=&quot;http://caissabase.co.uk/&quot;&gt;caissabase&lt;/a&gt;. All the code used to pre-process and serialize &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;caissabase&lt;/code&gt; (which is in the &lt;a href=&quot;https://en.wikipedia.org/wiki/Portable_Game_Notation&quot;&gt;Portable Game Notation&lt;/a&gt;) is available in &lt;a href=&quot;https://github.com/glhuilli/neural_caissa/blob/main/neural_caissa/data/generate.py&quot;&gt;NeuralCaissa&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;A more detailed description of the model is summarized in the following table. The total number of parameters is fairly small.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;----------------------------------------------------------------
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
 ================================================================
             Conv2d-1             [-1, 16, 8, 8]           1,744
@@ -96,15 +96,15 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 &lt;/script&gt;
 
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">Neural Caissa is yet another attempt to build a neural network improved Chess bot (Caissa is the goddess of Chess). For more details on building and playing with the Chess bot or playing Chess puzzles, you can go to the NeuralCaissa README and check the code available on Github.</summary></entry><entry><title type="html">Institutions co-authorship analysis on NeurIPS from 2009-2019</title><link href="http://localhost:4000/research-trends-in-ml.html" rel="alternate" type="text/html" title="Institutions co-authorship analysis on NeurIPS from 2009-2019" /><published>2020-09-14T00:00:00-10:00</published><updated>2020-09-14T00:00:00-10:00</updated><id>http://localhost:4000/research-trends-in-ml</id><content type="html" xml:base="http://localhost:4000/research-trends-in-ml.html">&lt;p&gt;This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [&lt;a href=&quot;https://github.com/glhuilli/neurips_crawler&quot;&gt;NeurIPS crawler&lt;/a&gt;]. Originally I wanted to process and analyze all papers from 1987 to this date as I have all the data, but I decided to focus just in the last ten years of data.&lt;/p&gt;
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><category term="Python," /><category term="Javascript" /><summary type="html">Neural Caissa is yet another attempt to build a neural network improved Chess bot (Caissa is the goddess of Chess). For more details on building and playing with the Chess bot or playing Chess puzzles, you can go to the NeuralCaissa README and check the code available on Github.</summary></entry><entry><title type="html">Institutions co-authorship analysis on NeurIPS from 2009-2019</title><link href="http://localhost:4000/research-trends-in-ml.html" rel="alternate" type="text/html" title="Institutions co-authorship analysis on NeurIPS from 2009-2019" /><published>2020-09-14T00:00:00-10:00</published><updated>2020-09-14T00:00:00-10:00</updated><id>http://localhost:4000/research-trends-in-ml</id><content type="html" xml:base="http://localhost:4000/research-trends-in-ml.html">&lt;p&gt;This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [&lt;a href=&quot;https://github.com/glhuilli/neurips_crawler&quot;&gt;NeurIPS crawler&lt;/a&gt;]. Originally I wanted to process and analyze all papers from 1987 to this date as I have all the data, but I decided to focus just in the last ten years of data.&lt;/p&gt;
 
-&lt;p&gt;This post’s primary goal was to explore &lt;code class=&quot;highlighter-rouge&quot;&gt;D3.js&lt;/code&gt; more extensively using some well-known data from a different angle. I know there are probably dozens of blog posts and Kaggle scripts that do a comprehensive analysis of NeurIPs data, but I haven’t seen an analysis for co-authorship on main topics from an Institution’s perspective.&lt;/p&gt;
+&lt;p&gt;This post’s primary goal was to explore &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;D3.js&lt;/code&gt; more extensively using some well-known data from a different angle. I know there are probably dozens of blog posts and Kaggle scripts that do a comprehensive analysis of NeurIPs data, but I haven’t seen an analysis for co-authorship on main topics from an Institution’s perspective.&lt;/p&gt;
 
-&lt;p&gt;This post’s secondary goal was to put much of the processing code into a new python package that I called &lt;a href=&quot;https://github.com/glhuilli/papeles&quot;&gt;papeles&lt;/a&gt;. The word &lt;code class=&quot;highlighter-rouge&quot;&gt;papeles&lt;/code&gt; is a literal translation for &lt;code class=&quot;highlighter-rouge&quot;&gt;papers&lt;/code&gt; into Spanish. Most of this code is not exceptionally interesting, but it was worth cleaning and refactoring into a lightweight package for others (or my future self) to use. This package is very experimental, so I did not include unit tests and it can be significantly improved. If you want to improve something, you are more than welcome to send pull requests or create issues. I’ll be checking on those regularly.&lt;/p&gt;
+&lt;p&gt;This post’s secondary goal was to put much of the processing code into a new python package that I called &lt;a href=&quot;https://github.com/glhuilli/papeles&quot;&gt;papeles&lt;/a&gt;. The word &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;papeles&lt;/code&gt; is a literal translation for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;papers&lt;/code&gt; into Spanish. Most of this code is not exceptionally interesting, but it was worth cleaning and refactoring into a lightweight package for others (or my future self) to use. This package is very experimental, so I did not include unit tests and it can be significantly improved. If you want to improve something, you are more than welcome to send pull requests or create issues. I’ll be checking on those regularly.&lt;/p&gt;
 
 &lt;h2 id=&quot;how-institutions-interact-with-each-other-in-machine-learning-research&quot;&gt;How institutions interact with each other in machine learning research?&lt;/h2&gt;
 
-&lt;p&gt;To answer this question, I pulled all the papers raw content using the &lt;code class=&quot;highlighter-rouge&quot;&gt;papeles&lt;/code&gt; package and extracted the first page (or so) for each paper, focusing exclusively on the first section just before the abstract. From this section, I was able to identify which institutions are mentioned with some tooling I added to &lt;code class=&quot;highlighter-rouge&quot;&gt;papeles&lt;/code&gt;. Then, using all institutions extracted per paper, it was easy to create a graph representation of the co-authors (at the institutions level) for each paper: Each institution is a node, and for each time I found two institutions as co-authors, I created an edge (or increased the weight) between each node.&lt;/p&gt;
+&lt;p&gt;To answer this question, I pulled all the papers raw content using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;papeles&lt;/code&gt; package and extracted the first page (or so) for each paper, focusing exclusively on the first section just before the abstract. From this section, I was able to identify which institutions are mentioned with some tooling I added to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;papeles&lt;/code&gt;. Then, using all institutions extracted per paper, it was easy to create a graph representation of the co-authors (at the institutions level) for each paper: Each institution is a node, and for each time I found two institutions as co-authors, I created an edge (or increased the weight) between each node.&lt;/p&gt;
 
 &lt;p&gt;When visualizing graphs, most examples I’ve seen are using the graph’s force-directed representation (e.g., &lt;a href=&quot;https://observablehq.com/@d3/force-directed-graph&quot;&gt;this one&lt;/a&gt;). I tried this and got a very messy view that wouldn’t provide any visualization insight. Looking at interconnected institutions in a hierarchical edge bundling graph offers a sweet spot between observing which institutions are highly connected and who, in a summarized way, can be enriched with extra signals by hovering the mouse over each institution.&lt;/p&gt;
 
@@ -122,7 +122,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 &lt;p&gt;The general properties of the graph are the following:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Number of nodes: 63
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Number of nodes: 63
 Number of edges: 723
 Average degree:  22.9524
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -133,7 +133,7 @@ Average degree:  22.9524
 
 &lt;p&gt;When applying this method to the graph, there are at least 8 clusters that have enough information to be interesting (more details in the script). Checking for example the first cluster (as presented below), it’s interesting to see that it reflects a mainly european institutions, with some exceptions. More in-depth analysis can be done to understand why these exceptions are clustered together with european institutions and not with other similar or regional institutions (e.g. Kyoto University, City University of Hong Kong, University of Sidney, Université de Montreal, and École Polytechnique de Montreal). Note that Twitter and Google have strong precense in the U.K. so it’s not surprising to see a strong co-authorship dependency with other U.K. institutions, however, it’s very interesting to see Uber in this particular cluster.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;['university of oxford',
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;['university of oxford',
  'deepmind',
  'universite de montreal',
  'university of cambridge',
@@ -162,7 +162,7 @@ Average degree:  22.9524
  'university of warwick']
 &lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;To visualize the results, I decided to use a &lt;code class=&quot;highlighter-rouge&quot;&gt;TreeMap&lt;/code&gt; based on the results published in &lt;a href=&quot;http://users.umiacs.umd.edu/~elm/projects/ranked-list/ranked-list.pdf&quot;&gt;[Mylavanparu et al. (2019)]&lt;/a&gt;, which at the same time allows us to inspect visually other properties of the network, in particular centrality measures. These measures provide insights into how institutions are connected to other nodes in the graph.&lt;/p&gt;
+&lt;p&gt;To visualize the results, I decided to use a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TreeMap&lt;/code&gt; based on the results published in &lt;a href=&quot;http://users.umiacs.umd.edu/~elm/projects/ranked-list/ranked-list.pdf&quot;&gt;[Mylavanparu et al. (2019)]&lt;/a&gt;, which at the same time allows us to inspect visually other properties of the network, in particular centrality measures. These measures provide insights into how institutions are connected to other nodes in the graph.&lt;/p&gt;
 
 &lt;svg width=&quot;760&quot; height=&quot;470&quot; id=&quot;flare_treemap&quot;&gt;&lt;/svg&gt;
 &lt;form&gt;
@@ -177,15 +177,15 @@ Average degree:  22.9524
 &lt;/form&gt;
 &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/treemap.js&quot;&gt;&lt;/script&gt;
 
-&lt;p&gt;In the &lt;code class=&quot;highlighter-rouge&quot;&gt;TreeMap&lt;/code&gt;, you can see painted with different colors that correspond to the top communities (ranked by number of nodes) identified in the co-authoring institution’s network. Most of the centrality measures show very similar behavior.&lt;/p&gt;
+&lt;p&gt;In the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TreeMap&lt;/code&gt;, you can see painted with different colors that correspond to the top communities (ranked by number of nodes) identified in the co-authoring institution’s network. Most of the centrality measures show very similar behavior.&lt;/p&gt;
 
 &lt;h2 id=&quot;what-are-the-current-trends-of-ml-research&quot;&gt;What are the current trends of ML research?&lt;/h2&gt;
 
-&lt;p&gt;The answer to this question is very well known. Anyone with some degree of understanding about ML should be able to answer this with &lt;code class=&quot;highlighter-rouge&quot;&gt;Deep Learning&lt;/code&gt;. However, while &lt;code class=&quot;highlighter-rouge&quot;&gt;Deep Learning&lt;/code&gt; research captures all the mainstream attention, there are other exciting areas to keep an eye on. For example, &lt;code class=&quot;highlighter-rouge&quot;&gt;Adversarial Machine Learning&lt;/code&gt; is an area of research that has gotten some traction over the last few years. It has been fueled by Deep Learning and Generative Adversarial Networks (aka GANs), but ~10 years ago this was a very fringe and pretty much inexistent research area.&lt;/p&gt;
+&lt;p&gt;The answer to this question is very well known. Anyone with some degree of understanding about ML should be able to answer this with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Deep Learning&lt;/code&gt;. However, while &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Deep Learning&lt;/code&gt; research captures all the mainstream attention, there are other exciting areas to keep an eye on. For example, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adversarial Machine Learning&lt;/code&gt; is an area of research that has gotten some traction over the last few years. It has been fueled by Deep Learning and Generative Adversarial Networks (aka GANs), but ~10 years ago this was a very fringe and pretty much inexistent research area.&lt;/p&gt;
 
 &lt;p&gt;Also, I find it very interesting what is going on with topics that were very hot +10 years ago and today are almost abandoned. “Classical” machine learning models like Kernel methods or Graphical models are rarely mentioned these days, far less mentioned than more popular research topics lie Neural Networks and Deep Learning.&lt;/p&gt;
 
-&lt;p&gt;Listing all the possible research topics in machine learning could be a daunting task, so I used a fairly simple non supervised NLP model to extract this automatically from the research papers with the goal of generating the top 100 topics in ML. For this, I created first a list of keywords from the abstracts from all papers. Then, while just keeping the keywords that are present more than N times across topics in a particular year, I used a non-supervised topic modeling tool called Latent Dirichlet Allocation (particularly the one available in the &lt;code class=&quot;highlighter-rouge&quot;&gt;gensim&lt;/code&gt; package). All this code is available in the &lt;code class=&quot;highlighter-rouge&quot;&gt;papeles&lt;/code&gt; package, and examples on how to use it is available in &lt;a href=&quot;https://github.com/glhuilli/papeles/blob/master/scripts/papeles%20-%20keywords%20topics%20analysis.ipynb&quot;&gt;this script&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Listing all the possible research topics in machine learning could be a daunting task, so I used a fairly simple non supervised NLP model to extract this automatically from the research papers with the goal of generating the top 100 topics in ML. For this, I created first a list of keywords from the abstracts from all papers. Then, while just keeping the keywords that are present more than N times across topics in a particular year, I used a non-supervised topic modeling tool called Latent Dirichlet Allocation (particularly the one available in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gensim&lt;/code&gt; package). All this code is available in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;papeles&lt;/code&gt; package, and examples on how to use it is available in &lt;a href=&quot;https://github.com/glhuilli/papeles/blob/master/scripts/papeles%20-%20keywords%20topics%20analysis.ipynb&quot;&gt;this script&lt;/a&gt;.&lt;/p&gt;
 
 &lt;div&gt;
 &lt;img src=&quot;/assets/posts/neurips-analysis/neurips-keywords-word-cloud.png&quot; alt=&quot;Wordcloud with keywords per year&quot; /&gt;
@@ -195,11 +195,11 @@ Average degree:  22.9524
 
 &lt;p&gt;In the following, you can see how institutions have been increasingly collaborating as NeurIPS got more popular. This is most likely the effect of having a larger volume of papers in recent years (higher volume of papers means a probability of institution collaborating).&lt;/p&gt;
 
-&lt;p&gt;Please check the &lt;a href=&quot;https://github.com/glhuilli/papeles/blob/master/scripts/papeles%20-%20institutions%20and%20topics%20analysis.ipynb&quot;&gt;script&lt;/a&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;papeles&lt;/code&gt; for details on how the topics were computed and how the names were assigned.&lt;/p&gt;
+&lt;p&gt;Please check the &lt;a href=&quot;https://github.com/glhuilli/papeles/blob/master/scripts/papeles%20-%20institutions%20and%20topics%20analysis.ipynb&quot;&gt;script&lt;/a&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;papeles&lt;/code&gt; for details on how the topics were computed and how the names were assigned.&lt;/p&gt;
 
-&lt;p&gt;Several follow-up questions can be done by using this dataset, analysis tool, and visualization strategies, but I’ll leave that for another time. Questions like “which are the institutions that have co-authoring papers the most together over time” or “which are the institutions with more influence on topics like ConvNets” could be done quickly using &lt;code class=&quot;highlighter-rouge&quot;&gt;papeles&lt;/code&gt; and the set of scripts available.&lt;/p&gt;
+&lt;p&gt;Several follow-up questions can be done by using this dataset, analysis tool, and visualization strategies, but I’ll leave that for another time. Questions like “which are the institutions that have co-authoring papers the most together over time” or “which are the institutions with more influence on topics like ConvNets” could be done quickly using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;papeles&lt;/code&gt; and the set of scripts available.&lt;/p&gt;
 
-&lt;p&gt;Interestingly, the answer to the first question is &lt;code class=&quot;highlighter-rouge&quot;&gt;University of Washington&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Microsoft Research&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Interestingly, the answer to the first question is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;University of Washington&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Microsoft Research&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;desk&quot;&gt;
   &lt;div class=&quot;row&quot; id=&quot;desk&quot;&gt;
@@ -452,20 +452,20 @@ Average degree:  22.9524
   &lt;div class=&quot;div-only-mobile&quot; id=&quot;heb-2019-topic2-mobile&quot;&gt;&lt;/div&gt;
   &lt;script src=&quot;http://localhost:4000/assets/posts/neurips-analysis/heb-2019-topic2-mobile.js&quot;&gt;&lt;/script&gt;
   &lt;p align=&quot;center&quot;&gt;2019 - 2nd Topic (Deep Learning Models)&lt;/p&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [NeurIPS crawler]. Originally I wanted to process and analyze all papers from 1987 to this date as I have all the data, but I decided to focus just in the last ten years of data.</summary></entry><entry><title type="html">kronosparser: Python package for parsing time from text</title><link href="http://localhost:4000/kronosparser-package.html" rel="alternate" type="text/html" title="kronosparser: Python package for parsing time from text" /><published>2020-03-10T00:00:00-10:00</published><updated>2020-03-10T00:00:00-10:00</updated><id>http://localhost:4000/kronosparser-package</id><content type="html" xml:base="http://localhost:4000/kronosparser-package.html">&lt;p&gt;This post contains a few basic examples of how to use the &lt;a href=&quot;https://github.com/glhuilli/kronosparser&quot;&gt;kronosparser&lt;/a&gt; package. I particularly don’t like the name, but it’s descriptive enough to know what it does. This post is just an extended version of the readme document available in Github.&lt;/p&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="DataAnalysis," /><category term="MachineLearning" /><summary type="html">This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [NeurIPS crawler]. Originally I wanted to process and analyze all papers from 1987 to this date as I have all the data, but I decided to focus just in the last ten years of data.</summary></entry><entry><title type="html">kronosparser: Python package for parsing time from text</title><link href="http://localhost:4000/kronosparser-package.html" rel="alternate" type="text/html" title="kronosparser: Python package for parsing time from text" /><published>2020-03-10T00:00:00-10:00</published><updated>2020-03-10T00:00:00-10:00</updated><id>http://localhost:4000/kronosparser-package</id><content type="html" xml:base="http://localhost:4000/kronosparser-package.html">&lt;p&gt;This post contains a few basic examples of how to use the &lt;a href=&quot;https://github.com/glhuilli/kronosparser&quot;&gt;kronosparser&lt;/a&gt; package. I particularly don’t like the name, but it’s descriptive enough to know what it does. This post is just an extended version of the readme document available in Github.&lt;/p&gt;
 
 &lt;h2 id=&quot;why-building-this-package&quot;&gt;Why building this package?&lt;/h2&gt;
 
-&lt;p&gt;We built this package together with &lt;a href=&quot;https://github.com/roalonso&quot;&gt;@roalonso&lt;/a&gt; back in the Sudo Technologies, Inc. days, which we decided to open source. The primary use case for this package was to parse input text from users using the Sudo Chatbot.  We needed to extract some metadata from input text (e.g., dates), which were then used to decide the upcoming actions that the chatbot had to do. And now with this package, you can do the same for any use case you’d like: parse any type of time instance from text and translate it into a &lt;code class=&quot;highlighter-rouge&quot;&gt;date&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;datetime&lt;/code&gt;, or time interval. This could be for either future dates or past dates, and you can set the timezone if available.&lt;/p&gt;
+&lt;p&gt;We built this package together with &lt;a href=&quot;https://github.com/roalonso&quot;&gt;@roalonso&lt;/a&gt; back in the Sudo Technologies, Inc. days, which we decided to open source. The primary use case for this package was to parse input text from users using the Sudo Chatbot.  We needed to extract some metadata from input text (e.g., dates), which were then used to decide the upcoming actions that the chatbot had to do. And now with this package, you can do the same for any use case you’d like: parse any type of time instance from text and translate it into a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;date&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;datetime&lt;/code&gt;, or time interval. This could be for either future dates or past dates, and you can set the timezone if available.&lt;/p&gt;
 
-&lt;p&gt;This package is based on a Parsing Expression Grammar defined using &lt;code class=&quot;highlighter-rouge&quot;&gt;pyparsing&lt;/code&gt;. If you have any comments, feel free to create issues or send pull requests in the Github repository.&lt;/p&gt;
+&lt;p&gt;This package is based on a Parsing Expression Grammar defined using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyparsing&lt;/code&gt;. If you have any comments, feel free to create issues or send pull requests in the Github repository.&lt;/p&gt;
 
 &lt;h2 id=&quot;installing-the-package&quot;&gt;Installing the package&lt;/h2&gt;
 
-&lt;p&gt;In the meantime, while I finish adding this as a &lt;code class=&quot;highlighter-rouge&quot;&gt;pypi&lt;/code&gt; package, you can install it directly
+&lt;p&gt;In the meantime, while I finish adding this as a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pypi&lt;/code&gt; package, you can install it directly
 from the Github repository, as shown below,&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install git+https://github.com/Zapship/kronosparser.git
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install git+https://github.com/Zapship/kronosparser.git
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
@@ -482,7 +482,7 @@ from the Github repository, as shown below,&lt;/p&gt;
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/5880d1d281d2cc1bc19cef0de5b494eb.js&quot;&gt;&lt;/script&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[{'end': 21,
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[{'end': 21,
       'parsed': {'datetime': '2020-03-11 14:20:38-07:00'},
       'start': 18,
       'text': 'now'},
@@ -496,32 +496,32 @@ from the Github repository, as shown below,&lt;/p&gt;
       'text': 'next week'}]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Note that the example above has 3 types of identified instances: a &lt;code class=&quot;highlighter-rouge&quot;&gt;datetime&lt;/code&gt; with timezone, a &lt;code class=&quot;highlighter-rouge&quot;&gt;datetime&lt;/code&gt; without timezone, and a time interval.&lt;/p&gt;
+&lt;p&gt;Note that the example above has 3 types of identified instances: a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;datetime&lt;/code&gt; with timezone, a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;datetime&lt;/code&gt; without timezone, and a time interval.&lt;/p&gt;
 
-&lt;p&gt;Another simple example is just &lt;code class=&quot;highlighter-rouge&quot;&gt;tomorrow&lt;/code&gt;, which is parsed into a &lt;code class=&quot;highlighter-rouge&quot;&gt;date&lt;/code&gt; format without timezone.&lt;/p&gt;
+&lt;p&gt;Another simple example is just &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tomorrow&lt;/code&gt;, which is parsed into a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;date&lt;/code&gt; format without timezone.&lt;/p&gt;
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/822bfa82b56f4eba9ac00a63ee3049bf.js&quot;&gt;&lt;/script&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[{'end': 29, 'parsed': {'date': '2020-03-12'}, 'start': 21, 'text': 'tomorrow'}]
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[{'end': 29, 'parsed': {'date': '2020-03-12'}, 'start': 21, 'text': 'tomorrow'}]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The following example shows how the &lt;code class=&quot;highlighter-rouge&quot;&gt;future&lt;/code&gt; flag option works. If you parse an input text with a date (e.g., &lt;code class=&quot;highlighter-rouge&quot;&gt;friday&lt;/code&gt;) with the &lt;code class=&quot;highlighter-rouge&quot;&gt;future&lt;/code&gt; option set &lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;, it will find the closest instance of the date but in the future.&lt;/p&gt;
+&lt;p&gt;The following example shows how the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;future&lt;/code&gt; flag option works. If you parse an input text with a date (e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;friday&lt;/code&gt;) with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;future&lt;/code&gt; option set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt;, it will find the closest instance of the date but in the future.&lt;/p&gt;
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/50dba909c8e9b00942a3b45e007303d9.js&quot;&gt;&lt;/script&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[{'end': 6, 'parsed': {'date': '2020-03-13'}, 'start': 0, 'text': 'friday'}]
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[{'end': 6, 'parsed': {'date': '2020-03-13'}, 'start': 0, 'text': 'friday'}]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;However, if you use the &lt;code class=&quot;highlighter-rouge&quot;&gt;future&lt;/code&gt; flag set to &lt;code class=&quot;highlighter-rouge&quot;&gt;False&lt;/code&gt;, it will find the closest instance of the date, but in the past.&lt;/p&gt;
+&lt;p&gt;However, if you use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;future&lt;/code&gt; flag set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt;, it will find the closest instance of the date, but in the past.&lt;/p&gt;
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/fc079927716e3e74e1478b23c1fed5bd.js&quot;&gt;&lt;/script&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[{'end': 6, 'parsed': {'date': '2020-03-06'}, 'start': 0, 'text': 'friday'}]
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[{'end': 6, 'parsed': {'date': '2020-03-06'}, 'start': 0, 'text': 'friday'}]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Very important to note that if you don’t define the &lt;code class=&quot;highlighter-rouge&quot;&gt;timezone&lt;/code&gt;, it will use &lt;code class=&quot;highlighter-rouge&quot;&gt;US/Pacific&lt;/code&gt; by default. Also, if no parameters are specified, it will use the &lt;code class=&quot;highlighter-rouge&quot;&gt;future&lt;/code&gt; flag as &lt;code class=&quot;highlighter-rouge&quot;&gt;False&lt;/code&gt; and the &lt;code class=&quot;highlighter-rouge&quot;&gt;interval_to_date&lt;/code&gt; flag as &lt;code class=&quot;highlighter-rouge&quot;&gt;True&lt;/code&gt;. Many more examples are available in the package’s &lt;a href=&quot;https://github.com/glhuilli/kronosparser/tree/master/tests&quot;&gt;test cases&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Very important to note that if you don’t define the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;timezone&lt;/code&gt;, it will use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;US/Pacific&lt;/code&gt; by default. Also, if no parameters are specified, it will use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;future&lt;/code&gt; flag as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;interval_to_date&lt;/code&gt; flag as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt;. Many more examples are available in the package’s &lt;a href=&quot;https://github.com/glhuilli/kronosparser/tree/master/tests&quot;&gt;test cases&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Let me know if this package is useful and/or you’d like to see it as an official &lt;code class=&quot;highlighter-rouge&quot;&gt;pypi&lt;/code&gt; package, which I plan to do, but it’s buried in my backlog. This way, I can prioritize that item from my never-ending TODO list.&lt;/p&gt;
+&lt;p&gt;Let me know if this package is useful and/or you’d like to see it as an official &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pypi&lt;/code&gt; package, which I plan to do, but it’s buried in my backlog. This way, I can prioritize that item from my never-ending TODO list.&lt;/p&gt;
 
 &lt;!-- &lt;script id=&quot;dsq-count-scr&quot; src=&quot;//glhuilli.disqus.com/count.js&quot; async&gt;&lt;/script&gt; --&gt;
 &lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
@@ -538,48 +538,48 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 &lt;/script&gt;
 
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">This post contains a few basic examples of how to use the kronosparser package. I particularly don’t like the name, but it’s descriptive enough to know what it does. This post is just an extended version of the readme document available in Github.</summary></entry><entry><title type="html">Game of Thrones Subtitles Analysis</title><link href="http://localhost:4000/got-analysis.html" rel="alternate" type="text/html" title="Game of Thrones Subtitles Analysis" /><published>2019-04-14T00:00:00-10:00</published><updated>2019-04-14T00:00:00-10:00</updated><id>http://localhost:4000/got-analysis</id><content type="html" xml:base="http://localhost:4000/got-analysis.html">&lt;p&gt;The following is based on this &lt;a href=&quot;https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb&quot;&gt;this example&lt;/a&gt; on how to do emotion analysis over an entire show (all episodes), posted in my &lt;a href=&quot;https://github.com/glhuilli/limbic/&quot;&gt;limbic&lt;/a&gt;  python package.&lt;/p&gt;
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><category term="Python" /><summary type="html">This post contains a few basic examples of how to use the kronosparser package. I particularly don’t like the name, but it’s descriptive enough to know what it does. This post is just an extended version of the readme document available in Github.</summary></entry><entry><title type="html">Game of Thrones Subtitles Analysis</title><link href="http://localhost:4000/got-analysis.html" rel="alternate" type="text/html" title="Game of Thrones Subtitles Analysis" /><published>2019-04-14T00:00:00-10:00</published><updated>2019-04-14T00:00:00-10:00</updated><id>http://localhost:4000/got-analysis</id><content type="html" xml:base="http://localhost:4000/got-analysis.html">&lt;p&gt;The following is based on this &lt;a href=&quot;https://github.com/glhuilli/limbic/blob/master/scripts/GoT-analysis.ipynb&quot;&gt;this example&lt;/a&gt; on how to do emotion analysis over an entire show (all episodes), posted in my &lt;a href=&quot;https://github.com/glhuilli/limbic/&quot;&gt;limbic&lt;/a&gt;  python package.&lt;/p&gt;
 
 &lt;h2 id=&quot;data-and-processing-setup&quot;&gt;Data and Processing Setup&lt;/h2&gt;
 
-&lt;p&gt;All subtitles for every episode of Game of Thrones (from season 1 to 7) were downloaded from &lt;a href=&quot;https://subscene.com/&quot;&gt;subscene&lt;/a&gt; manually. IMDB information was obtained using the OMDB API using &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt;’s IMDB integration. This data is freely available with the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;All subtitles for every episode of Game of Thrones (from season 1 to 7) were downloaded from &lt;a href=&quot;https://subscene.com/&quot;&gt;subscene&lt;/a&gt; manually. IMDB information was obtained using the OMDB API using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt;’s IMDB integration. This data is freely available with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package.&lt;/p&gt;
 
-&lt;p&gt;As mentioned in &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt;’s documentation, you need to set up a specific mapping when dealing with domain-specific terms that have a specific meaning. For example, in Game of Thrones, the term &lt;code class=&quot;highlighter-rouge&quot;&gt;lord&lt;/code&gt; is widely used across all episodes and has a connotation
-close to &lt;a href=&quot;https://en.wikipedia.org/wiki/Milord&quot;&gt;my lord&lt;/a&gt; rather than &lt;a href=&quot;https://en.wikipedia.org/wiki/Lord&quot;&gt;the lord&lt;/a&gt;. In &lt;a href=&quot;http://saifmohammad.com/WebPages/AccessResource.htm&quot;&gt;NRC lexicons&lt;/a&gt;, the term &lt;code class=&quot;highlighter-rouge&quot;&gt;lord&lt;/code&gt; does have a strong &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; value as it’s probably closely associated with the latter definition. As I don’t want to overestimate the emotion &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; across the episodes, a new meaning for the word &lt;code class=&quot;highlighter-rouge&quot;&gt;my lord&lt;/code&gt; can b done by associating it to the word &lt;code class=&quot;highlighter-rouge&quot;&gt;sir&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;As mentioned in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt;’s documentation, you need to set up a specific mapping when dealing with domain-specific terms that have a specific meaning. For example, in Game of Thrones, the term &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lord&lt;/code&gt; is widely used across all episodes and has a connotation
+close to &lt;a href=&quot;https://en.wikipedia.org/wiki/Milord&quot;&gt;my lord&lt;/a&gt; rather than &lt;a href=&quot;https://en.wikipedia.org/wiki/Lord&quot;&gt;the lord&lt;/a&gt;. In &lt;a href=&quot;http://saifmohammad.com/WebPages/AccessResource.htm&quot;&gt;NRC lexicons&lt;/a&gt;, the term &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lord&lt;/code&gt; does have a strong &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt; value as it’s probably closely associated with the latter definition. As I don’t want to overestimate the emotion &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt; across the episodes, a new meaning for the word &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my lord&lt;/code&gt; can b done by associating it to the word &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sir&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;In the show, there are also composed terms (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;your grace&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;white walkers&lt;/code&gt;) that are partially included in the NRC lexicons as well as terms that are not included at all (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;kingslayer&lt;/code&gt;). Unfortunately, these words have particular meanings in the show, which will be associated with more precise terms when building the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; lexicon-based emotion classifier as shown below.&lt;/p&gt;
+&lt;p&gt;In the show, there are also composed terms (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;your grace&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;white walkers&lt;/code&gt;) that are partially included in the NRC lexicons as well as terms that are not included at all (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kingslayer&lt;/code&gt;). Unfortunately, these words have particular meanings in the show, which will be associated with more precise terms when building the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt; lexicon-based emotion classifier as shown below.&lt;/p&gt;
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/06a683260720c3dd4dc7ae5bac573480.js&quot;&gt;&lt;/script&gt;
 
-&lt;p&gt;A more detailed and rich context mapping could be built by analyzing how and where some frequent words are used, but it’s outside the scope of this analysis. This could be an interesting research project and extension for &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; if you are interested.&lt;/p&gt;
+&lt;p&gt;A more detailed and rich context mapping could be built by analyzing how and where some frequent words are used, but it’s outside the scope of this analysis. This could be an interesting research project and extension for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt; if you are interested.&lt;/p&gt;
 
 &lt;h2 id=&quot;emotions-analysis&quot;&gt;Emotions Analysis&lt;/h2&gt;
 
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package provides some tools that can make it easier to analyze subtitles. In particular, computing a set of emotions features, correlating it with IMDB ratings, and analyzing a moving window of emotions during the episodes are some examples of what could be interesting to see from this data.&lt;/p&gt;
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package provides some tools that can make it easier to analyze subtitles. In particular, computing a set of emotions features, correlating it with IMDB ratings, and analyzing a moving window of emotions during the episodes are some examples of what could be interesting to see from this data.&lt;/p&gt;
 
-&lt;p&gt;Regarding the features available in &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt;, let’s define &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; as the set of emotions in the lexicon used, &lt;script type=&quot;math/tex&quot;&gt;T_e&lt;/script&gt; the set of times (in seconds) of an episode where emotion &lt;script type=&quot;math/tex&quot;&gt;e \in E&lt;/script&gt; is present, of size &lt;script type=&quot;math/tex&quot;&gt;N_{T_e}&lt;/script&gt;, and &lt;script type=&quot;math/tex&quot;&gt;v_e(t)&lt;/script&gt; the value associated to the emotion at time &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt;. Then, for each episode of a season, the features computed are the following:&lt;/p&gt;
+&lt;p&gt;Regarding the features available in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt;, let’s define \(E\) as the set of emotions in the lexicon used, \(T_e\) the set of times (in seconds) of an episode where emotion \(e \in E\) is present, of size \(N_{T_e}\), and \(v_e(t)\) the value associated to the emotion at time \(t\). Then, for each episode of a season, the features computed are the following:&lt;/p&gt;
 
-&lt;p&gt;First, the total_e is defined as the total emotion &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; across the whole episode,&lt;/p&gt;
+&lt;p&gt;First, the total_e is defined as the total emotion \(e\) across the whole episode,&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{total_e} = \sum_{t\in T_e} v_e(t), \forall e\in E&lt;/script&gt;
+\[\text{total_e} = \sum_{t\in T_e} v_e(t), \forall e\in E\]
 
 &lt;p&gt;The average emotion,&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{avg_e} = \frac{1}{N_{T_e}} \sum_{t\in T_e} v_e(t), \forall e \in E&lt;/script&gt;
+\[\text{avg_e} = \frac{1}{N_{T_e}} \sum_{t\in T_e} v_e(t), \forall e \in E\]
 
-&lt;p&gt;Max variation of total emotion for moving windows of time across the episode. Let &lt;script type=&quot;math/tex&quot;&gt;w_{e}(t)&lt;/script&gt; be the total emotion between &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;t+w&lt;/script&gt;, that is &lt;script type=&quot;math/tex&quot;&gt;w_{e}(t) = \sum_{i=t}^{t+w} v_e(i)&lt;/script&gt;, then &lt;code class=&quot;highlighter-rouge&quot;&gt;max_delta_e&lt;/code&gt; is defined as max value from the set of windows &lt;script type=&quot;math/tex&quot;&gt;\omega_e(t) = \{w_{e}(t) - w_{e}(t-s)\}&lt;/script&gt;, for &lt;script type=&quot;math/tex&quot;&gt;t \in \{s, s+1, \dots, N_{T_e}-w\}&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\forall e\in E&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; (default value 120 seconds) is the step of the moving window &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; (default 300 seconds).&lt;/p&gt;
+&lt;p&gt;Max variation of total emotion for moving windows of time across the episode. Let \(w_{e}(t)\) be the total emotion between \(t\) and \(t+w\), that is \(w_{e}(t) = \sum_{i=t}^{t+w} v_e(i)\), then &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;max_delta_e&lt;/code&gt; is defined as max value from the set of windows \(\omega_e(t) = \{w_{e}(t) - w_{e}(t-s)\}\), for \(t \in \{s, s+1, \dots, N_{T_e}-w\}\), \(\forall e\in E\) where \(s\) (default value 120 seconds) is the step of the moving window \(w\) (default 300 seconds).&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{max_delta_e} = \max_{t} \omega_e(t), \forall e\in E&lt;/script&gt;
+\[\text{max_delta_e} = \max_{t} \omega_e(t), \forall e\in E\]
 
 &lt;p&gt;The time at which the max variation of total emotion is present, defined as&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{time_max_delta_e} = \arg\max_{t} \omega_{e}(t), \forall e\in E&lt;/script&gt;
+\[\text{time_max_delta_e} = \arg\max_{t} \omega_{e}(t), \forall e\in E\]
 
-&lt;p&gt;The direction of the emotion &lt;script type=&quot;math/tex&quot;&gt;e\in E&lt;/script&gt;, defined as&lt;/p&gt;
+&lt;p&gt;The direction of the emotion \(e\in E\), defined as&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{dir_e} = \sum_{t\in T_e} v_e(t) - \sum_{t\in T_{e'}} v_{e'}(t)&lt;/script&gt;
+\[\text{dir_e} = \sum_{t\in T_e} v_e(t) - \sum_{t\in T_{e'}} v_{e'}(t)\]
 
-&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;e'&lt;/script&gt; is the opposite emotion of &lt;script type=&quot;math/tex&quot;&gt;e&lt;/script&gt; according to the &lt;a href=&quot;https://en.wikipedia.org/wiki/Contrasting_and_categorization_of_emotions#Plutchik's_wheel_of_emotions&quot;&gt;Plutchik wheel of emotions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;where \(e'\) is the opposite emotion of \(e\) according to the &lt;a href=&quot;https://en.wikipedia.org/wiki/Contrasting_and_categorization_of_emotions#Plutchik's_wheel_of_emotions&quot;&gt;Plutchik wheel of emotions&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;correlation-and-regression-analysis&quot;&gt;Correlation and Regression Analysis&lt;/h3&gt;
 
@@ -587,11 +587,11 @@ close to &lt;a href=&quot;https://en.wikipedia.org/wiki/Milord&quot;&gt;my lord&
 &lt;img style=&quot;margin: 10px auto;&quot; src=&quot;/assets/posts/got-analysis/output_11_0.png&quot; alt=&quot;Correlation matrix.&quot; /&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Looking at the correlation matrix, the variable &lt;code class=&quot;highlighter-rouge&quot;&gt;ratings&lt;/code&gt; seem to have a weak positive correlation with some &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; related variables (&lt;code class=&quot;highlighter-rouge&quot;&gt;avg_fear&lt;/code&gt;, &lt;script type=&quot;math/tex&quot;&gt;\rho \approx 0.39&lt;/script&gt;) and a weak negative correlation with some &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; related variables (&lt;code class=&quot;highlighter-rouge&quot;&gt;total_joy&lt;/code&gt;, &lt;script type=&quot;math/tex&quot;&gt;\rho \approx -0.262&lt;/script&gt;). This is more or less expected given the type of series that Game of Thrones is, and what people expects of a dark fantasy story. Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; is not the opposite of &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt;, that would be &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;anger&lt;/code&gt; respectively. In this case, both &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;anger&lt;/code&gt; related emotions were not particularly correlated to the user ratings.&lt;/p&gt;
+&lt;p&gt;Looking at the correlation matrix, the variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ratings&lt;/code&gt; seem to have a weak positive correlation with some &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fear&lt;/code&gt; related variables (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;avg_fear&lt;/code&gt;, \(\rho \approx 0.39\)) and a weak negative correlation with some &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt; related variables (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;total_joy&lt;/code&gt;, \(\rho \approx -0.262\)). This is more or less expected given the type of series that Game of Thrones is, and what people expects of a dark fantasy story. Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt; is not the opposite of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fear&lt;/code&gt;, that would be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sadness&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;anger&lt;/code&gt; respectively. In this case, both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sadness&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;anger&lt;/code&gt; related emotions were not particularly correlated to the user ratings.&lt;/p&gt;
 
-&lt;p&gt;It’s also interesting to see how the episode number is highly correlated to the user ratings (&lt;script type=&quot;math/tex&quot;&gt;\rho \approx 0.478&lt;/script&gt;), which means that early episodes are not rated the same that final episodes within a season, for all seasons. This could make sense if you think that most of the significant plot twists and outcomes are at the end of each season, where people are far more involved and expectant than at the beginning of a season. I’m sure several other shows have this same behavior when final episodes are well written and satisfying for the fans.&lt;/p&gt;
+&lt;p&gt;It’s also interesting to see how the episode number is highly correlated to the user ratings (\(\rho \approx 0.478\)), which means that early episodes are not rated the same that final episodes within a season, for all seasons. This could make sense if you think that most of the significant plot twists and outcomes are at the end of each season, where people are far more involved and expectant than at the beginning of a season. I’m sure several other shows have this same behavior when final episodes are well written and satisfying for the fans.&lt;/p&gt;
 
-&lt;p&gt;Let’s take a more in-depth look into some of the &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; variables.&lt;/p&gt;
+&lt;p&gt;Let’s take a more in-depth look into some of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fear&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt; variables.&lt;/p&gt;
 
 &lt;div class=&quot;got&quot;&gt;
 &lt;img src=&quot;/assets/posts/got-analysis/output_13_0.png&quot; alt=&quot;fear vs joy scatter plot&quot; /&gt;
@@ -599,14 +599,12 @@ close to &lt;a href=&quot;https://en.wikipedia.org/wiki/Milord&quot;&gt;my lord&
 
 &lt;p&gt;First and foremost, given the number of data points (67 episodes), these are not results that someone could claim as statistically significant. However, these might be enough data points to reveal some trends that are worth discussing.&lt;/p&gt;
 
-&lt;p&gt;These plots don’t provide new hard evidence (from what we could get out of the correlation analysis), but it’s interesting to see the trends in scatter plots. From this, it’s easy to see how &lt;code class=&quot;highlighter-rouge&quot;&gt;total_fear&lt;/code&gt; doesn’t explain the ratings as strongly as &lt;code class=&quot;highlighter-rouge&quot;&gt;avg_fear&lt;/code&gt;, but both &lt;code class=&quot;highlighter-rouge&quot;&gt;total_joy&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;avg_joy&lt;/code&gt; do have a similar trend, with a higher correlation for &lt;code class=&quot;highlighter-rouge&quot;&gt;total_joy&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;These plots don’t provide new hard evidence (from what we could get out of the correlation analysis), but it’s interesting to see the trends in scatter plots. From this, it’s easy to see how &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;total_fear&lt;/code&gt; doesn’t explain the ratings as strongly as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;avg_fear&lt;/code&gt;, but both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;total_joy&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;avg_joy&lt;/code&gt; do have a similar trend, with a higher correlation for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;total_joy&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Regression analysis results using variables &lt;code class=&quot;highlighter-rouge&quot;&gt;total_e&lt;/code&gt;, &lt;script type=&quot;math/tex&quot;&gt;\forall e\in E&lt;/script&gt;, are presented in the ascii-table below. Even though all regression coefficients are small and the regression intercept is quite substantial, &lt;code class=&quot;highlighter-rouge&quot;&gt;total_fear&lt;/code&gt; has a positive impact over &lt;code class=&quot;highlighter-rouge&quot;&gt;ratings&lt;/code&gt; (positive coefficient, &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;-value &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-&lt; 0.05 %]]&gt;&lt;/script&gt;), and &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; has a negative impact (negative coefficient, &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;-value &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-&lt; 0.05 %]]&gt;&lt;/script&gt;). As the null hypothesis in such analysis is that there’s no relationship between &lt;code class=&quot;highlighter-rouge&quot;&gt;total_e&lt;/code&gt;, &lt;script type=&quot;math/tex&quot;&gt;\forall e\in E&lt;/script&gt; variables and &lt;code class=&quot;highlighter-rouge&quot;&gt;ratings&lt;/code&gt;, at least
-for &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; we can reject it and conclude that the alternative hypothesis holds.&lt;/p&gt;
+&lt;p&gt;Regression analysis results using variables &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;total_e&lt;/code&gt;, \(\forall e\in E\), are presented in the ascii-table below. Even though all regression coefficients are small and the regression intercept is quite substantial, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;total_fear&lt;/code&gt; has a positive impact over &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ratings&lt;/code&gt; (positive coefficient, \(p\)-value \(&amp;lt; 0.05\)), and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt; has a negative impact (negative coefficient, \(p\)-value \(&amp;lt; 0.05\)). As the null hypothesis in such analysis is that there’s no relationship between &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;total_e&lt;/code&gt;, \(\forall e\in E\) variables and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ratings&lt;/code&gt;, at least
+for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fear&lt;/code&gt; we can reject it and conclude that the alternative hypothesis holds.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;=================================================================================
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;=================================================================================
                     coef    std err          t      P&amp;gt;|t|      [0.025      0.975]
 ---------------------------------------------------------------------------------
 Intercept         9.4616      0.248     38.182      0.000       8.966       9.957
@@ -617,7 +615,7 @@ total_anger      -0.0136      0.009     -1.533      0.130      -0.031       0.00
 ==============================================================================
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This confirms that ratings for Game of Thrones have, at some degree, a positive relationship with &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; and a negative relationship with &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt;, but there’s no special relationship with &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;anger&lt;/code&gt;. Let’s visualize side by side the words that inspire &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; versus the words that inspire &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This confirms that ratings for Game of Thrones have, at some degree, a positive relationship with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fear&lt;/code&gt; and a negative relationship with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt;, but there’s no special relationship with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sadness&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;anger&lt;/code&gt;. Let’s visualize side by side the words that inspire &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fear&lt;/code&gt; versus the words that inspire &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;word-clouds&quot;&gt;Word Clouds&lt;/h3&gt;
 
@@ -625,23 +623,23 @@ total_anger      -0.0136      0.009     -1.533      0.130      -0.031       0.00
 &lt;img src=&quot;/assets/posts/got-analysis/output_16_0.png&quot; alt=&quot;fear vs joy word clouds&quot; /&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Based on this, audiences do prefer dialogs with more terms like &lt;code class=&quot;highlighter-rouge&quot;&gt;war&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;fight&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;afraid&lt;/code&gt; rather than &lt;code class=&quot;highlighter-rouge&quot;&gt;friend&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;love&lt;/code&gt;, or &lt;code class=&quot;highlighter-rouge&quot;&gt;mother&lt;/code&gt;. Maybe GRRM Martin said it best in his book &lt;a href=&quot;https://awoiaf.westeros.org/index.php/A_Dance_with_Dragons&quot;&gt;A Dance with Dragons&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;Based on this, audiences do prefer dialogs with more terms like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;war&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fight&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;afraid&lt;/code&gt; rather than &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;friend&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;love&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mother&lt;/code&gt;. Maybe GRRM Martin said it best in his book &lt;a href=&quot;https://awoiaf.westeros.org/index.php/A_Dance_with_Dragons&quot;&gt;A Dance with Dragons&lt;/a&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;Words are wind, even words like love and peace.
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;Words are wind, even words like love and peace.
 I put more trust in deeds.&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;With this quote, he explains perfectly the observed effect. Words like &lt;code class=&quot;highlighter-rouge&quot;&gt;love&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;peace&lt;/code&gt; (clearly joy-inducing words) are proven to be empty, not lasting or at risk (at least in the show), while words like &lt;code class=&quot;highlighter-rouge&quot;&gt;war&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;fight&lt;/code&gt; are actions that will undoubtedly have some real effect and often painful consequences to the characters. In summary, you could say that audiences will give higher ratings to episodes where there are more action and less empty words.&lt;/p&gt;
+&lt;p&gt;With this quote, he explains perfectly the observed effect. Words like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;love&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;peace&lt;/code&gt; (clearly joy-inducing words) are proven to be empty, not lasting or at risk (at least in the show), while words like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;war&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fight&lt;/code&gt; are actions that will undoubtedly have some real effect and often painful consequences to the characters. In summary, you could say that audiences will give higher ratings to episodes where there are more action and less empty words.&lt;/p&gt;
 
-&lt;p&gt;However, there’s an important factor I need to isolate before finishing this discussion. Why &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;anger&lt;/code&gt; do not explain the ratings when words like &lt;code class=&quot;highlighter-rouge&quot;&gt;death&lt;/code&gt; are indeed present in those emotions as well?&lt;/p&gt;
+&lt;p&gt;However, there’s an important factor I need to isolate before finishing this discussion. Why &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sadness&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;anger&lt;/code&gt; do not explain the ratings when words like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;death&lt;/code&gt; are indeed present in those emotions as well?&lt;/p&gt;
 
-&lt;p&gt;Let’s review side by side all terms for &lt;code class=&quot;highlighter-rouge&quot;&gt;anger&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; keeping the ones that are unique per emotion.&lt;/p&gt;
+&lt;p&gt;Let’s review side by side all terms for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;anger&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sadness&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fear&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt; keeping the ones that are unique per emotion.&lt;/p&gt;
 
 &lt;div class=&quot;got&quot;&gt;
 &lt;img src=&quot;/assets/posts/got-analysis/output_18_0.png&quot; alt=&quot;all emotions word clouds&quot; /&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Words in &lt;code class=&quot;highlighter-rouge&quot;&gt;anger&lt;/code&gt; plot seem to be mostly related to “short term” actions (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;hit&lt;/code&gt;), swearing (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;damn&lt;/code&gt;), and specific feelings (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;jealousy&lt;/code&gt;). Words in the &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt; plot seem to be associated with the aftermath of significant events (&lt;code class=&quot;highlighter-rouge&quot;&gt;lost&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sad&lt;/code&gt;). However, it can be argued that the words included exclusively in the &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; category, are the ones associated with the events that will actually cause sadness or anger.&lt;/p&gt;
+&lt;p&gt;Words in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;anger&lt;/code&gt; plot seem to be mostly related to “short term” actions (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hit&lt;/code&gt;), swearing (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;damn&lt;/code&gt;), and specific feelings (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jealousy&lt;/code&gt;). Words in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sadness&lt;/code&gt; plot seem to be associated with the aftermath of significant events (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lost&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sad&lt;/code&gt;). However, it can be argued that the words included exclusively in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fear&lt;/code&gt; category, are the ones associated with the events that will actually cause sadness or anger.&lt;/p&gt;
 
 &lt;h3 id=&quot;emotions-over-time&quot;&gt;Emotions over time&lt;/h3&gt;
 
@@ -652,13 +650,13 @@ I put more trust in deeds.&quot;
   &lt;/figure&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Above you can see how each emotion is distributed per season. For example, you can see how &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;fear&lt;/code&gt; have some spikes in season 3, season 5, and season 7 respectively.&lt;/p&gt;
+&lt;p&gt;Above you can see how each emotion is distributed per season. For example, you can see how &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sadness&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fear&lt;/code&gt; have some spikes in season 3, season 5, and season 7 respectively.&lt;/p&gt;
 
 &lt;p&gt;I invite you to correlate these patterns together with the ones presented below, which is the same but all emotions are fleshed out for each episode of each season. Here, each column represents a season and each row an episode.&lt;/p&gt;
 
 &lt;p&gt;This &lt;a href=&quot;https://www.reddit.com/r/asoiaf/comments/bbg2jp/spoilers_main_game_of_thrones_most_thorough_guide/&quot;&gt;guide&lt;/a&gt; (thanks to &lt;a href=&quot;https://www.reddit.com/user/jjadjjadj&quot;&gt;jjadjjadj&lt;/a&gt; for this madness!) can help you go through certain episodes and see how emotions variations represent some of the main events in the show.&lt;/p&gt;
 
-&lt;p&gt;For example, you can see above a spike in sadness in season 5. Below, in the sadness chart, you can see in row 10 and column 5 a high peak a little before the end of the episode. If you follow the insane guide above, this episode corresponds to &lt;code class=&quot;highlighter-rouge&quot;&gt;S5E10 &quot;Mother's Mercy&quot;&lt;/code&gt; (column 50), which is when Cercei’s walk of atonement happened, and the word &lt;code class=&quot;highlighter-rouge&quot;&gt;shame&lt;/code&gt; was said quite a lot (&lt;code class=&quot;highlighter-rouge&quot;&gt;shame&lt;/code&gt; has sadness score &lt;code class=&quot;highlighter-rouge&quot;&gt;0.594&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;For example, you can see above a spike in sadness in season 5. Below, in the sadness chart, you can see in row 10 and column 5 a high peak a little before the end of the episode. If you follow the insane guide above, this episode corresponds to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;S5E10 &quot;Mother's Mercy&quot;&lt;/code&gt; (column 50), which is when Cercei’s walk of atonement happened, and the word &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shame&lt;/code&gt; was said quite a lot (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shame&lt;/code&gt; has sadness score &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.594&lt;/code&gt;).&lt;/p&gt;
 
 &lt;p&gt;Also, you can see how low values are similar among all emotions, which might be associated to scenes in the episodes where none or little dialog is present, though it’s fascinating how this is most common across entire seasons. This could be explained by the fact that live-action scenes with battles, fights, dragons, and the like, are usually displayed approximately at the same time, often a little before the end of each episode.&lt;/p&gt;
 
@@ -720,7 +718,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 &lt;/script&gt;
 
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">The following is based on this this example on how to do emotion analysis over an entire show (all episodes), posted in my limbic python package.</summary></entry><entry><title type="html">Limbic: Python package for emotion analysis from text</title><link href="http://localhost:4000/limbic-package.html" rel="alternate" type="text/html" title="Limbic: Python package for emotion analysis from text" /><published>2019-04-10T00:00:00-10:00</published><updated>2019-04-10T00:00:00-10:00</updated><id>http://localhost:4000/limbic-package</id><content type="html" xml:base="http://localhost:4000/limbic-package.html">&lt;p&gt;This post contains a few basic examples of how to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package. First, a quick overview of the lexicon-based classifier is described, and then a few notes on how a machine learning model was trained and how it can be used to predict the emotions for a given text.&lt;/p&gt;
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><category term="NLP," /><category term="Emotion" /><category term="Analysis," /><category term="Python" /><summary type="html">The following is based on this this example on how to do emotion analysis over an entire show (all episodes), posted in my limbic python package.</summary></entry><entry><title type="html">Limbic: Python package for emotion analysis from text</title><link href="http://localhost:4000/limbic-package.html" rel="alternate" type="text/html" title="Limbic: Python package for emotion analysis from text" /><published>2019-04-10T00:00:00-10:00</published><updated>2019-04-10T00:00:00-10:00</updated><id>http://localhost:4000/limbic-package</id><content type="html" xml:base="http://localhost:4000/limbic-package.html">&lt;p&gt;This post contains a few basic examples of how to use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package. First, a quick overview of the lexicon-based classifier is described, and then a few notes on how a machine learning model was trained and how it can be used to predict the emotions for a given text.&lt;/p&gt;
 
 &lt;h2 id=&quot;why-building-this-package&quot;&gt;Why building this package?&lt;/h2&gt;
 
@@ -737,9 +735,9 @@ s.setAttribute('data-timestamp', +new Date());
 
 &lt;h2 id=&quot;installing-the-package&quot;&gt;Installing the package&lt;/h2&gt;
 
-&lt;p&gt;In the meantime, while I finish adding this as a pypi package, you can install it by building the source code from the repository by first installing all the dependencies from the requirements.txt file and the dependencies for Spacy, the NLP framework used through this package. However, it might be easier to use &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install&lt;/code&gt; directly from the Github repository, as shown below,&lt;/p&gt;
+&lt;p&gt;In the meantime, while I finish adding this as a pypi package, you can install it by building the source code from the repository by first installing all the dependencies from the requirements.txt file and the dependencies for Spacy, the NLP framework used through this package. However, it might be easier to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip install&lt;/code&gt; directly from the Github repository, as shown below,&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install git+https://github.com/glhuilli/limbic.git
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install git+https://github.com/glhuilli/limbic.git
 python -m spacy download en_core_web_sm
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -747,9 +745,9 @@ python -m spacy download en_core_web_sm
 
 &lt;p&gt;The only thing you need to create a new lexicon-based emotion classifier is, of course, the lexicon. However, in case you are dealing with a specific context, it’s possible to use a terms mapping dictionary,  which will automatically replace terms on the input you want to process.&lt;/p&gt;
 
-&lt;p&gt;The lexicon has to be loaded by the user, and it could be either a custom lexicon or a &lt;a href=&quot;http://saifmohammad.com/WebPages/AccessResource.htm&quot;&gt;lexicon from the NRC&lt;/a&gt;. To load a lexicon, you can either use a generic &lt;code class=&quot;highlighter-rouge&quot;&gt;load_lexicon&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;load_nrc_lexicon&lt;/code&gt; tailored for some NRC lexicons.&lt;/p&gt;
+&lt;p&gt;The lexicon has to be loaded by the user, and it could be either a custom lexicon or a &lt;a href=&quot;http://saifmohammad.com/WebPages/AccessResource.htm&quot;&gt;lexicon from the NRC&lt;/a&gt;. To load a lexicon, you can either use a generic &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;load_lexicon&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;load_nrc_lexicon&lt;/code&gt; tailored for some NRC lexicons.&lt;/p&gt;
 
-&lt;p&gt;To use the generic &lt;code class=&quot;highlighter-rouge&quot;&gt;load_lexicon&lt;/code&gt; method you can do the following:&lt;/p&gt;
+&lt;p&gt;To use the generic &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;load_lexicon&lt;/code&gt; method you can do the following:&lt;/p&gt;
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/447690ef2b498a49d6b9f5c025dc9f4c.js&quot;&gt;&lt;/script&gt;
 
@@ -760,9 +758,9 @@ my_lexicon_file_path = '../data/my_lexicon.csv'
 lexicon = load_lexicon(my_lexicon_file_path)
 ``` --&gt;
 
-&lt;p&gt;where the hypothetical file &lt;code class=&quot;highlighter-rouge&quot;&gt;../data/lexicon.csv&lt;/code&gt; is a &lt;code class=&quot;highlighter-rouge&quot;&gt;csv&lt;/code&gt; file with the header &lt;code class=&quot;highlighter-rouge&quot;&gt;term,emotion,score&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;where the hypothetical file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;../data/lexicon.csv&lt;/code&gt; is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;csv&lt;/code&gt; file with the header &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;term,emotion,score&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;To use the &lt;code class=&quot;highlighter-rouge&quot;&gt;load_nrc_lexicon&lt;/code&gt; method, you need to download one of the supported NRC files and do&lt;/p&gt;
+&lt;p&gt;To use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;load_nrc_lexicon&lt;/code&gt; method, you need to download one of the supported NRC files and do&lt;/p&gt;
 
 &lt;!-- ```python
 from limbic.emotion.nrc_utils import load_nrc_lexicon
@@ -773,13 +771,13 @@ lexicon = load_nrc_lexicon(nrc_lexicon_file_path, 'affect_intensity')
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/6d05e46c08218c3b3efb07b6cb6ad7fd.js&quot;&gt;&lt;/script&gt;
 
-&lt;p&gt;The supported files are the &lt;code class=&quot;highlighter-rouge&quot;&gt;affect_intensity&lt;/code&gt; lexicon, the &lt;code class=&quot;highlighter-rouge&quot;&gt;emotion&lt;/code&gt; lexicon (aka &lt;code class=&quot;highlighter-rouge&quot;&gt;EmoLex&lt;/code&gt;), and the &lt;code class=&quot;highlighter-rouge&quot;&gt;vad&lt;/code&gt; lexicon.&lt;/p&gt;
+&lt;p&gt;The supported files are the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;affect_intensity&lt;/code&gt; lexicon, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;emotion&lt;/code&gt; lexicon (aka &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EmoLex&lt;/code&gt;), and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vad&lt;/code&gt; lexicon.&lt;/p&gt;
 
-&lt;p&gt;Once the lexicon is ready, you can create the &lt;code class=&quot;highlighter-rouge&quot;&gt;LexiconLimbicModel&lt;/code&gt;,&lt;/p&gt;
+&lt;p&gt;Once the lexicon is ready, you can create the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LexiconLimbicModel&lt;/code&gt;,&lt;/p&gt;
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/13c6eb1f3b9bad28b8184c6ea7c9f6b8.js&quot;&gt;&lt;/script&gt;
 
-&lt;p&gt;Also, there’s an option to use a &lt;code class=&quot;highlighter-rouge&quot;&gt;terms mapping&lt;/code&gt; dictionary has to be of type &lt;code class=&quot;highlighter-rouge&quot;&gt;Dict[str, str]&lt;/code&gt;, where a given term or collection of terms will be mapped to another term of collection of terms when computing the emotions. This is specifically helpful for texts with a specific context that you would like to include in the model. This is specifically helpful for texts with a specific context that you would like to include in the model. An example of this included below (check out &lt;a href=&quot;https://glhuilli.github.io/got-analysis.html&quot;&gt;this example&lt;/a&gt; to use a mapping dictionary).&lt;/p&gt;
+&lt;p&gt;Also, there’s an option to use a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terms mapping&lt;/code&gt; dictionary has to be of type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dict[str, str]&lt;/code&gt;, where a given term or collection of terms will be mapped to another term of collection of terms when computing the emotions. This is specifically helpful for texts with a specific context that you would like to include in the model. This is specifically helpful for texts with a specific context that you would like to include in the model. An example of this included below (check out &lt;a href=&quot;https://glhuilli.github.io/got-analysis.html&quot;&gt;this example&lt;/a&gt; to use a mapping dictionary).&lt;/p&gt;
 
 &lt;h3 id=&quot;important-note&quot;&gt;Important note&lt;/h3&gt;
 
@@ -787,9 +785,9 @@ lexicon = load_nrc_lexicon(nrc_lexicon_file_path, 'affect_intensity')
 
 &lt;h3 id=&quot;emotions-from-terms&quot;&gt;Emotions from Terms&lt;/h3&gt;
 
-&lt;p&gt;Once the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; model is loaded, you can either get the emotions that either a single term or a full-sentence has. For example, you can get the emotions associated with the word &lt;code class=&quot;highlighter-rouge&quot;&gt;love&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;hate&lt;/code&gt;. Alternatively, you can get the emotions associated with &lt;code class=&quot;highlighter-rouge&quot;&gt;not love&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;not hate&lt;/code&gt;, which is passing an &lt;code class=&quot;highlighter-rouge&quot;&gt;is_negated&lt;/code&gt; parameter to the method.&lt;/p&gt;
+&lt;p&gt;Once the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt; model is loaded, you can either get the emotions that either a single term or a full-sentence has. For example, you can get the emotions associated with the word &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;love&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hate&lt;/code&gt;. Alternatively, you can get the emotions associated with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;not love&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;not hate&lt;/code&gt;, which is passing an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;is_negated&lt;/code&gt; parameter to the method.&lt;/p&gt;
 
-&lt;p&gt;For each term, a list of &lt;code class=&quot;highlighter-rouge&quot;&gt;Emotion&lt;/code&gt; named tuples is returned. Each &lt;code class=&quot;highlighter-rouge&quot;&gt;Emotion&lt;/code&gt; has the fields &lt;code class=&quot;highlighter-rouge&quot;&gt;category&lt;/code&gt;, which indicates one of the motions that the term has been assigned, a &lt;code class=&quot;highlighter-rouge&quot;&gt;value&lt;/code&gt; that quantifies how strong the emotion category has been assigned to the term, and the &lt;code class=&quot;highlighter-rouge&quot;&gt;term&lt;/code&gt;. This term in case the method is called with &lt;code class=&quot;highlighter-rouge&quot;&gt;is_negated=True&lt;/code&gt;, has a dash as a prefix, e.g., &lt;code class=&quot;highlighter-rouge&quot;&gt;term=love, is_negated=True&lt;/code&gt; will generate an &lt;code class=&quot;highlighter-rouge&quot;&gt;Emotion&lt;/code&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;term=-love&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For each term, a list of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Emotion&lt;/code&gt; named tuples is returned. Each &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Emotion&lt;/code&gt; has the fields &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category&lt;/code&gt;, which indicates one of the motions that the term has been assigned, a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;value&lt;/code&gt; that quantifies how strong the emotion category has been assigned to the term, and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;term&lt;/code&gt;. This term in case the method is called with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;is_negated=True&lt;/code&gt;, has a dash as a prefix, e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;term=love, is_negated=True&lt;/code&gt; will generate an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Emotion&lt;/code&gt; with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;term=-love&lt;/code&gt;.&lt;/p&gt;
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/78641312fb741eb30579d5d2a906d180.js&quot;&gt;&lt;/script&gt;
 
@@ -803,7 +801,7 @@ for term in ['LOVE', 'Hate']:
     print(f'{term} (negated) -&gt; {lb.get_term_emotions(term, is_negated=True)}')
 ``` --&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
     --------------------------------------------------
     Emotions for love, hate, not love, and not hate.
     --------------------------------------------------
@@ -819,15 +817,15 @@ for term in ['LOVE', 'Hate']:
 
 &lt;h3 id=&quot;negated-terms&quot;&gt;Negated terms&lt;/h3&gt;
 
-&lt;p&gt;The categories supported for the &lt;code class=&quot;highlighter-rouge&quot;&gt;is_negated&lt;/code&gt; parameter are the ones included in the &lt;a href=&quot;https://en.wikipedia.org/wiki/Contrasting_and_categorization_of_emotions&quot;&gt;Plutchik’s wheel of emotions&lt;/a&gt;, shown below (source: Wikipedia)&lt;/p&gt;
+&lt;p&gt;The categories supported for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;is_negated&lt;/code&gt; parameter are the ones included in the &lt;a href=&quot;https://en.wikipedia.org/wiki/Contrasting_and_categorization_of_emotions&quot;&gt;Plutchik’s wheel of emotions&lt;/a&gt;, shown below (source: Wikipedia)&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/c/ce/Plutchik-wheel.svg&quot; alt=&quot;Drawing&quot; style=&quot;width: 450px;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Here, each emotion is placed in a wheel where any emotion is facing its “opposite” on the other side. For example, &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; is on the opposite side of &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;rage&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;terror&lt;/code&gt;, and so on. When terms are negated, the opposite emotion will be used. For example, &lt;code class=&quot;highlighter-rouge&quot;&gt;love&lt;/code&gt; has an emotion of &lt;code class=&quot;highlighter-rouge&quot;&gt;joy&lt;/code&gt; with score &lt;code class=&quot;highlighter-rouge&quot;&gt;0.828&lt;/code&gt; (following the NRC &lt;code class=&quot;highlighter-rouge&quot;&gt;affect_intensity&lt;/code&gt; lexicon). Then &lt;code class=&quot;highlighter-rouge&quot;&gt;love&lt;/code&gt; negated will have an emotion of &lt;code class=&quot;highlighter-rouge&quot;&gt;sadness&lt;/code&gt; with score &lt;code class=&quot;highlighter-rouge&quot;&gt;0.828&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Here, each emotion is placed in a wheel where any emotion is facing its “opposite” on the other side. For example, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt; is on the opposite side of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sadness&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rage&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terror&lt;/code&gt;, and so on. When terms are negated, the opposite emotion will be used. For example, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;love&lt;/code&gt; has an emotion of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;joy&lt;/code&gt; with score &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.828&lt;/code&gt; (following the NRC &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;affect_intensity&lt;/code&gt; lexicon). Then &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;love&lt;/code&gt; negated will have an emotion of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sadness&lt;/code&gt; with score &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.828&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;emotions-for-sentences&quot;&gt;Emotions for sentences&lt;/h3&gt;
 
-&lt;p&gt;Like getting the emotions of a term, &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; has a method for getting the emotions for full or partial sentence. This is supported by the fact that each sentence has multiple terms, which some of them could have one or multiple emotions. Note that, in some cases, a sentence could have some negated terms that need to be considered. Some examples of how to process sentences and the expected output are presented below.&lt;/p&gt;
+&lt;p&gt;Like getting the emotions of a term, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt; has a method for getting the emotions for full or partial sentence. This is supported by the fact that each sentence has multiple terms, which some of them could have one or multiple emotions. Note that, in some cases, a sentence could have some negated terms that need to be considered. Some examples of how to process sentences and the expected output are presented below.&lt;/p&gt;
 
 &lt;!-- ```python
 sentence = 'I love and enjoy this string.'
@@ -837,7 +835,7 @@ lb.get_sentence_emotions(sentence)
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/08a86825885b9be650b376ad0ef184da.js&quot;&gt;&lt;/script&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
     [Emotion(category='joy', value=0.828, term='love'),
      Emotion(category='joy', value=0.812, term='enjoy')]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -852,7 +850,7 @@ lb.get_sentence_emotions(sentence)
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/2d5c462d633560f1b39af1c3147b7b14.js&quot;&gt;&lt;/script&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
     [Emotion(category='sadness', value=0.828, term='-love'),
      Emotion(category='joy', value=0.812, term='enjoy')]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -867,7 +865,7 @@ lb.get_sentence_emotions(sentence)
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/f85932099e2e7f0cdd2b1b586c6eff91.js&quot;&gt;&lt;/script&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
     [Emotion(category='sadness', value=0.828, term='-love'),
      Emotion(category='joy', value=0.812, term='enjoy'),
      Emotion(category='anger', value=0.203, term='sentence'),
@@ -877,9 +875,9 @@ lb.get_sentence_emotions(sentence)
 
 &lt;h3 id=&quot;emotions-using-the-terms-mapping&quot;&gt;Emotions using the terms mapping&lt;/h3&gt;
 
-&lt;p&gt;Note that in the last example &lt;code class=&quot;highlighter-rouge&quot;&gt;I don't love but I enjoy this sentence&lt;/code&gt;, the word &lt;code class=&quot;highlighter-rouge&quot;&gt;sentence&lt;/code&gt; could be placed under two different contexts: &lt;code class=&quot;highlighter-rouge&quot;&gt;sentence&lt;/code&gt; as in a set for words or &lt;code class=&quot;highlighter-rouge&quot;&gt;sentence&lt;/code&gt; as in punishment.&lt;/p&gt;
+&lt;p&gt;Note that in the last example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;I don't love but I enjoy this sentence&lt;/code&gt;, the word &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sentence&lt;/code&gt; could be placed under two different contexts: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sentence&lt;/code&gt; as in a set for words or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sentence&lt;/code&gt; as in punishment.&lt;/p&gt;
 
-&lt;p&gt;If you are under the context that &lt;code class=&quot;highlighter-rouge&quot;&gt;sentence&lt;/code&gt; is just a collection of words, you can use the &lt;code class=&quot;highlighter-rouge&quot;&gt;terms_mapping&lt;/code&gt; when defining the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; object.&lt;/p&gt;
+&lt;p&gt;If you are under the context that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sentence&lt;/code&gt; is just a collection of words, you can use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;terms_mapping&lt;/code&gt; when defining the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt; object.&lt;/p&gt;
 
 &lt;!-- ```python
 terms_mapping = {'sentence': 'string'}
@@ -892,14 +890,14 @@ lb.get_sentence_emotions(sentence)
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/2a05a110fdb53cb3b0db024150633f7f.js&quot;&gt;&lt;/script&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
     [Emotion(category='sadness', value=0.828, term='-love'),
      Emotion(category='joy', value=0.812, term='enjoy')]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;using-a-machine-learning-model-for-emotion-analysis&quot;&gt;Using a Machine Learning model for Emotion Analysis&lt;/h2&gt;
 
-&lt;p&gt;Similar to the example above, using a lexicon-based model, this is just a quick walkthrough to understand how to load and use the machine learning model built in Tensorflow, which is included in the &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;Similar to the example above, using a lexicon-based model, this is just a quick walkthrough to understand how to load and use the machine learning model built in Tensorflow, which is included in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt; package.&lt;/p&gt;
 
 &lt;p&gt;First, you need to understand the constraints and limitations of the model:&lt;/p&gt;
 &lt;ol&gt;
@@ -933,18 +931,18 @@ tf_model.predict('I have a lot of joy and sadness')
 ``` --&gt;
 &lt;script src=&quot;https://gist.github.com/glhuilli/82e1ca190c05041863479215ebb19d72.js&quot;&gt;&lt;/script&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
     array([0.53164005, 0.95961887, 0.11894947, 0.05770496], dtype=float32)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The output represents the probability that each emotion was found in the input sentence. I included in &lt;code class=&quot;highlighter-rouge&quot;&gt;limbic&lt;/code&gt; a more expressive way of returning such probabilities by using the &lt;code class=&quot;highlighter-rouge&quot;&gt;get_sentence_emotions&lt;/code&gt; method, where each emotion is mapped to the right probability of being included in the sentence,&lt;/p&gt;
+&lt;p&gt;The output represents the probability that each emotion was found in the input sentence. I included in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limbic&lt;/code&gt; a more expressive way of returning such probabilities by using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;get_sentence_emotions&lt;/code&gt; method, where each emotion is mapped to the right probability of being included in the sentence,&lt;/p&gt;
 
 &lt;!-- ```python
 tf_model.get_sentence_emotions('I have a lot of joy and sadness.')
 ``` --&gt;
 &lt;script src=&quot;https://gist.github.com/glhuilli/e8269c12d52a6b11a8359e39616292a0.js&quot;&gt;&lt;/script&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
     [EmotionValue(category='sadness', value=0.53164005),
      EmotionValue(category='joy', value=0.95961887),
      EmotionValue(category='fear', value=0.11894947),
@@ -970,8 +968,8 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 &lt;/script&gt;
 
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">This post contains a few basic examples of how to use the limbic package. First, a quick overview of the lexicon-based classifier is described, and then a few notes on how a machine learning model was trained and how it can be used to predict the emotions for a given text.</summary></entry><entry><title type="html">Automatic activation of virtualenv (+ pyenv)</title><link href="http://localhost:4000/virtual-environments.html" rel="alternate" type="text/html" title="Automatic activation of virtualenv (+ pyenv)" /><published>2019-03-03T00:00:00-10:00</published><updated>2019-03-03T00:00:00-10:00</updated><id>http://localhost:4000/virtual-environments</id><content type="html" xml:base="http://localhost:4000/virtual-environments.html">&lt;p&gt;There must be hundreds of alternatives for using Python virtualenv in a simple and clean way, but the following is by far the
-one that I find most intuitive and easy to set up. The idea is simple. Each time you want to use a &lt;code class=&quot;highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; in a project,
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><category term="Python" /><summary type="html">This post contains a few basic examples of how to use the limbic package. First, a quick overview of the lexicon-based classifier is described, and then a few notes on how a machine learning model was trained and how it can be used to predict the emotions for a given text.</summary></entry><entry><title type="html">Automatic activation of virtualenv (+ pyenv)</title><link href="http://localhost:4000/virtual-environments.html" rel="alternate" type="text/html" title="Automatic activation of virtualenv (+ pyenv)" /><published>2019-03-03T00:00:00-10:00</published><updated>2019-03-03T00:00:00-10:00</updated><id>http://localhost:4000/virtual-environments</id><content type="html" xml:base="http://localhost:4000/virtual-environments.html">&lt;p&gt;There must be hundreds of alternatives for using Python virtualenv in a simple and clean way, but the following is by far the
+one that I find most intuitive and easy to set up. The idea is simple. Each time you want to use a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; in a project,
 you need to:&lt;/p&gt;
 
 &lt;ol&gt;
@@ -986,36 +984,36 @@ you need to:&lt;/p&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;For this, you will need to have &lt;a href=&quot;https://github.com/pyenv/pyenv&quot;&gt;pyenv&lt;/a&gt; and &lt;a href=&quot;https://github.com/pypa/virtualenv&quot;&gt;virtualenv&lt;/a&gt;
-installed in your development environment. Once that’s done, you need to source the following &lt;code class=&quot;highlighter-rouge&quot;&gt;bash&lt;/code&gt; script. Note that the &lt;code class=&quot;highlighter-rouge&quot;&gt;.python-version&lt;/code&gt; is a &lt;code class=&quot;highlighter-rouge&quot;&gt;pyenv&lt;/code&gt; requirement and all details related to its definition and usage can be found [&lt;a href=&quot;https://github.com/pyenv/pyenv&quot;&gt;here&lt;/a&gt;].&lt;/p&gt;
+installed in your development environment. Once that’s done, you need to source the following &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bash&lt;/code&gt; script. Note that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.python-version&lt;/code&gt; is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyenv&lt;/code&gt; requirement and all details related to its definition and usage can be found [&lt;a href=&quot;https://github.com/pyenv/pyenv&quot;&gt;here&lt;/a&gt;].&lt;/p&gt;
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/c1af87bde701ede4d218bab829d3817e.js&quot;&gt;&lt;/script&gt;
 
-&lt;p&gt;This script works roughly as follows. First, it verifies the &lt;code class=&quot;highlighter-rouge&quot;&gt;.python-version&lt;/code&gt; file which only contains
+&lt;p&gt;This script works roughly as follows. First, it verifies the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.python-version&lt;/code&gt; file which only contains
 the version of python you want to use. For example,&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cat .python-version
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cat .python-version
 3.7.2
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If &lt;code class=&quot;highlighter-rouge&quot;&gt;pyenv&lt;/code&gt; is available and supports the python version you are intending to use, a &lt;code class=&quot;highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; is then created
-pointing to a &lt;code class=&quot;highlighter-rouge&quot;&gt;.python&lt;/code&gt; folder within your projects home directory. The name of the &lt;code class=&quot;highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; is defined in
-the &lt;code class=&quot;highlighter-rouge&quot;&gt;.python-virtualenv&lt;/code&gt; file, for example,&lt;/p&gt;
+&lt;p&gt;If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyenv&lt;/code&gt; is available and supports the python version you are intending to use, a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; is then created
+pointing to a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.python&lt;/code&gt; folder within your projects home directory. The name of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; is defined in
+the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.python-virtualenv&lt;/code&gt; file, for example,&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cat .python-virtualenv
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cat .python-virtualenv
 my_python_project
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If you want to use a given python version, the script will verify if it’s available within &lt;code class=&quot;highlighter-rouge&quot;&gt;pyenv&lt;/code&gt;. If not, then
+&lt;p&gt;If you want to use a given python version, the script will verify if it’s available within &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyenv&lt;/code&gt;. If not, then
 it will prompt instructions on how to install it. Also, there are a few optimizations you might want to make to the
 strategy (e.g. using only one config file, prompting more options, etc.) but this should be enough to get you ready
 and set up to use Python virtual environments in an easy way.&lt;/p&gt;
 
-&lt;p&gt;You can use the script above in your development environment by sourcing it from your favorite bash/tcsh/zsh/other “autoloading” script (e.g. your &lt;code class=&quot;highlighter-rouge&quot;&gt;.bash_profile&lt;/code&gt; or your &lt;code class=&quot;highlighter-rouge&quot;&gt;.zshrc&lt;/code&gt;, etc.). Save the file locally (e.g. in &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.development_scripts/python_env_load.sh&lt;/code&gt;). Finally, I strongly suggest adding the following environment variables to your system so you make sure that anything
-you install is within a &lt;code class=&quot;highlighter-rouge&quot;&gt;vitualenv&lt;/code&gt;. Both the source of the script and the &lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt; environment variables together would look like this:&lt;/p&gt;
+&lt;p&gt;You can use the script above in your development environment by sourcing it from your favorite bash/tcsh/zsh/other “autoloading” script (e.g. your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.bash_profile&lt;/code&gt; or your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.zshrc&lt;/code&gt;, etc.). Save the file locally (e.g. in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.development_scripts/python_env_load.sh&lt;/code&gt;). Finally, I strongly suggest adding the following environment variables to your system so you make sure that anything
+you install is within a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vitualenv&lt;/code&gt;. Both the source of the script and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt; environment variables together would look like this:&lt;/p&gt;
 
 &lt;script src=&quot;https://gist.github.com/glhuilli/3a1245fa37644766b47e6a1420e8cbbf.js&quot;&gt;&lt;/script&gt;
 
-&lt;p&gt;Special thanks to &lt;a href=&quot;https://github.com/rzilleruelo&quot;&gt;@rzilleruelo&lt;/a&gt; for coming up with the first versions of this &lt;code class=&quot;highlighter-rouge&quot;&gt;virtualenv+pyenv&lt;/code&gt; bash script.&lt;/p&gt;
+&lt;p&gt;Special thanks to &lt;a href=&quot;https://github.com/rzilleruelo&quot;&gt;@rzilleruelo&lt;/a&gt; for coming up with the first versions of this &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv+pyenv&lt;/code&gt; bash script.&lt;/p&gt;
 
 &lt;!-- &lt;script id=&quot;dsq-count-scr&quot; src=&quot;//glhuilli.disqus.com/count.js&quot; async&gt;&lt;/script&gt; --&gt;
 &lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
@@ -1032,4 +1030,4 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 &lt;/script&gt;
 
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><summary type="html">There must be hundreds of alternatives for using Python virtualenv in a simple and clean way, but the following is by far the one that I find most intuitive and easy to set up. The idea is simple. Each time you want to use a virtualenv in a project, you need to:</summary></entry></feed>
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</content><author><name></name></author><category term="Python," /><category term="Bash" /><summary type="html">There must be hundreds of alternatives for using Python virtualenv in a simple and clean way, but the following is by far the one that I find most intuitive and easy to set up. The idea is simple. Each time you want to use a virtualenv in a project, you need to:</summary></entry></feed>

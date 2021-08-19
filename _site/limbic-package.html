@@ -24,15 +24,15 @@
     <!-- <link rel='icon' href='/assets/images/favicon.ico' type='image/x-icon'> -->
     
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1629377485896162000'>
     
   
     
@@ -80,7 +80,7 @@
   <div class='container'>
     <div class='title'>Limbic: Python package for emotion analysis from text</div>
     <div class='date'>10 Apr 2019</div>
-    <div class='content'><p>This post contains a few basic examples of how to use the <code class="highlighter-rouge">limbic</code> package. First, a quick overview of the lexicon-based classifier is described, and then a few notes on how a machine learning model was trained and how it can be used to predict the emotions for a given text.</p>
+    <div class='content'><p>This post contains a few basic examples of how to use the <code class="language-plaintext highlighter-rouge">limbic</code> package. First, a quick overview of the lexicon-based classifier is described, and then a few notes on how a machine learning model was trained and how it can be used to predict the emotions for a given text.</p>
 
 <h2 id="why-building-this-package">Why building this package?</h2>
 
@@ -97,9 +97,9 @@
 
 <h2 id="installing-the-package">Installing the package</h2>
 
-<p>In the meantime, while I finish adding this as a pypi package, you can install it by building the source code from the repository by first installing all the dependencies from the requirements.txt file and the dependencies for Spacy, the NLP framework used through this package. However, it might be easier to use <code class="highlighter-rouge">pip install</code> directly from the Github repository, as shown below,</p>
+<p>In the meantime, while I finish adding this as a pypi package, you can install it by building the source code from the repository by first installing all the dependencies from the requirements.txt file and the dependencies for Spacy, the NLP framework used through this package. However, it might be easier to use <code class="language-plaintext highlighter-rouge">pip install</code> directly from the Github repository, as shown below,</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install git+https://github.com/glhuilli/limbic.git
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install git+https://github.com/glhuilli/limbic.git
 python -m spacy download en_core_web_sm
 </code></pre></div></div>
 
@@ -107,9 +107,9 @@ python -m spacy download en_core_web_sm
 
 <p>The only thing you need to create a new lexicon-based emotion classifier is, of course, the lexicon. However, in case you are dealing with a specific context, it’s possible to use a terms mapping dictionary,  which will automatically replace terms on the input you want to process.</p>
 
-<p>The lexicon has to be loaded by the user, and it could be either a custom lexicon or a <a href="http://saifmohammad.com/WebPages/AccessResource.htm">lexicon from the NRC</a>. To load a lexicon, you can either use a generic <code class="highlighter-rouge">load_lexicon</code> or <code class="highlighter-rouge">load_nrc_lexicon</code> tailored for some NRC lexicons.</p>
+<p>The lexicon has to be loaded by the user, and it could be either a custom lexicon or a <a href="http://saifmohammad.com/WebPages/AccessResource.htm">lexicon from the NRC</a>. To load a lexicon, you can either use a generic <code class="language-plaintext highlighter-rouge">load_lexicon</code> or <code class="language-plaintext highlighter-rouge">load_nrc_lexicon</code> tailored for some NRC lexicons.</p>
 
-<p>To use the generic <code class="highlighter-rouge">load_lexicon</code> method you can do the following:</p>
+<p>To use the generic <code class="language-plaintext highlighter-rouge">load_lexicon</code> method you can do the following:</p>
 
 <script src="https://gist.github.com/glhuilli/447690ef2b498a49d6b9f5c025dc9f4c.js"></script>
 
@@ -120,9 +120,9 @@ my_lexicon_file_path = '../data/my_lexicon.csv'
 lexicon = load_lexicon(my_lexicon_file_path)
 ``` -->
 
-<p>where the hypothetical file <code class="highlighter-rouge">../data/lexicon.csv</code> is a <code class="highlighter-rouge">csv</code> file with the header <code class="highlighter-rouge">term,emotion,score</code>.</p>
+<p>where the hypothetical file <code class="language-plaintext highlighter-rouge">../data/lexicon.csv</code> is a <code class="language-plaintext highlighter-rouge">csv</code> file with the header <code class="language-plaintext highlighter-rouge">term,emotion,score</code>.</p>
 
-<p>To use the <code class="highlighter-rouge">load_nrc_lexicon</code> method, you need to download one of the supported NRC files and do</p>
+<p>To use the <code class="language-plaintext highlighter-rouge">load_nrc_lexicon</code> method, you need to download one of the supported NRC files and do</p>
 
 <!-- ```python
 from limbic.emotion.nrc_utils import load_nrc_lexicon
@@ -133,13 +133,13 @@ lexicon = load_nrc_lexicon(nrc_lexicon_file_path, 'affect_intensity')
 
 <script src="https://gist.github.com/glhuilli/6d05e46c08218c3b3efb07b6cb6ad7fd.js"></script>
 
-<p>The supported files are the <code class="highlighter-rouge">affect_intensity</code> lexicon, the <code class="highlighter-rouge">emotion</code> lexicon (aka <code class="highlighter-rouge">EmoLex</code>), and the <code class="highlighter-rouge">vad</code> lexicon.</p>
+<p>The supported files are the <code class="language-plaintext highlighter-rouge">affect_intensity</code> lexicon, the <code class="language-plaintext highlighter-rouge">emotion</code> lexicon (aka <code class="language-plaintext highlighter-rouge">EmoLex</code>), and the <code class="language-plaintext highlighter-rouge">vad</code> lexicon.</p>
 
-<p>Once the lexicon is ready, you can create the <code class="highlighter-rouge">LexiconLimbicModel</code>,</p>
+<p>Once the lexicon is ready, you can create the <code class="language-plaintext highlighter-rouge">LexiconLimbicModel</code>,</p>
 
 <script src="https://gist.github.com/glhuilli/13c6eb1f3b9bad28b8184c6ea7c9f6b8.js"></script>
 
-<p>Also, there’s an option to use a <code class="highlighter-rouge">terms mapping</code> dictionary has to be of type <code class="highlighter-rouge">Dict[str, str]</code>, where a given term or collection of terms will be mapped to another term of collection of terms when computing the emotions. This is specifically helpful for texts with a specific context that you would like to include in the model. This is specifically helpful for texts with a specific context that you would like to include in the model. An example of this included below (check out <a href="https://glhuilli.github.io/got-analysis.html">this example</a> to use a mapping dictionary).</p>
+<p>Also, there’s an option to use a <code class="language-plaintext highlighter-rouge">terms mapping</code> dictionary has to be of type <code class="language-plaintext highlighter-rouge">Dict[str, str]</code>, where a given term or collection of terms will be mapped to another term of collection of terms when computing the emotions. This is specifically helpful for texts with a specific context that you would like to include in the model. This is specifically helpful for texts with a specific context that you would like to include in the model. An example of this included below (check out <a href="https://glhuilli.github.io/got-analysis.html">this example</a> to use a mapping dictionary).</p>
 
 <h3 id="important-note">Important note</h3>
 
@@ -147,9 +147,9 @@ lexicon = load_nrc_lexicon(nrc_lexicon_file_path, 'affect_intensity')
 
 <h3 id="emotions-from-terms">Emotions from Terms</h3>
 
-<p>Once the <code class="highlighter-rouge">limbic</code> model is loaded, you can either get the emotions that either a single term or a full-sentence has. For example, you can get the emotions associated with the word <code class="highlighter-rouge">love</code> or <code class="highlighter-rouge">hate</code>. Alternatively, you can get the emotions associated with <code class="highlighter-rouge">not love</code> and <code class="highlighter-rouge">not hate</code>, which is passing an <code class="highlighter-rouge">is_negated</code> parameter to the method.</p>
+<p>Once the <code class="language-plaintext highlighter-rouge">limbic</code> model is loaded, you can either get the emotions that either a single term or a full-sentence has. For example, you can get the emotions associated with the word <code class="language-plaintext highlighter-rouge">love</code> or <code class="language-plaintext highlighter-rouge">hate</code>. Alternatively, you can get the emotions associated with <code class="language-plaintext highlighter-rouge">not love</code> and <code class="language-plaintext highlighter-rouge">not hate</code>, which is passing an <code class="language-plaintext highlighter-rouge">is_negated</code> parameter to the method.</p>
 
-<p>For each term, a list of <code class="highlighter-rouge">Emotion</code> named tuples is returned. Each <code class="highlighter-rouge">Emotion</code> has the fields <code class="highlighter-rouge">category</code>, which indicates one of the motions that the term has been assigned, a <code class="highlighter-rouge">value</code> that quantifies how strong the emotion category has been assigned to the term, and the <code class="highlighter-rouge">term</code>. This term in case the method is called with <code class="highlighter-rouge">is_negated=True</code>, has a dash as a prefix, e.g., <code class="highlighter-rouge">term=love, is_negated=True</code> will generate an <code class="highlighter-rouge">Emotion</code> with <code class="highlighter-rouge">term=-love</code>.</p>
+<p>For each term, a list of <code class="language-plaintext highlighter-rouge">Emotion</code> named tuples is returned. Each <code class="language-plaintext highlighter-rouge">Emotion</code> has the fields <code class="language-plaintext highlighter-rouge">category</code>, which indicates one of the motions that the term has been assigned, a <code class="language-plaintext highlighter-rouge">value</code> that quantifies how strong the emotion category has been assigned to the term, and the <code class="language-plaintext highlighter-rouge">term</code>. This term in case the method is called with <code class="language-plaintext highlighter-rouge">is_negated=True</code>, has a dash as a prefix, e.g., <code class="language-plaintext highlighter-rouge">term=love, is_negated=True</code> will generate an <code class="language-plaintext highlighter-rouge">Emotion</code> with <code class="language-plaintext highlighter-rouge">term=-love</code>.</p>
 
 <script src="https://gist.github.com/glhuilli/78641312fb741eb30579d5d2a906d180.js"></script>
 
@@ -163,7 +163,7 @@ for term in ['LOVE', 'Hate']:
     print(f'{term} (negated) -> {lb.get_term_emotions(term, is_negated=True)}')
 ``` -->
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     --------------------------------------------------
     Emotions for love, hate, not love, and not hate.
     --------------------------------------------------
@@ -179,15 +179,15 @@ for term in ['LOVE', 'Hate']:
 
 <h3 id="negated-terms">Negated terms</h3>
 
-<p>The categories supported for the <code class="highlighter-rouge">is_negated</code> parameter are the ones included in the <a href="https://en.wikipedia.org/wiki/Contrasting_and_categorization_of_emotions">Plutchik’s wheel of emotions</a>, shown below (source: Wikipedia)</p>
+<p>The categories supported for the <code class="language-plaintext highlighter-rouge">is_negated</code> parameter are the ones included in the <a href="https://en.wikipedia.org/wiki/Contrasting_and_categorization_of_emotions">Plutchik’s wheel of emotions</a>, shown below (source: Wikipedia)</p>
 
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Plutchik-wheel.svg" alt="Drawing" style="width: 450px;" /></p>
 
-<p>Here, each emotion is placed in a wheel where any emotion is facing its “opposite” on the other side. For example, <code class="highlighter-rouge">joy</code> is on the opposite side of <code class="highlighter-rouge">sadness</code>, <code class="highlighter-rouge">rage</code> to <code class="highlighter-rouge">terror</code>, and so on. When terms are negated, the opposite emotion will be used. For example, <code class="highlighter-rouge">love</code> has an emotion of <code class="highlighter-rouge">joy</code> with score <code class="highlighter-rouge">0.828</code> (following the NRC <code class="highlighter-rouge">affect_intensity</code> lexicon). Then <code class="highlighter-rouge">love</code> negated will have an emotion of <code class="highlighter-rouge">sadness</code> with score <code class="highlighter-rouge">0.828</code>.</p>
+<p>Here, each emotion is placed in a wheel where any emotion is facing its “opposite” on the other side. For example, <code class="language-plaintext highlighter-rouge">joy</code> is on the opposite side of <code class="language-plaintext highlighter-rouge">sadness</code>, <code class="language-plaintext highlighter-rouge">rage</code> to <code class="language-plaintext highlighter-rouge">terror</code>, and so on. When terms are negated, the opposite emotion will be used. For example, <code class="language-plaintext highlighter-rouge">love</code> has an emotion of <code class="language-plaintext highlighter-rouge">joy</code> with score <code class="language-plaintext highlighter-rouge">0.828</code> (following the NRC <code class="language-plaintext highlighter-rouge">affect_intensity</code> lexicon). Then <code class="language-plaintext highlighter-rouge">love</code> negated will have an emotion of <code class="language-plaintext highlighter-rouge">sadness</code> with score <code class="language-plaintext highlighter-rouge">0.828</code>.</p>
 
 <h3 id="emotions-for-sentences">Emotions for sentences</h3>
 
-<p>Like getting the emotions of a term, <code class="highlighter-rouge">limbic</code> has a method for getting the emotions for full or partial sentence. This is supported by the fact that each sentence has multiple terms, which some of them could have one or multiple emotions. Note that, in some cases, a sentence could have some negated terms that need to be considered. Some examples of how to process sentences and the expected output are presented below.</p>
+<p>Like getting the emotions of a term, <code class="language-plaintext highlighter-rouge">limbic</code> has a method for getting the emotions for full or partial sentence. This is supported by the fact that each sentence has multiple terms, which some of them could have one or multiple emotions. Note that, in some cases, a sentence could have some negated terms that need to be considered. Some examples of how to process sentences and the expected output are presented below.</p>
 
 <!-- ```python
 sentence = 'I love and enjoy this string.'
@@ -197,7 +197,7 @@ lb.get_sentence_emotions(sentence)
 
 <script src="https://gist.github.com/glhuilli/08a86825885b9be650b376ad0ef184da.js"></script>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     [Emotion(category='joy', value=0.828, term='love'),
      Emotion(category='joy', value=0.812, term='enjoy')]
 </code></pre></div></div>
@@ -212,7 +212,7 @@ lb.get_sentence_emotions(sentence)
 
 <script src="https://gist.github.com/glhuilli/2d5c462d633560f1b39af1c3147b7b14.js"></script>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     [Emotion(category='sadness', value=0.828, term='-love'),
      Emotion(category='joy', value=0.812, term='enjoy')]
 </code></pre></div></div>
@@ -227,7 +227,7 @@ lb.get_sentence_emotions(sentence)
 
 <script src="https://gist.github.com/glhuilli/f85932099e2e7f0cdd2b1b586c6eff91.js"></script>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     [Emotion(category='sadness', value=0.828, term='-love'),
      Emotion(category='joy', value=0.812, term='enjoy'),
      Emotion(category='anger', value=0.203, term='sentence'),
@@ -237,9 +237,9 @@ lb.get_sentence_emotions(sentence)
 
 <h3 id="emotions-using-the-terms-mapping">Emotions using the terms mapping</h3>
 
-<p>Note that in the last example <code class="highlighter-rouge">I don't love but I enjoy this sentence</code>, the word <code class="highlighter-rouge">sentence</code> could be placed under two different contexts: <code class="highlighter-rouge">sentence</code> as in a set for words or <code class="highlighter-rouge">sentence</code> as in punishment.</p>
+<p>Note that in the last example <code class="language-plaintext highlighter-rouge">I don't love but I enjoy this sentence</code>, the word <code class="language-plaintext highlighter-rouge">sentence</code> could be placed under two different contexts: <code class="language-plaintext highlighter-rouge">sentence</code> as in a set for words or <code class="language-plaintext highlighter-rouge">sentence</code> as in punishment.</p>
 
-<p>If you are under the context that <code class="highlighter-rouge">sentence</code> is just a collection of words, you can use the <code class="highlighter-rouge">terms_mapping</code> when defining the <code class="highlighter-rouge">limbic</code> object.</p>
+<p>If you are under the context that <code class="language-plaintext highlighter-rouge">sentence</code> is just a collection of words, you can use the <code class="language-plaintext highlighter-rouge">terms_mapping</code> when defining the <code class="language-plaintext highlighter-rouge">limbic</code> object.</p>
 
 <!-- ```python
 terms_mapping = {'sentence': 'string'}
@@ -252,14 +252,14 @@ lb.get_sentence_emotions(sentence)
 
 <script src="https://gist.github.com/glhuilli/2a05a110fdb53cb3b0db024150633f7f.js"></script>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     [Emotion(category='sadness', value=0.828, term='-love'),
      Emotion(category='joy', value=0.812, term='enjoy')]
 </code></pre></div></div>
 
 <h2 id="using-a-machine-learning-model-for-emotion-analysis">Using a Machine Learning model for Emotion Analysis</h2>
 
-<p>Similar to the example above, using a lexicon-based model, this is just a quick walkthrough to understand how to load and use the machine learning model built in Tensorflow, which is included in the <code class="highlighter-rouge">limbic</code> package.</p>
+<p>Similar to the example above, using a lexicon-based model, this is just a quick walkthrough to understand how to load and use the machine learning model built in Tensorflow, which is included in the <code class="language-plaintext highlighter-rouge">limbic</code> package.</p>
 
 <p>First, you need to understand the constraints and limitations of the model:</p>
 <ol>
@@ -293,18 +293,18 @@ tf_model.predict('I have a lot of joy and sadness')
 ``` -->
 <script src="https://gist.github.com/glhuilli/82e1ca190c05041863479215ebb19d72.js"></script>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     array([0.53164005, 0.95961887, 0.11894947, 0.05770496], dtype=float32)
 </code></pre></div></div>
 
-<p>The output represents the probability that each emotion was found in the input sentence. I included in <code class="highlighter-rouge">limbic</code> a more expressive way of returning such probabilities by using the <code class="highlighter-rouge">get_sentence_emotions</code> method, where each emotion is mapped to the right probability of being included in the sentence,</p>
+<p>The output represents the probability that each emotion was found in the input sentence. I included in <code class="language-plaintext highlighter-rouge">limbic</code> a more expressive way of returning such probabilities by using the <code class="language-plaintext highlighter-rouge">get_sentence_emotions</code> method, where each emotion is mapped to the right probability of being included in the sentence,</p>
 
 <!-- ```python
 tf_model.get_sentence_emotions('I have a lot of joy and sadness.')
 ``` -->
 <script src="https://gist.github.com/glhuilli/e8269c12d52a6b11a8359e39616292a0.js"></script>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
     [EmotionValue(category='sadness', value=0.53164005),
      EmotionValue(category='joy', value=0.95961887),
      EmotionValue(category='fear', value=0.11894947),
@@ -385,7 +385,7 @@ s.setAttribute('data-timestamp', +new Date());
     </div>
   <!-- 
     
-    <script src='/assets/bundle.js?1629374428903997000' type='text/javascript'></script>
+    <script src='/assets/bundle.js?1629377485896162000' type='text/javascript'></script>
    -->
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2365015-1"></script>

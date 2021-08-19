@@ -24,15 +24,15 @@
     <!-- <link rel='icon' href='/assets/images/favicon.ico' type='image/x-icon'> -->
     
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1629377485896162000'>
     
   
     
@@ -82,13 +82,13 @@
     <div class='date'>14 Sep 2020</div>
     <div class='content'><p>This analysis covers all papers downloaded from NeurIPS conferences between 2009 and 2019 using the [<a href="https://github.com/glhuilli/neurips_crawler">NeurIPS crawler</a>]. Originally I wanted to process and analyze all papers from 1987 to this date as I have all the data, but I decided to focus just in the last ten years of data.</p>
 
-<p>This post’s primary goal was to explore <code class="highlighter-rouge">D3.js</code> more extensively using some well-known data from a different angle. I know there are probably dozens of blog posts and Kaggle scripts that do a comprehensive analysis of NeurIPs data, but I haven’t seen an analysis for co-authorship on main topics from an Institution’s perspective.</p>
+<p>This post’s primary goal was to explore <code class="language-plaintext highlighter-rouge">D3.js</code> more extensively using some well-known data from a different angle. I know there are probably dozens of blog posts and Kaggle scripts that do a comprehensive analysis of NeurIPs data, but I haven’t seen an analysis for co-authorship on main topics from an Institution’s perspective.</p>
 
-<p>This post’s secondary goal was to put much of the processing code into a new python package that I called <a href="https://github.com/glhuilli/papeles">papeles</a>. The word <code class="highlighter-rouge">papeles</code> is a literal translation for <code class="highlighter-rouge">papers</code> into Spanish. Most of this code is not exceptionally interesting, but it was worth cleaning and refactoring into a lightweight package for others (or my future self) to use. This package is very experimental, so I did not include unit tests and it can be significantly improved. If you want to improve something, you are more than welcome to send pull requests or create issues. I’ll be checking on those regularly.</p>
+<p>This post’s secondary goal was to put much of the processing code into a new python package that I called <a href="https://github.com/glhuilli/papeles">papeles</a>. The word <code class="language-plaintext highlighter-rouge">papeles</code> is a literal translation for <code class="language-plaintext highlighter-rouge">papers</code> into Spanish. Most of this code is not exceptionally interesting, but it was worth cleaning and refactoring into a lightweight package for others (or my future self) to use. This package is very experimental, so I did not include unit tests and it can be significantly improved. If you want to improve something, you are more than welcome to send pull requests or create issues. I’ll be checking on those regularly.</p>
 
 <h2 id="how-institutions-interact-with-each-other-in-machine-learning-research">How institutions interact with each other in machine learning research?</h2>
 
-<p>To answer this question, I pulled all the papers raw content using the <code class="highlighter-rouge">papeles</code> package and extracted the first page (or so) for each paper, focusing exclusively on the first section just before the abstract. From this section, I was able to identify which institutions are mentioned with some tooling I added to <code class="highlighter-rouge">papeles</code>. Then, using all institutions extracted per paper, it was easy to create a graph representation of the co-authors (at the institutions level) for each paper: Each institution is a node, and for each time I found two institutions as co-authors, I created an edge (or increased the weight) between each node.</p>
+<p>To answer this question, I pulled all the papers raw content using the <code class="language-plaintext highlighter-rouge">papeles</code> package and extracted the first page (or so) for each paper, focusing exclusively on the first section just before the abstract. From this section, I was able to identify which institutions are mentioned with some tooling I added to <code class="language-plaintext highlighter-rouge">papeles</code>. Then, using all institutions extracted per paper, it was easy to create a graph representation of the co-authors (at the institutions level) for each paper: Each institution is a node, and for each time I found two institutions as co-authors, I created an edge (or increased the weight) between each node.</p>
 
 <p>When visualizing graphs, most examples I’ve seen are using the graph’s force-directed representation (e.g., <a href="https://observablehq.com/@d3/force-directed-graph">this one</a>). I tried this and got a very messy view that wouldn’t provide any visualization insight. Looking at interconnected institutions in a hierarchical edge bundling graph offers a sweet spot between observing which institutions are highly connected and who, in a summarized way, can be enriched with extra signals by hovering the mouse over each institution.</p>
 
@@ -106,7 +106,7 @@
 
 <p>The general properties of the graph are the following:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number of nodes: 63
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number of nodes: 63
 Number of edges: 723
 Average degree:  22.9524
 </code></pre></div></div>
@@ -117,7 +117,7 @@ Average degree:  22.9524
 
 <p>When applying this method to the graph, there are at least 8 clusters that have enough information to be interesting (more details in the script). Checking for example the first cluster (as presented below), it’s interesting to see that it reflects a mainly european institutions, with some exceptions. More in-depth analysis can be done to understand why these exceptions are clustered together with european institutions and not with other similar or regional institutions (e.g. Kyoto University, City University of Hong Kong, University of Sidney, Université de Montreal, and École Polytechnique de Montreal). Note that Twitter and Google have strong precense in the U.K. so it’s not surprising to see a strong co-authorship dependency with other U.K. institutions, however, it’s very interesting to see Uber in this particular cluster.</p>
 
-<p><code class="highlighter-rouge">['university of oxford',
+<p><code class="language-plaintext highlighter-rouge">['university of oxford',
  'deepmind',
  'universite de montreal',
  'university of cambridge',
@@ -146,7 +146,7 @@ Average degree:  22.9524
  'university of warwick']
 </code></p>
 
-<p>To visualize the results, I decided to use a <code class="highlighter-rouge">TreeMap</code> based on the results published in <a href="http://users.umiacs.umd.edu/~elm/projects/ranked-list/ranked-list.pdf">[Mylavanparu et al. (2019)]</a>, which at the same time allows us to inspect visually other properties of the network, in particular centrality measures. These measures provide insights into how institutions are connected to other nodes in the graph.</p>
+<p>To visualize the results, I decided to use a <code class="language-plaintext highlighter-rouge">TreeMap</code> based on the results published in <a href="http://users.umiacs.umd.edu/~elm/projects/ranked-list/ranked-list.pdf">[Mylavanparu et al. (2019)]</a>, which at the same time allows us to inspect visually other properties of the network, in particular centrality measures. These measures provide insights into how institutions are connected to other nodes in the graph.</p>
 
 <svg width="760" height="470" id="flare_treemap"></svg>
 <form>
@@ -161,15 +161,15 @@ Average degree:  22.9524
 </form>
 <script src="http://localhost:4000/assets/posts/neurips-analysis/treemap.js"></script>
 
-<p>In the <code class="highlighter-rouge">TreeMap</code>, you can see painted with different colors that correspond to the top communities (ranked by number of nodes) identified in the co-authoring institution’s network. Most of the centrality measures show very similar behavior.</p>
+<p>In the <code class="language-plaintext highlighter-rouge">TreeMap</code>, you can see painted with different colors that correspond to the top communities (ranked by number of nodes) identified in the co-authoring institution’s network. Most of the centrality measures show very similar behavior.</p>
 
 <h2 id="what-are-the-current-trends-of-ml-research">What are the current trends of ML research?</h2>
 
-<p>The answer to this question is very well known. Anyone with some degree of understanding about ML should be able to answer this with <code class="highlighter-rouge">Deep Learning</code>. However, while <code class="highlighter-rouge">Deep Learning</code> research captures all the mainstream attention, there are other exciting areas to keep an eye on. For example, <code class="highlighter-rouge">Adversarial Machine Learning</code> is an area of research that has gotten some traction over the last few years. It has been fueled by Deep Learning and Generative Adversarial Networks (aka GANs), but ~10 years ago this was a very fringe and pretty much inexistent research area.</p>
+<p>The answer to this question is very well known. Anyone with some degree of understanding about ML should be able to answer this with <code class="language-plaintext highlighter-rouge">Deep Learning</code>. However, while <code class="language-plaintext highlighter-rouge">Deep Learning</code> research captures all the mainstream attention, there are other exciting areas to keep an eye on. For example, <code class="language-plaintext highlighter-rouge">Adversarial Machine Learning</code> is an area of research that has gotten some traction over the last few years. It has been fueled by Deep Learning and Generative Adversarial Networks (aka GANs), but ~10 years ago this was a very fringe and pretty much inexistent research area.</p>
 
 <p>Also, I find it very interesting what is going on with topics that were very hot +10 years ago and today are almost abandoned. “Classical” machine learning models like Kernel methods or Graphical models are rarely mentioned these days, far less mentioned than more popular research topics lie Neural Networks and Deep Learning.</p>
 
-<p>Listing all the possible research topics in machine learning could be a daunting task, so I used a fairly simple non supervised NLP model to extract this automatically from the research papers with the goal of generating the top 100 topics in ML. For this, I created first a list of keywords from the abstracts from all papers. Then, while just keeping the keywords that are present more than N times across topics in a particular year, I used a non-supervised topic modeling tool called Latent Dirichlet Allocation (particularly the one available in the <code class="highlighter-rouge">gensim</code> package). All this code is available in the <code class="highlighter-rouge">papeles</code> package, and examples on how to use it is available in <a href="https://github.com/glhuilli/papeles/blob/master/scripts/papeles%20-%20keywords%20topics%20analysis.ipynb">this script</a>.</p>
+<p>Listing all the possible research topics in machine learning could be a daunting task, so I used a fairly simple non supervised NLP model to extract this automatically from the research papers with the goal of generating the top 100 topics in ML. For this, I created first a list of keywords from the abstracts from all papers. Then, while just keeping the keywords that are present more than N times across topics in a particular year, I used a non-supervised topic modeling tool called Latent Dirichlet Allocation (particularly the one available in the <code class="language-plaintext highlighter-rouge">gensim</code> package). All this code is available in the <code class="language-plaintext highlighter-rouge">papeles</code> package, and examples on how to use it is available in <a href="https://github.com/glhuilli/papeles/blob/master/scripts/papeles%20-%20keywords%20topics%20analysis.ipynb">this script</a>.</p>
 
 <div>
 <img src="/assets/posts/neurips-analysis/neurips-keywords-word-cloud.png" alt="Wordcloud with keywords per year" />
@@ -179,11 +179,11 @@ Average degree:  22.9524
 
 <p>In the following, you can see how institutions have been increasingly collaborating as NeurIPS got more popular. This is most likely the effect of having a larger volume of papers in recent years (higher volume of papers means a probability of institution collaborating).</p>
 
-<p>Please check the <a href="https://github.com/glhuilli/papeles/blob/master/scripts/papeles%20-%20institutions%20and%20topics%20analysis.ipynb">script</a> in <code class="highlighter-rouge">papeles</code> for details on how the topics were computed and how the names were assigned.</p>
+<p>Please check the <a href="https://github.com/glhuilli/papeles/blob/master/scripts/papeles%20-%20institutions%20and%20topics%20analysis.ipynb">script</a> in <code class="language-plaintext highlighter-rouge">papeles</code> for details on how the topics were computed and how the names were assigned.</p>
 
-<p>Several follow-up questions can be done by using this dataset, analysis tool, and visualization strategies, but I’ll leave that for another time. Questions like “which are the institutions that have co-authoring papers the most together over time” or “which are the institutions with more influence on topics like ConvNets” could be done quickly using <code class="highlighter-rouge">papeles</code> and the set of scripts available.</p>
+<p>Several follow-up questions can be done by using this dataset, analysis tool, and visualization strategies, but I’ll leave that for another time. Questions like “which are the institutions that have co-authoring papers the most together over time” or “which are the institutions with more influence on topics like ConvNets” could be done quickly using <code class="language-plaintext highlighter-rouge">papeles</code> and the set of scripts available.</p>
 
-<p>Interestingly, the answer to the first question is <code class="highlighter-rouge">University of Washington</code> and <code class="highlighter-rouge">Microsoft Research</code>.</p>
+<p>Interestingly, the answer to the first question is <code class="language-plaintext highlighter-rouge">University of Washington</code> and <code class="language-plaintext highlighter-rouge">Microsoft Research</code>.</p>
 
 <div class="desk">
   <div class="row" id="desk">
@@ -490,7 +490,7 @@ Average degree:  22.9524
     </div>
   <!-- 
     
-    <script src='/assets/bundle.js?1629374428903997000' type='text/javascript'></script>
+    <script src='/assets/bundle.js?1629377485896162000' type='text/javascript'></script>
    -->
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2365015-1"></script>
