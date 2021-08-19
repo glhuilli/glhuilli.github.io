@@ -24,15 +24,15 @@
     <!-- <link rel='icon' href='/assets/images/favicon.ico' type='image/x-icon'> -->
     
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1629377485896162000'>
     
   
     
@@ -84,16 +84,16 @@
 
 <h2 id="why-building-this-package">Why building this package?</h2>
 
-<p>We built this package together with <a href="https://github.com/roalonso">@roalonso</a> back in the Sudo Technologies, Inc. days, which we decided to open source. The primary use case for this package was to parse input text from users using the Sudo Chatbot.  We needed to extract some metadata from input text (e.g., dates), which were then used to decide the upcoming actions that the chatbot had to do. And now with this package, you can do the same for any use case you’d like: parse any type of time instance from text and translate it into a <code class="highlighter-rouge">date</code>, <code class="highlighter-rouge">datetime</code>, or time interval. This could be for either future dates or past dates, and you can set the timezone if available.</p>
+<p>We built this package together with <a href="https://github.com/roalonso">@roalonso</a> back in the Sudo Technologies, Inc. days, which we decided to open source. The primary use case for this package was to parse input text from users using the Sudo Chatbot.  We needed to extract some metadata from input text (e.g., dates), which were then used to decide the upcoming actions that the chatbot had to do. And now with this package, you can do the same for any use case you’d like: parse any type of time instance from text and translate it into a <code class="language-plaintext highlighter-rouge">date</code>, <code class="language-plaintext highlighter-rouge">datetime</code>, or time interval. This could be for either future dates or past dates, and you can set the timezone if available.</p>
 
-<p>This package is based on a Parsing Expression Grammar defined using <code class="highlighter-rouge">pyparsing</code>. If you have any comments, feel free to create issues or send pull requests in the Github repository.</p>
+<p>This package is based on a Parsing Expression Grammar defined using <code class="language-plaintext highlighter-rouge">pyparsing</code>. If you have any comments, feel free to create issues or send pull requests in the Github repository.</p>
 
 <h2 id="installing-the-package">Installing the package</h2>
 
-<p>In the meantime, while I finish adding this as a <code class="highlighter-rouge">pypi</code> package, you can install it directly
+<p>In the meantime, while I finish adding this as a <code class="language-plaintext highlighter-rouge">pypi</code> package, you can install it directly
 from the Github repository, as shown below,</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install git+https://github.com/Zapship/kronosparser.git
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install git+https://github.com/Zapship/kronosparser.git
 </code></pre></div></div>
 
 <h2 id="usage">Usage</h2>
@@ -110,7 +110,7 @@ from the Github repository, as shown below,</p>
 
 <script src="https://gist.github.com/glhuilli/5880d1d281d2cc1bc19cef0de5b494eb.js"></script>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'end': 21,
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'end': 21,
       'parsed': {'datetime': '2020-03-11 14:20:38-07:00'},
       'start': 18,
       'text': 'now'},
@@ -124,32 +124,32 @@ from the Github repository, as shown below,</p>
       'text': 'next week'}]
 </code></pre></div></div>
 
-<p>Note that the example above has 3 types of identified instances: a <code class="highlighter-rouge">datetime</code> with timezone, a <code class="highlighter-rouge">datetime</code> without timezone, and a time interval.</p>
+<p>Note that the example above has 3 types of identified instances: a <code class="language-plaintext highlighter-rouge">datetime</code> with timezone, a <code class="language-plaintext highlighter-rouge">datetime</code> without timezone, and a time interval.</p>
 
-<p>Another simple example is just <code class="highlighter-rouge">tomorrow</code>, which is parsed into a <code class="highlighter-rouge">date</code> format without timezone.</p>
+<p>Another simple example is just <code class="language-plaintext highlighter-rouge">tomorrow</code>, which is parsed into a <code class="language-plaintext highlighter-rouge">date</code> format without timezone.</p>
 
 <script src="https://gist.github.com/glhuilli/822bfa82b56f4eba9ac00a63ee3049bf.js"></script>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'end': 29, 'parsed': {'date': '2020-03-12'}, 'start': 21, 'text': 'tomorrow'}]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'end': 29, 'parsed': {'date': '2020-03-12'}, 'start': 21, 'text': 'tomorrow'}]
 </code></pre></div></div>
 
-<p>The following example shows how the <code class="highlighter-rouge">future</code> flag option works. If you parse an input text with a date (e.g., <code class="highlighter-rouge">friday</code>) with the <code class="highlighter-rouge">future</code> option set <code class="highlighter-rouge">True</code>, it will find the closest instance of the date but in the future.</p>
+<p>The following example shows how the <code class="language-plaintext highlighter-rouge">future</code> flag option works. If you parse an input text with a date (e.g., <code class="language-plaintext highlighter-rouge">friday</code>) with the <code class="language-plaintext highlighter-rouge">future</code> option set <code class="language-plaintext highlighter-rouge">True</code>, it will find the closest instance of the date but in the future.</p>
 
 <script src="https://gist.github.com/glhuilli/50dba909c8e9b00942a3b45e007303d9.js"></script>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'end': 6, 'parsed': {'date': '2020-03-13'}, 'start': 0, 'text': 'friday'}]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'end': 6, 'parsed': {'date': '2020-03-13'}, 'start': 0, 'text': 'friday'}]
 </code></pre></div></div>
 
-<p>However, if you use the <code class="highlighter-rouge">future</code> flag set to <code class="highlighter-rouge">False</code>, it will find the closest instance of the date, but in the past.</p>
+<p>However, if you use the <code class="language-plaintext highlighter-rouge">future</code> flag set to <code class="language-plaintext highlighter-rouge">False</code>, it will find the closest instance of the date, but in the past.</p>
 
 <script src="https://gist.github.com/glhuilli/fc079927716e3e74e1478b23c1fed5bd.js"></script>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'end': 6, 'parsed': {'date': '2020-03-06'}, 'start': 0, 'text': 'friday'}]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'end': 6, 'parsed': {'date': '2020-03-06'}, 'start': 0, 'text': 'friday'}]
 </code></pre></div></div>
 
-<p>Very important to note that if you don’t define the <code class="highlighter-rouge">timezone</code>, it will use <code class="highlighter-rouge">US/Pacific</code> by default. Also, if no parameters are specified, it will use the <code class="highlighter-rouge">future</code> flag as <code class="highlighter-rouge">False</code> and the <code class="highlighter-rouge">interval_to_date</code> flag as <code class="highlighter-rouge">True</code>. Many more examples are available in the package’s <a href="https://github.com/glhuilli/kronosparser/tree/master/tests">test cases</a>.</p>
+<p>Very important to note that if you don’t define the <code class="language-plaintext highlighter-rouge">timezone</code>, it will use <code class="language-plaintext highlighter-rouge">US/Pacific</code> by default. Also, if no parameters are specified, it will use the <code class="language-plaintext highlighter-rouge">future</code> flag as <code class="language-plaintext highlighter-rouge">False</code> and the <code class="language-plaintext highlighter-rouge">interval_to_date</code> flag as <code class="language-plaintext highlighter-rouge">True</code>. Many more examples are available in the package’s <a href="https://github.com/glhuilli/kronosparser/tree/master/tests">test cases</a>.</p>
 
-<p>Let me know if this package is useful and/or you’d like to see it as an official <code class="highlighter-rouge">pypi</code> package, which I plan to do, but it’s buried in my backlog. This way, I can prioritize that item from my never-ending TODO list.</p>
+<p>Let me know if this package is useful and/or you’d like to see it as an official <code class="language-plaintext highlighter-rouge">pypi</code> package, which I plan to do, but it’s buried in my backlog. This way, I can prioritize that item from my never-ending TODO list.</p>
 
 <!-- <script id="dsq-count-scr" src="//glhuilli.disqus.com/count.js" async></script> -->
 <div id="disqus_thread"></div>
@@ -221,7 +221,7 @@ s.setAttribute('data-timestamp', +new Date());
     </div>
   <!-- 
     
-    <script src='/assets/bundle.js?1629374428903997000' type='text/javascript'></script>
+    <script src='/assets/bundle.js?1629377485896162000' type='text/javascript'></script>
    -->
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2365015-1"></script>

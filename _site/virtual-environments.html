@@ -24,15 +24,15 @@
     <!-- <link rel='icon' href='/assets/images/favicon.ico' type='image/x-icon'> -->
     
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1629377485896162000'>
     
-    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1629374428903997000'>
+    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1629377485896162000'>
     
   
     
@@ -81,7 +81,7 @@
     <div class='title'>Automatic activation of virtualenv (+ pyenv)</div>
     <div class='date'>03 Mar 2019</div>
     <div class='content'><p>There must be hundreds of alternatives for using Python virtualenv in a simple and clean way, but the following is by far the
-one that I find most intuitive and easy to set up. The idea is simple. Each time you want to use a <code class="highlighter-rouge">virtualenv</code> in a project,
+one that I find most intuitive and easy to set up. The idea is simple. Each time you want to use a <code class="language-plaintext highlighter-rouge">virtualenv</code> in a project,
 you need to:</p>
 
 <ol>
@@ -96,36 +96,36 @@ you need to:</p>
 </ol>
 
 <p>For this, you will need to have <a href="https://github.com/pyenv/pyenv">pyenv</a> and <a href="https://github.com/pypa/virtualenv">virtualenv</a>
-installed in your development environment. Once that’s done, you need to source the following <code class="highlighter-rouge">bash</code> script. Note that the <code class="highlighter-rouge">.python-version</code> is a <code class="highlighter-rouge">pyenv</code> requirement and all details related to its definition and usage can be found [<a href="https://github.com/pyenv/pyenv">here</a>].</p>
+installed in your development environment. Once that’s done, you need to source the following <code class="language-plaintext highlighter-rouge">bash</code> script. Note that the <code class="language-plaintext highlighter-rouge">.python-version</code> is a <code class="language-plaintext highlighter-rouge">pyenv</code> requirement and all details related to its definition and usage can be found [<a href="https://github.com/pyenv/pyenv">here</a>].</p>
 
 <script src="https://gist.github.com/glhuilli/c1af87bde701ede4d218bab829d3817e.js"></script>
 
-<p>This script works roughly as follows. First, it verifies the <code class="highlighter-rouge">.python-version</code> file which only contains
+<p>This script works roughly as follows. First, it verifies the <code class="language-plaintext highlighter-rouge">.python-version</code> file which only contains
 the version of python you want to use. For example,</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat .python-version
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat .python-version
 3.7.2
 </code></pre></div></div>
 
-<p>If <code class="highlighter-rouge">pyenv</code> is available and supports the python version you are intending to use, a <code class="highlighter-rouge">virtualenv</code> is then created
-pointing to a <code class="highlighter-rouge">.python</code> folder within your projects home directory. The name of the <code class="highlighter-rouge">virtualenv</code> is defined in
-the <code class="highlighter-rouge">.python-virtualenv</code> file, for example,</p>
+<p>If <code class="language-plaintext highlighter-rouge">pyenv</code> is available and supports the python version you are intending to use, a <code class="language-plaintext highlighter-rouge">virtualenv</code> is then created
+pointing to a <code class="language-plaintext highlighter-rouge">.python</code> folder within your projects home directory. The name of the <code class="language-plaintext highlighter-rouge">virtualenv</code> is defined in
+the <code class="language-plaintext highlighter-rouge">.python-virtualenv</code> file, for example,</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat .python-virtualenv
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat .python-virtualenv
 my_python_project
 </code></pre></div></div>
 
-<p>If you want to use a given python version, the script will verify if it’s available within <code class="highlighter-rouge">pyenv</code>. If not, then
+<p>If you want to use a given python version, the script will verify if it’s available within <code class="language-plaintext highlighter-rouge">pyenv</code>. If not, then
 it will prompt instructions on how to install it. Also, there are a few optimizations you might want to make to the
 strategy (e.g. using only one config file, prompting more options, etc.) but this should be enough to get you ready
 and set up to use Python virtual environments in an easy way.</p>
 
-<p>You can use the script above in your development environment by sourcing it from your favorite bash/tcsh/zsh/other “autoloading” script (e.g. your <code class="highlighter-rouge">.bash_profile</code> or your <code class="highlighter-rouge">.zshrc</code>, etc.). Save the file locally (e.g. in <code class="highlighter-rouge">~/.development_scripts/python_env_load.sh</code>). Finally, I strongly suggest adding the following environment variables to your system so you make sure that anything
-you install is within a <code class="highlighter-rouge">vitualenv</code>. Both the source of the script and the <code class="highlighter-rouge">pip</code> environment variables together would look like this:</p>
+<p>You can use the script above in your development environment by sourcing it from your favorite bash/tcsh/zsh/other “autoloading” script (e.g. your <code class="language-plaintext highlighter-rouge">.bash_profile</code> or your <code class="language-plaintext highlighter-rouge">.zshrc</code>, etc.). Save the file locally (e.g. in <code class="language-plaintext highlighter-rouge">~/.development_scripts/python_env_load.sh</code>). Finally, I strongly suggest adding the following environment variables to your system so you make sure that anything
+you install is within a <code class="language-plaintext highlighter-rouge">vitualenv</code>. Both the source of the script and the <code class="language-plaintext highlighter-rouge">pip</code> environment variables together would look like this:</p>
 
 <script src="https://gist.github.com/glhuilli/3a1245fa37644766b47e6a1420e8cbbf.js"></script>
 
-<p>Special thanks to <a href="https://github.com/rzilleruelo">@rzilleruelo</a> for coming up with the first versions of this <code class="highlighter-rouge">virtualenv+pyenv</code> bash script.</p>
+<p>Special thanks to <a href="https://github.com/rzilleruelo">@rzilleruelo</a> for coming up with the first versions of this <code class="language-plaintext highlighter-rouge">virtualenv+pyenv</code> bash script.</p>
 
 <!-- <script id="dsq-count-scr" src="//glhuilli.disqus.com/count.js" async></script> -->
 <div id="disqus_thread"></div>
@@ -197,7 +197,7 @@ s.setAttribute('data-timestamp', +new Date());
     </div>
   <!-- 
     
-    <script src='/assets/bundle.js?1629374428903997000' type='text/javascript'></script>
+    <script src='/assets/bundle.js?1629377485896162000' type='text/javascript'></script>
    -->
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2365015-1"></script>
