@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+<meta http-equiv='x-ua-compatible' content='ie=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='google-site-verification' content='eYLUlW-Cr452cLvMYOYoqYtyqArzYvYYryVJV1jsV5o'>
+<meta name='twitter:card' content='summary_large_image'>
+<meta name='twitter:site' content='@glhuilli'>
+<meta name='twitter:creator' content='@glhuilli'>
+<meta property='og:url' content='http://localhost:4000/newvelles.html'>
+
+  <meta name='og:title' content="Newvelles: Navigating the latest news by topics">
+
+
+  <meta name='description' content="Website to check latest news clustered by topic">
+  <meta name='og:description' content="Website to check latest news clustered by topic">
+
+
+  <meta property='og:image' content='http://localhost:4000/assets/posts/newvelles/newvelles.png'>
+
+
+    <title>Newvelles: Navigating the latest news by topics</title>
+    <!-- <link rel='icon' href='/assets/images/favicon.ico' type='image/x-icon'> -->
+    
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/main.css?1635703436267770000'>
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/loader.css?1635703436267770000'>
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/404.css?1635703436267770000'>
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/monokai.css?1635703436267770000'>
+    
+    <link rel='stylesheet' type='text/css' href='/assets/css/reset.css?1635703436267770000'>
+    
+  
+    
+      
+      
+        <link type='text/css' rel='stylesheet' href='/assets/posts/virtual-environments/virtual-env.css'>
+      
+    
+  
+
+  </head>
+  <body>
+    <div id='content'>
+      
+  <svg style='width:0px; height:0px;'>
+  <filter id='header-duotone' color-interpolation-filters='sRGB'
+          x='0' y='0' height='100%' width='100%'>
+    <feColorMatrix type='matrix'
+      values='1  0  0  0  0
+              1  0  0  0  0
+              1  0  0  0  0
+              0  0  0  1  0'/>
+  </filter>
+</svg>
+<script src='/assets/js/duotone.js'></script>
+  <header class='header'>
+    
+      
+        <div class='background-image duotone-invert'
+          style='background-image: url(/assets/posts/newvelles/newvelles.png)'></div>
+      
+    
+    <div class='home-icon'>
+  <a href='/#'>
+    <img src='/assets/images/icons/home.svg'
+      onerror="this.src='/assets/images/icons/home.png'"
+      alt='Home Icon'>
+  </a>
+</div>
+  </header>
+
+
+<noscript>This site works best with JavaScript enabled.</noscript>
+<div class='post'>
+  <div class='container'>
+    <div class='title'>Newvelles: Navigating the latest news by topics</div>
+    <div class='date'>20 Sep 2021</div>
+    <div class='content'><p><code class="language-plaintext highlighter-rouge">Newvelles</code>, a portmanteau between <code class="language-plaintext highlighter-rouge">New</code> and <code class="language-plaintext highlighter-rouge">Nouvelles</code> (french word for news), so in other words <code class="language-plaintext highlighter-rouge">Latest News</code>, is a simple website (available in <a href="http://newvelles.com/">this link</a>) that allows you to navigate the latest news clustered by topics.</p>
+
+<div class="got">
+  <img style="margin: 10px auto;" width="450" src="/assets/posts/newvelles/newvelles_use_case_list.png" alt="Example top 10 news fetched on Nov 30th at 5:46am PDT." />
+  <p align="center">Example top 10 news fetched on Nov 30th at 5:46am PDT.</p>
+</div>
+
+<div class="got">
+  <img style="margin: 10px auto;" width="450" src="/assets/posts/newvelles/newvelles_use_case_expand_2.png" alt="Example of expanded top-level cluster all the way to the last level with the metadata." />
+  <p align="center">Example of expanded top-level cluster all the way to the last level with the metadata.</p>
+</div>
+
+<p>All news are grouped in two levels. First by their “semantic similarity” (they have content that covers similar topics), and then by their potential duplicates (they have the same content). All ranked by frequency (size of the top-level cluster). For each cluster a set of noun phrases is extracted and then displayed so the user can infer the content within each cluster of news.</p>
+
+<p>Users can navigate the news by expanding the top-level (same topics) news and the second level news (duplicates). The last level of the tree contains metadata of the particular news and a link to access the full article from the source.</p>
+
+<h2 id="how-does-newvelles-work">How does Newvelles work?</h2>
+
+<p>At a very high level, the production version of Newvelles works in the following way:</p>
+<ol>
+  <li>Every 60 minutes, it triggers a python script that runs in <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> that fetches raw news data from a list of valid RSS feeds.</li>
+  <li>For every RSS news site, the job pulls all the latest news (filtering anything older than 14 days), processes it, and dumps it to <a href="https://aws.amazon.com/pm/serv-s3/">AWS S3</a>.</li>
+  <li>The processed news are consumed from S3 by a simple website hosted in <a href="https://lightsail.aws.amazon.com/">AWS Lightsail</a> which then presents the content to end users.</li>
+</ol>
+
+<p>You can definitely run it 100% locally (no need to have S3, AWS lambda, or AWS lightsail). You just need to follow the instructions in <a href="https://github.com/glhuilli/newvelles">Newvelles</a> (the backend that fetches and processes all news) and launch the <a href="https://github.com/glhuilli/newvelles_web">Newvelles website</a> (to navigate the data). You can also check each project’s Dockerfile for more details on how to run them locally.</p>
+
+<p>The “news grouping algorithm” uses a combination of semantic similarity and matching similarity. The semantic similarity uses the <a href="https://arxiv.org/abs/1803.11175">Universal Sentence Encoder</a> to encode news titles into sentence embeddings used to find which other titles are close using simple similarity measures. The current implementation is using a pre-trained collection of embeddings available in <a href="https://tfhub.dev/google/universal-sentence-encoder/2">TensorHub</a>, particularly the <a href="https://www.tensorflow.org/hub/tutorials/semantic_similarity_with_tf_hub_universal_encoder_lite">lite version</a>. The matching similarity uses a very simple algorithm that transforms all encoded words from the sentence into a set. It then iteratively builds groups of very similar sentences based on how many common words (non-stopwords and stemmed) are shared between these sets.</p>
+
+<h2 id="todo">TODO</h2>
+
+<p>Several improvements can be done in future versions:</p>
+<ol>
+  <li>Better UX to navigate the news. For example, using size to change which noun phrases are most common within a particular cluster or improving the topic similarity algorithm (expanding it beyond just using the Universal Sentence Encoder).</li>
+  <li>Better matching algorithms to group duplicate news. Current matching algorithm is extremely simple.</li>
+  <li>Allow users to pick their own set of RSS news links to personalize which news they are interested in following. This might need users to keep on their own cache these preferences unless a user registration process is created.</li>
+  <li>News websites are sometimes polarized and it’s well understood which direction of the political spectrum they can lean. Adding this metadata to the RSS news list and then using it to label how different news clusters are distributed along the political spectrum (e.g., in terms of coverage) could be an interesting feature to explore.</li>
+  <li>Add SSL Certificate to newvelles.com.</li>
+</ol>
+
+<p>You are more than welcome to take a stab and contribute in any of these topics. Pull requests are welcome!</p>
+
+<div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {
+this.page.url = virtual-environments;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = virtual-environments; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://glhuilli.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+  </div>
+</div>
+<footer class='footer'>
+  
+  <a target='_blank' href='http://github.com/glhuilli'>
+    <img class='footer-icon'
+      src='/assets/images/icons/github-dark.svg'
+      onerror="this.src='/assets/images/icons/github-dark.png'"
+      alt='GitHub Icon'>
+</a>
+  <!-- <a target='_blank' href='http://bl.ocks.org/glhuilli'>
+  <div class='footer-icon square-image'>
+      <img src='/assets/images/icons/blocks-dark.svg'
+        onerror="this.src='/assets/images/icons/blocks-dark.png'"
+        alt='Blocks Icon'>
+    
+  </div>
+</a> -->
+  <a target='_blank' href='http://twitter.com/glhuilli'>
+    <img class='footer-icon'
+      src='/assets/images/icons/twitter-dark.svg'
+      onerror="this.src='/assets/images/icons/twitter-dark.png'"
+      alt='Twitter Icon'>
+</a>
+  <a target='_blank' href='https://www.linkedin.com/in/glhuilli'>
+    <img class='footer-icon'
+      src='/assets/images/icons/linkedin-dark.svg'
+      onerror="this.src='/assets/images/icons/linkedin-dark.png'"
+      alt='LinkedIn Icon'>
+</a>
+
+  <a target='_blank' href='/feed.xml'>
+  <div class='footer-icon square-image'>
+      <img src='/assets/images/icons/rss-dark.svg'
+        onerror="this.src='/assets/images/icons/rss-dark.png'"
+        alt='RSS Icon'>
+  </div>
+</a>
+
+  <p style="font-size:13px; align-text: center">© 2021 Gaston L'Huillier.
+    <br>Powered by Jekyll.
+    Inspired by <a style="color:#ffffff;text-decoration: underline;" href='https://douglasduhaime.com/'>Douglas Duhaime</a>'s design.
+    <br>All rights reserved.
+  </p>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML-full" type="text/javascript"></script>
+
+    </div>
+  <!-- 
+    
+    <script src='/assets/bundle.js?1635703436267770000' type='text/javascript'></script>
+   -->
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2365015-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-2365015-1');
+</script>
+
+  </body>
+  <!-- like a copper fox on rust... -->
+</html>
