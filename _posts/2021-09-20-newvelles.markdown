@@ -45,11 +45,11 @@ TODO
 -----
 
 Several improvements can be done in future versions:
-1. Better UX to navigate the news. For example, using size to change which noun phrases are most common within a particular cluster or improving the topic similarity algorithm (expanding it beyond just using the Universal Sentence Encoder).
-2. Better matching algorithms to group duplicate news. Current matching algorithm is extremely simple.
-3. Allow users to pick their own set of RSS news links to personalize which news they are interested in following. This might need users to keep on their own cache these preferences unless a user registration process is created.
-4. News websites are sometimes polarized and it's well understood which direction of the political spectrum they can lean. Adding this metadata to the RSS news list and then using it to label how different news clusters are distributed along the political spectrum (e.g., in terms of coverage) could be an interesting feature to explore.
-5. Add SSL Certificate to newvelles.com. 
+1. Better UX to navigate the news. For example, using size to change which noun phrases are most common within a particular cluster.
+2. Improve the topic similarity algorithm (expanding it beyond just using the Universal Sentence Encoder).
+3. Better matching algorithms to group duplicate news. Current matching algorithm is extremely simple.
+4. Allow users to pick their own set of RSS news links to personalize which news they are interested in following.
+5. Add SSL Certificate to newvelles.com.
 
 You are more than welcome to take a stab and contribute in any of these topics. Pull requests are welcome!
 
