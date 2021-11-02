@@ -13,7 +13,7 @@ css:
 invert: true
 ---
 
-`Newvelles`, a portmanteau between `New` and `Nouvelles` (french word for news), so in other words `Latest News`, is a simple website (available in [this link](http://newvelles.com/)) that allows you to navigate the latest news clustered by topics.
+`Newvelles`, a portmanteau between `New` and `Nouvelles` (french word for news), so in other words `Latest News`, is a simple website (available in [this link](https://newvelles-web-service.nbof67v3f3gck.us-west-2.cs.amazonlightsail.com/)) that allows you to navigate the latest news clustered by topics.
 
 <div class='got'>
   <img style="margin: 10px auto;" width="450" src='{{ site.baseurl }}/assets/posts/newvelles/newvelles_use_case_list.png' alt='Example top 10 news fetched on Nov 30th at 5:46am PDT.'>
@@ -45,10 +45,10 @@ TODO
 -----
 
 Several improvements can be done in future versions:
-1. Better UX to navigate the news. For example, using size to change which noun phrases are most common within a particular cluster.
-2. Improve the topic similarity algorithm (expanding it beyond just using the Universal Sentence Encoder).
-3. Better matching algorithms to group duplicate news. Current matching algorithm is extremely simple.
-4. Allow users to pick their own set of RSS news links to personalize which news they are interested in following.
+1. Better UX to navigate the news. For example, using size to change which noun phrases are most common within a particular cluster or improving the topic similarity algorithm (expanding it beyond just using the Universal Sentence Encoder).
+2. Better matching algorithms to group duplicate news. Current matching algorithm is extremely simple.
+3. Allow users to pick their own set of RSS news links to personalize which news they are interested in following. This might need users to keep on their own cache these preferences unless a user registration process is created.
+4. News websites are sometimes polarized and it's well understood which direction of the political spectrum they can lean. Adding this metadata to the RSS news list and then using it to label how different news clusters are distributed along the political spectrum (e.g., in terms of coverage) could be an interesting feature to explore.
 5. Add SSL Certificate to newvelles.com.
 
 You are more than welcome to take a stab and contribute in any of these topics. Pull requests are welcome!
