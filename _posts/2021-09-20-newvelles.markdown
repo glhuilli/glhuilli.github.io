@@ -33,7 +33,7 @@ How does Newvelles work?
 -----
 
 At a very high level, the production version of Newvelles works in the following way:
-1. Every 60 minutes, it triggers a python script in [AWS Lambda](https://aws.amazon.com/lambda/) that fetches raw news data from a list of valid RSS feeds.
+1. Every ~3 hours, it triggers a python script in [AWS Lambda](https://aws.amazon.com/lambda/) that fetches raw news data from a list of valid RSS feeds.
 2. For every RSS news site, the job pulls all the latest news (filtering anything older than 14 days), processes it, and dumps it to [AWS S3](https://aws.amazon.com/pm/serv-s3/).
 3. The processed news are consumed from S3 by a simple website hosted in [AWS Lightsail](https://lightsail.aws.amazon.com/) which then presents the content to end users.
 
