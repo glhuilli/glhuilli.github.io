@@ -13,7 +13,7 @@ css:
 invert: true
 ---
 
-`Newvelles`, a portmanteau between `New` and `Nouvelles` (french word for news), so in other words `Latest News`, is a simple website (available in [this link](https://newvelles.com/)) that allows you to navigate the latest news clustered by topics.
+`Newvelles`, a portmanteau between `New` and `Nouvelles` (french word for news), so in other words `Latest News`, is a simple website (available in [this link](https://newvelles-web-service.nbof67v3f3gck.us-west-2.cs.amazonlightsail.com/)) that allows you to navigate the latest news clustered by topics.
 
 <div class='got'>
   <img style="margin: 10px auto;" width="450" src='{{ site.baseurl }}/assets/posts/newvelles/newvelles_use_case_list.png' alt='Example top 10 news fetched on Nov 30th at 5:46am PDT.'>
